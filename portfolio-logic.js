@@ -7,32 +7,87 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 // Updated with your 26 .webp images from the /images folder
 const artData = [
-    { title: "SISU Welder", featured: true, category: "Digital", tags: ["welder", "character"], date: "2024", desc: "Digital illustration featuring industrial themes.", img: "images/2024.03 SISU Welder (1).webp" },
-    { title: "Toothbrush Girl", featured: false, category: "Digital", tags: ["portrait", "person"], date: "2024", desc: "Stylized digital portrait study.", img: "images/2024.03 Toothbrush Girl - Addie (1).webp" },
-    { title: "Mountain Painting", featured: true, category: "Watercolor", tags: ["nature", "landscape", "mountains"], date: "2024", desc: "Atmospheric mountain landscape study.", img: "images/2024.04 Mountain Painting (1).webp" },
-    { title: "Flowering Study I", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Exploration of organic floral forms.", img: "images/2024.04 Paintings (1).webp" },
-    { title: "Flowering Study II", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Secondary study in the flowering series.", img: "images/2024.04 Paintings (2).webp" },
-    { title: "Abstract Flow III", featured: false, category: "Media", tags: ["abstract", "texture"], date: "2024", desc: "Experimental mixed media textures.", img: "images/2024.04 Paintings (3).webp" },
-    { title: "Composition IV", featured: false, category: "Media", tags: ["abstract", "form"], date: "2024", desc: "Study in balance and hard-edged geometry.", img: "images/2024.04 Paintings (4).webp" },
-    { title: "Vibrant Sketch V", featured: false, category: "Watercolor", tags: ["color", "sketch"], date: "2024", desc: "A play on vibrant washes and light.", img: "images/2024.04 Paintings (5).webp" },
-    { title: "Caricature of Addie", featured: false, category: "Digital", tags: ["portrait", "caricature"], date: "2024", desc: "A playful, exaggerated self-portrait caricature.", img: "images/2024.05 Caricature of Addie (1).webp" },
-    { title: "Farmhouse Watercolor", featured: true, category: "Watercolor", tags: ["architecture", "landscape", "house"], date: "2024", desc: "Traditional watercolor study of rural architecture.", img: "images/2024.05 Farmhouse Watercolor (1).webp" },
-    { title: "Swift in Glass", featured: false, category: "Media", tags: ["glass", "portrait", "pop"], date: "2024", desc: "Experimental glass painting featuring Taylor Swift.", img: "images/2024.06 Taylor Swift Glass Painting (1).webp" },
-    { title: "Waterfall Acrylic", featured: true, category: "Media", tags: ["nature", "waterfall", "acrylic"], date: "2024", desc: "Heavily textured acrylic waterfall landscape.", img: "images/2024.06 Waterfall Acrylic (1).webp" },
-    { title: "City Alley", featured: false, category: "Digital", tags: ["urban", "city", "architecture"], date: "2024", desc: "Urban perspective and lighting study.", img: "images/2024.07 City Alley (1).webp" },
-    { title: "Hebdon's House", featured: false, category: "Watercolor", tags: ["architecture", "home"], date: "2024", desc: "Commissioned architectural watercolor of a private residence.", img: "images/2024.07 Hebdon's House (1).webp" },
-    { title: "Girl Sketch", featured: false, category: "Media", tags: ["sketch", "person", "pencil"], date: "2024", desc: "Raw pencil and charcoal sketch.", img: "images/2024.08 Girl Sketch (1).webp" },
-    { title: "Abbey's Birthday", featured: false, category: "Media", tags: ["card", "illustration"], date: "2024", desc: "Custom birthday card illustration.", img: "images/2024.09 Abbey's Birthday Card - Addie (1).webp" },
-    { title: "Quinceanera Card I", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Celebratory card design for Rihanna's Quinceanera.", img: "images/2024.09 Rihanna's Quinceanera Card - Addie (1).webp" },
-    { title: "Quinceanera Card II", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Alternate celebratory card design concept.", img: "images/2024.09 Rihanna's Quinceanera Card - Addie (2).webp" },
-    { title: "Boat Painting", featured: true, category: "Watercolor", tags: ["sea", "boat", "nature"], date: "2024", desc: "Nautical watercolor study focusing on reflections.", img: "images/2024.09.01 Boat Painting (1).webp" },
-    { title: "Native American Study", featured: false, category: "Watercolor", tags: ["portrait", "culture", "unfinished"], date: "2024", desc: "Partly finished watercolor portrait study.", img: "images/2024.10 Partly Finished Native American Watercolor (1).webp" },
-    { title: "Lightswitch Cover", featured: false, category: "Craft", tags: ["3d-printing", "functional"], date: "2024", desc: "Custom 3D printed functional art for the home.", img: "images/2024.10.14 3D Printed Lightswitch Cover (1).webp" },
-    { title: "Creepy Series I", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Dark surrealist digital exploration.", img: "images/2025.03 Creepy Pics (1).webp" },
-    { title: "Creepy Series II", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Second installment in the dark surrealist series.", img: "images/2025.03 Creepy Pics (2).webp" },
-    { title: "Creepy Series III", featured: true, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Atmospheric horror-themed digital character.", img: "images/2025.03 Creepy Pics (3).webp" },
-    { title: "Creepy Series IV", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Gothic-influenced digital illustration.", img: "images/2025.03 Creepy Pics (4).webp" },
-    { title: "Creepy Series V", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Culmination of the 2025 creepy series.", img: "images/2025.03 Creepy Pics (5).webp" }
+    { 
+        title: "Mona Lisa", 
+        featured: true, 
+        category: "Oil", 
+        tags: ["portrait", "renaissance", "da-vinci"], 
+        date: "1503", 
+        desc: "Leonardo da Vinci's enigmatic portrait, famous for its subtle 'sfumato' technique and mysterious expression.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" 
+    },
+    { 
+        title: "The Starry Night", 
+        featured: true, 
+        category: "Oil", 
+        tags: ["landscape", "post-impressionism", "van-gogh"], 
+        date: "1889", 
+        desc: "Vincent van Gogh's swirling nocturne painted from his room at the Saint-Rémy-de-Provence asylum.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+    },
+    { 
+        title: "Girl with a Pearl Earring", 
+        featured: false, 
+        category: "Oil", 
+        tags: ["portrait", "baroque", "vermeer"], 
+        date: "1665", 
+        desc: "Johannes Vermeer's 'tronie' study, renowned for its incredible use of light and focus on the oversized earring.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg/800px-Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg" 
+    },
+    { 
+        title: "The Great Wave off Kanagawa", 
+        featured: true, 
+        category: "Print", 
+        tags: ["nature", "japanese", "hokusai"], 
+        date: "1831", 
+        desc: "Hokusai's iconic woodblock print depicting a towering wave threatening boats with Mount Fuji in the background.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Great_Wave_off_Kanagawa2.jpg/1280px-Great_Wave_off_Kanagawa2.jpg" 
+    },
+    { 
+        title: "The Scream", 
+        featured: false, 
+        category: "Media", 
+        tags: ["expressionism", "surreal", "munch"], 
+        date: "1893", 
+        desc: "Edvard Munch's visceral representation of existential anxiety, featuring a figure under a blood-red sky.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg" 
+    },
+    { 
+        title: "American Gothic", 
+        featured: true, 
+        category: "Oil", 
+        tags: ["architecture", "portrait", "wood"], 
+        date: "1390", 
+        desc: "Grant Wood's depiction of a farmer and his daughter, representing traditional midwestern American values.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg" 
+    },
+    { 
+        title: "The Birth of Venus", 
+        featured: false, 
+        category: "Tempera", 
+        tags: ["mythology", "renaissance", "botticelli"], 
+        date: "1485", 
+        desc: "Sandro Botticelli's depiction of the goddess Venus emerging from the sea foam on a giant scallop shell.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" 
+    },
+    { 
+        title: "Composition 8", 
+        featured: false, 
+        category: "Oil", 
+        tags: ["abstract", "geometry", "kandinsky"], 
+        date: "1923", 
+        desc: "Wassily Kandinsky's exploration of color theory and geometric shapes to evoke spiritual musicality.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Vassily_Kandinsky%2C_1923_-_Composition_8.jpg/1280px-Vassily_Kandinsky%2C_1923_-_Composition_8.jpg" 
+    },
+    { 
+        title: "The Garden of Earthly Delights", 
+        featured: true, 
+        category: "Oil", 
+        tags: ["surreal", "religious", "bosch"], 
+        date: "1500", 
+        desc: "Hieronymus Bosch's complex triptych depicting the history of humanity from Eden to Heck.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Garden_of_earthly_delights.jpg/1280px-The_Garden_of_earthly_delights.jpg" 
+    }
 ];
 
 // ── Synonym map ──
