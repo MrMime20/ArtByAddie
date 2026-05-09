@@ -4,19 +4,35 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ── Art data ──
+// ── Art data ──
+// Updated with your 26 .webp images from the /images folder
 const artData = [
-    { title: "Neon Grin",         featured: true,  category: "Digital",    tags: ["cyberpunk","face"],         date: "2026", desc: "A study of artificial light hitting organic surfaces.",   img: "https://picsum.photos/600/800?random=1"  },
-    { title: "Paper Weight",      featured: false, category: "Watercolor", tags: ["minimal","paper"],          date: "2025", desc: "Minimalist watercolor on 300gsm paper.",                 img: "https://picsum.photos/800/600?random=2"  },
-    { title: "Ghost in the Wire", featured: true,  category: "Digital",    tags: ["sci-fi","character"],       date: "2026", desc: "Conceptual character design for a sci-fi narrative.",     img: "https://picsum.photos/600/600?random=3"  },
-    { title: "Rust & Bone",       featured: false, category: "Media",      tags: ["abstract","texture"],       date: "2025", desc: "Mixed media using charcoal and found metal pieces.",      img: "https://picsum.photos/500/700?random=4"  },
-    { title: "Blue Monday",       featured: false, category: "Watercolor", tags: ["blue","water","abstract"],  date: "2026", desc: "Heavy wash experiments.",                                 img: "https://picsum.photos/700/500?random=5"  },
-    { title: "The Weaver",        featured: true,  category: "Craft",      tags: ["textile","handmade"],       date: "2026", desc: "Hand-stitched textile work.",                             img: "https://picsum.photos/400/600?random=6"  },
-    { title: "Concrete Jungle",   featured: false, category: "Digital",    tags: ["city","landscape"],         date: "2025", desc: "Urban architecture study.",                               img: "https://picsum.photos/800/800?random=7"  },
-    { title: "Drip Point",        featured: false, category: "Media",      tags: ["ink","splatter"],           date: "2026", desc: "Ink splatter abstraction.",                               img: "https://picsum.photos/600/900?random=8"  },
-    { title: "Copper Heart",      featured: false, category: "Craft",      tags: ["sculpture","metal"],        date: "2025", desc: "Sculpted wire and copper mesh.",                          img: "https://picsum.photos/500/500?random=9"  },
-    { title: "Static",            featured: true,  category: "Digital",    tags: ["glitch","portrait"],        date: "2026", desc: "Pixel-glitch portraiture.",                               img: "https://picsum.photos/700/1000?random=10"},
-    { title: "Golden Hour",       featured: false, category: "Watercolor", tags: ["sunset","landscape"],       date: "2026", desc: "Sunset color theory.",                                    img: "https://picsum.photos/900/600?random=11" },
-    { title: "Ocean Fragments",   featured: false, category: "Media",      tags: ["sea","acrylic"],            date: "2025", desc: "Collage of digital prints and acrylic.",                  img: "https://picsum.photos/600/400?random=12" },
+    { title: "SISU Welder", featured: true, category: "Digital", tags: ["welder", "character"], date: "2024", desc: "Digital illustration featuring industrial themes.", img: "images/2024.03 SISU Welder (1).webp" },
+    { title: "Toothbrush Girl", featured: false, category: "Digital", tags: ["portrait", "person"], date: "2024", desc: "Stylized digital portrait study.", img: "images/2024.03 Toothbrush Girl - Addie (1).webp" },
+    { title: "Mountain Painting", featured: true, category: "Watercolor", tags: ["nature", "landscape", "mountains"], date: "2024", desc: "Atmospheric mountain landscape study.", img: "images/2024.04 Mountain Painting (1).webp" },
+    { title: "Flowering Study I", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Exploration of organic floral forms.", img: "images/2024.04 Paintings (1).webp" },
+    { title: "Flowering Study II", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Secondary study in the flowering series.", img: "images/2024.04 Paintings (2).webp" },
+    { title: "Abstract Flow III", featured: false, category: "Media", tags: ["abstract", "texture"], date: "2024", desc: "Experimental mixed media textures.", img: "images/2024.04 Paintings (3).webp" },
+    { title: "Composition IV", featured: false, category: "Media", tags: ["abstract", "form"], date: "2024", desc: "Study in balance and hard-edged geometry.", img: "images/2024.04 Paintings (4).webp" },
+    { title: "Vibrant Sketch V", featured: false, category: "Watercolor", tags: ["color", "sketch"], date: "2024", desc: "A play on vibrant washes and light.", img: "images/2024.04 Paintings (5).webp" },
+    { title: "Caricature of Addie", featured: false, category: "Digital", tags: ["portrait", "caricature"], date: "2024", desc: "A playful, exaggerated self-portrait caricature.", img: "images/2024.05 Caricature of Addie (1).webp" },
+    { title: "Farmhouse Watercolor", featured: true, category: "Watercolor", tags: ["architecture", "landscape", "house"], date: "2024", desc: "Traditional watercolor study of rural architecture.", img: "images/2024.05 Farmhouse Watercolor (1).webp" },
+    { title: "Swift in Glass", featured: false, category: "Media", tags: ["glass", "portrait", "pop"], date: "2024", desc: "Experimental glass painting featuring Taylor Swift.", img: "images/2024.06 Taylor Swift Glass Painting (1).webp" },
+    { title: "Waterfall Acrylic", featured: true, category: "Media", tags: ["nature", "waterfall", "acrylic"], date: "2024", desc: "Heavily textured acrylic waterfall landscape.", img: "images/2024.06 Waterfall Acrylic (1).webp" },
+    { title: "City Alley", featured: false, category: "Digital", tags: ["urban", "city", "architecture"], date: "2024", desc: "Urban perspective and lighting study.", img: "images/2024.07 City Alley (1).webp" },
+    { title: "Hebdon's House", featured: false, category: "Watercolor", tags: ["architecture", "home"], date: "2024", desc: "Commissioned architectural watercolor of a private residence.", img: "images/2024.07 Hebdon's House (1).webp" },
+    { title: "Girl Sketch", featured: false, category: "Media", tags: ["sketch", "person", "pencil"], date: "2024", desc: "Raw pencil and charcoal sketch.", img: "images/2024.08 Girl Sketch (1).webp" },
+    { title: "Abbey's Birthday", featured: false, category: "Media", tags: ["card", "illustration"], date: "2024", desc: "Custom birthday card illustration.", img: "images/2024.09 Abbey's Birthday Card - Addie (1).webp" },
+    { title: "Quinceanera Card I", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Celebratory card design for Rihanna's Quinceanera.", img: "images/2024.09 Rihanna's Quinceanera Card - Addie (1).webp" },
+    { title: "Quinceanera Card II", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Alternate celebratory card design concept.", img: "images/2024.09 Rihanna's Quinceanera Card - Addie (2).webp" },
+    { title: "Boat Painting", featured: true, category: "Watercolor", tags: ["sea", "boat", "nature"], date: "2024", desc: "Nautical watercolor study focusing on reflections.", img: "images/2024.09.01 Boat Painting (1).webp" },
+    { title: "Native American Study", featured: false, category: "Watercolor", tags: ["portrait", "culture", "unfinished"], date: "2024", desc: "Partly finished watercolor portrait study.", img: "images/2024.10 Partly Finished Native American Watercolor (1).webp" },
+    { title: "Lightswitch Cover", featured: false, category: "Craft", tags: ["3d-printing", "functional"], date: "2024", desc: "Custom 3D printed functional art for the home.", img: "images/2024.10.14 3D Printed Lightswitch Cover (1).webp" },
+    { title: "Creepy Series I", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Dark surrealist digital exploration.", img: "images/2025.03 Creepy Pics (1).webp" },
+    { title: "Creepy Series II", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Second installment in the dark surrealist series.", img: "images/2025.03 Creepy Pics (2).webp" },
+    { title: "Creepy Series III", featured: true, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Atmospheric horror-themed digital character.", img: "images/2025.03 Creepy Pics (3).webp" },
+    { title: "Creepy Series IV", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Gothic-influenced digital illustration.", img: "images/2025.03 Creepy Pics (4).webp" },
+    { title: "Creepy Series V", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Culmination of the 2025 creepy series.", img: "images/2025.03 Creepy Pics (5).webp" }
 ];
 
 // ── Synonym map ──
