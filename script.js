@@ -29,7 +29,7 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'images/2024.03 SISU Welder (1).webp';
+img.src = 'https://samuelearp.com/wp-content/uploads/2023/05/bierstadt-astormintherockymountains-1868.jpg';
 
 img.onload = () => {
     rebuild();
