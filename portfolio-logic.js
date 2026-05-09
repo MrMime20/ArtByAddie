@@ -10,83 +10,101 @@ const artData = [
     { 
         title: "Mona Lisa", 
         featured: true, 
-        category: "Oil", 
+        category: "Digital", 
         tags: ["portrait", "renaissance", "da-vinci"], 
         date: "1503", 
-        desc: "Leonardo da Vinci's enigmatic portrait, famous for its subtle 'sfumato' technique and mysterious expression.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" 
+        desc: "The world's most famous portrait, known for its enigmatic smile.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" 
     },
     { 
         title: "The Starry Night", 
         featured: true, 
-        category: "Oil", 
-        tags: ["landscape", "post-impressionism", "van-gogh"], 
+        category: "Media", 
+        tags: ["landscape", "night", "impasto"], 
         date: "1889", 
-        desc: "Vincent van Gogh's swirling nocturne painted from his room at the Saint-Rémy-de-Provence asylum.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
-    },
-    { 
-        title: "Girl with a Pearl Earring", 
-        featured: false, 
-        category: "Oil", 
-        tags: ["portrait", "baroque", "vermeer"], 
-        date: "1665", 
-        desc: "Johannes Vermeer's 'tronie' study, renowned for its incredible use of light and focus on the oversized earring.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg/800px-Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg" 
+        desc: "A swirling, expressive depiction of the night sky over Saint-Rémy.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
     },
     { 
         title: "The Great Wave off Kanagawa", 
         featured: true, 
-        category: "Print", 
-        tags: ["nature", "japanese", "hokusai"], 
+        category: "Watercolor", 
+        tags: ["nature", "sea", "woodblock"], 
         date: "1831", 
-        desc: "Hokusai's iconic woodblock print depicting a towering wave threatening boats with Mount Fuji in the background.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Great_Wave_off_Kanagawa2.jpg/1280px-Great_Wave_off_Kanagawa2.jpg" 
+        desc: "Hokusai's iconic blue cresting wave against Mount Fuji.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/800px-Tsunami_by_hokusai_19th_century.jpg" 
+    },
+    { 
+        title: "Girl with a Pearl Earring", 
+        featured: false, 
+        category: "Digital", 
+        tags: ["portrait", "baroque", "vermeer"], 
+        date: "1665", 
+        desc: "A focal point of Dutch lighting and masterwork on fabric texture.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_Google_Art_Project_1.jpg/649px-Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_Google_Art_Project_1.jpg" 
+    },
+    { 
+        title: "The Persistence of Memory", 
+        featured: true, 
+        category: "Digital", 
+        tags: ["surreal", "clocks", "dali"], 
+        date: "1931", 
+        desc: "Melting pocket watches in a dream-like landscape.", 
+        img: "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg" 
     },
     { 
         title: "The Scream", 
         featured: false, 
         category: "Media", 
-        tags: ["expressionism", "surreal", "munch"], 
+        tags: ["horror", "expressionism", "munch"], 
         date: "1893", 
-        desc: "Edvard Munch's visceral representation of existential anxiety, featuring a figure under a blood-red sky.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg" 
+        desc: "An agonizing face symbolizing the anxiety of the modern human condition.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera%2C_pastel_and_crayon_on_cardboard%2C_91_x_73.5_cm%2C_National_Gallery%2C_Oslo.jpg/622px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera%2C_pastel_and_crayon_on_cardboard%2C_91_x_73.5_cm%2C_National_Gallery%2C_Oslo.jpg" 
     },
     { 
-        title: "American Gothic", 
+        title: "The Kiss", 
         featured: true, 
-        category: "Oil", 
-        tags: ["architecture", "portrait", "wood"], 
-        date: "1390", 
-        desc: "Grant Wood's depiction of a farmer and his daughter, representing traditional midwestern American values.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg" 
+        category: "Media", 
+        tags: ["romance", "gold-leaf", "klimt"], 
+        date: "1907", 
+        desc: "A shimmering Art Nouveau masterpiece covered in gold leaf and patterns.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Art_Project.jpg/642px-The_Kiss_-_Gustav_Klimt_-_Google_Art_Project.jpg" 
     },
     { 
         title: "The Birth of Venus", 
         featured: false, 
-        category: "Tempera", 
-        tags: ["mythology", "renaissance", "botticelli"], 
+        category: "Media", 
+        tags: ["mythology", "classical", "botticelli"], 
         date: "1485", 
-        desc: "Sandro Botticelli's depiction of the goddess Venus emerging from the sea foam on a giant scallop shell.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" 
+        desc: "The goddess Venus emerging from the sea upon a shell.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_2.jpg/1024px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_2.jpg" 
     },
     { 
-        title: "Composition 8", 
+        title: "A Sunday Afternoon on the Island of La Grande Jatte", 
         featured: false, 
-        category: "Oil", 
-        tags: ["abstract", "geometry", "kandinsky"], 
-        date: "1923", 
-        desc: "Wassily Kandinsky's exploration of color theory and geometric shapes to evoke spiritual musicality.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Vassily_Kandinsky%2C_1923_-_Composition_8.jpg/1280px-Vassily_Kandinsky%2C_1923_-_Composition_8.jpg" 
+        category: "Media", 
+        tags: ["landscape", "pointillism", "seurat"], 
+        date: "1884", 
+        desc: "A massive study in color theory using tiny dots of pigment.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/800px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg" 
     },
     { 
-        title: "The Garden of Earthly Delights", 
-        featured: true, 
-        category: "Oil", 
-        tags: ["surreal", "religious", "bosch"], 
-        date: "1500", 
-        desc: "Hieronymus Bosch's complex triptych depicting the history of humanity from Eden to Heck.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Garden_of_earthly_delights.jpg/1280px-The_Garden_of_earthly_delights.jpg" 
+        title: "Terrace at Night", 
+        featured: false, 
+        category: "Watercolor", 
+        tags: ["architecture", "urban", "night"], 
+        date: "1888", 
+        desc: "Vibrant yellow cafe lighting set against a deep blue starry sky.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Vincent_van_Gogh_-_Caf%C3%A9_Terrace_at_Night_%28F467%29.jpg/638px-Vincent_van_Gogh_-_Caf%C3%A9_Terrace_at_Night_%28F467%29.jpg" 
+    },
+    { 
+        title: "The Thinker", 
+        featured: false, 
+        category: "Craft", 
+        tags: ["sculpture", "functional", "rodin"], 
+        date: "1904", 
+        desc: "A monumental bronze sculpture representing philosophy and intellect.", 
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Le_Penseur_in_the_Mus%C3%A9e_Rodin%2C_Paris_2010.jpg/506px-Le_Penseur_in_the_Mus%C3%A9e_Rodin%2C_Paris_2010.jpg" 
     }
 ];
 
