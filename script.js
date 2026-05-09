@@ -29,7 +29,7 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'https://samuelearp.com/wp-content/uploads/2023/05/bierstadt-astormintherockymountains-1868.jpg';
+img.src = 'https://picsum.photos/300/200';
 
 img.onload = () => {
     rebuild();
