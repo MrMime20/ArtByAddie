@@ -7,105 +7,32 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 // Updated with your 26 .webp images from the /images folder
 const artData = [
-    { 
-        title: "Mona Lisa", 
-        featured: true, 
-        category: "Digital", 
-        tags: ["portrait", "renaissance", "da-vinci"], 
-        date: "1503", 
-        desc: "The world's most famous portrait, known for its enigmatic smile.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" 
-    },
-    { 
-        title: "The Starry Night", 
-        featured: true, 
-        category: "Media", 
-        tags: ["landscape", "night", "impasto"], 
-        date: "1889", 
-        desc: "A swirling, expressive depiction of the night sky over Saint-Rémy.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
-    },
-    { 
-        title: "The Great Wave off Kanagawa", 
-        featured: true, 
-        category: "Watercolor", 
-        tags: ["nature", "sea", "woodblock"], 
-        date: "1831", 
-        desc: "Hokusai's iconic blue cresting wave against Mount Fuji.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/800px-Tsunami_by_hokusai_19th_century.jpg" 
-    },
-    { 
-        title: "Girl with a Pearl Earring", 
-        featured: false, 
-        category: "Digital", 
-        tags: ["portrait", "baroque", "vermeer"], 
-        date: "1665", 
-        desc: "A focal point of Dutch lighting and masterwork on fabric texture.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_Google_Art_Project_1.jpg/649px-Johannes_Vermeer_-_Girl_with_a_Pearl_Earring_-_Google_Art_Project_1.jpg" 
-    },
-    { 
-        title: "The Persistence of Memory", 
-        featured: true, 
-        category: "Digital", 
-        tags: ["surreal", "clocks", "dali"], 
-        date: "1931", 
-        desc: "Melting pocket watches in a dream-like landscape.", 
-        img: "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg" 
-    },
-    { 
-        title: "The Scream", 
-        featured: false, 
-        category: "Media", 
-        tags: ["horror", "expressionism", "munch"], 
-        date: "1893", 
-        desc: "An agonizing face symbolizing the anxiety of the modern human condition.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera%2C_pastel_and_crayon_on_cardboard%2C_91_x_73.5_cm%2C_National_Gallery%2C_Oslo.jpg/622px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera%2C_pastel_and_crayon_on_cardboard%2C_91_x_73.5_cm%2C_National_Gallery%2C_Oslo.jpg" 
-    },
-    { 
-        title: "The Kiss", 
-        featured: true, 
-        category: "Media", 
-        tags: ["romance", "gold-leaf", "klimt"], 
-        date: "1907", 
-        desc: "A shimmering Art Nouveau masterpiece covered in gold leaf and patterns.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Art_Project.jpg/642px-The_Kiss_-_Gustav_Klimt_-_Google_Art_Project.jpg" 
-    },
-    { 
-        title: "The Birth of Venus", 
-        featured: false, 
-        category: "Media", 
-        tags: ["mythology", "classical", "botticelli"], 
-        date: "1485", 
-        desc: "The goddess Venus emerging from the sea upon a shell.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_2.jpg/1024px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_2.jpg" 
-    },
-    { 
-        title: "A Sunday Afternoon on the Island of La Grande Jatte", 
-        featured: false, 
-        category: "Media", 
-        tags: ["landscape", "pointillism", "seurat"], 
-        date: "1884", 
-        desc: "A massive study in color theory using tiny dots of pigment.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/800px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg" 
-    },
-    { 
-        title: "Terrace at Night", 
-        featured: false, 
-        category: "Watercolor", 
-        tags: ["architecture", "urban", "night"], 
-        date: "1888", 
-        desc: "Vibrant yellow cafe lighting set against a deep blue starry sky.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Vincent_van_Gogh_-_Caf%C3%A9_Terrace_at_Night_%28F467%29.jpg/638px-Vincent_van_Gogh_-_Caf%C3%A9_Terrace_at_Night_%28F467%29.jpg" 
-    },
-    { 
-        title: "The Thinker", 
-        featured: false, 
-        category: "Craft", 
-        tags: ["sculpture", "functional", "rodin"], 
-        date: "1904", 
-        desc: "A monumental bronze sculpture representing philosophy and intellect.", 
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Le_Penseur_in_the_Mus%C3%A9e_Rodin%2C_Paris_2010.jpg/506px-Le_Penseur_in_the_Mus%C3%A9e_Rodin%2C_Paris_2010.jpg" 
-    }
+    { title: "SISU Welder", featured: true, category: "Digital", tags: ["welder", "character"], date: "2024", desc: "Digital illustration featuring industrial themes.", img: "https://picsum.photos/seed/art1/800/600" },
+    { title: "Toothbrush Girl", featured: false, category: "Digital", tags: ["portrait", "person"], date: "2024", desc: "Stylized digital portrait study.", img: "https://picsum.photos/seed/art2/800/600" },
+    { title: "Mountain Painting", featured: true, category: "Watercolor", tags: ["nature", "landscape", "mountains"], date: "2024", desc: "Atmospheric mountain landscape study.", img: "https://picsum.photos/seed/art3/800/600" },
+    { title: "Flowering Study I", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Exploration of organic floral forms.", img: "https://picsum.photos/seed/art4/800/600" },
+    { title: "Flowering Study II", featured: false, category: "Watercolor", tags: ["botanical", "nature"], date: "2024", desc: "Secondary study in the flowering series.", img: "https://picsum.photos/seed/art5/800/600" },
+    { title: "Abstract Flow III", featured: false, category: "Media", tags: ["abstract", "texture"], date: "2024", desc: "Experimental mixed media textures.", img: "https://picsum.photos/seed/art6/800/600" },
+    { title: "Composition IV", featured: false, category: "Media", tags: ["abstract", "form"], date: "2024", desc: "Study in balance and hard-edged geometry.", img: "https://picsum.photos/seed/art7/800/600" },
+    { title: "Vibrant Sketch V", featured: false, category: "Watercolor", tags: ["color", "sketch"], date: "2024", desc: "A play on vibrant washes and light.", img: "https://picsum.photos/seed/art8/800/600" },
+    { title: "Caricature of Addie", featured: false, category: "Digital", tags: ["portrait", "caricature"], date: "2024", desc: "A playful, exaggerated self-portrait caricature.", img: "https://picsum.photos/seed/art9/800/600" },
+    { title: "Farmhouse Watercolor", featured: true, category: "Watercolor", tags: ["architecture", "landscape", "house"], date: "2024", desc: "Traditional watercolor study of rural architecture.", img: "https://picsum.photos/seed/art10/800/600" },
+    { title: "Swift in Glass", featured: false, category: "Media", tags: ["glass", "portrait", "pop"], date: "2024", desc: "Experimental glass painting featuring Taylor Swift.", img: "https://picsum.photos/seed/art11/800/600" },
+    { title: "Waterfall Acrylic", featured: true, category: "Media", tags: ["nature", "waterfall", "acrylic"], date: "2024", desc: "Heavily textured acrylic waterfall landscape.", img: "https://picsum.photos/seed/art12/800/600" },
+    { title: "City Alley", featured: false, category: "Digital", tags: ["urban", "city", "architecture"], date: "2024", desc: "Urban perspective and lighting study.", img: "https://picsum.photos/seed/art13/800/600" },
+    { title: "Hebdon's House", featured: false, category: "Watercolor", tags: ["architecture", "home"], date: "2024", desc: "Commissioned architectural watercolor of a private residence.", img: "https://picsum.photos/seed/art14/800/600" },
+    { title: "Girl Sketch", featured: false, category: "Media", tags: ["sketch", "person", "pencil"], date: "2024", desc: "Raw pencil and charcoal sketch.", img: "https://picsum.photos/seed/art15/800/600" },
+    { title: "Abbey's Birthday", featured: false, category: "Media", tags: ["card", "illustration"], date: "2024", desc: "Custom birthday card illustration.", img: "https://picsum.photos/seed/art16/800/600" },
+    { title: "Quinceanera Card I", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Celebratory card design for Rihanna's Quinceanera.", img: "https://picsum.photos/seed/art17/800/600" },
+    { title: "Quinceanera Card II", featured: false, category: "Media", tags: ["card", "floral"], date: "2024", desc: "Alternate celebratory card design concept.", img: "https://picsum.photos/seed/art18/800/600" },
+    { title: "Boat Painting", featured: true, category: "Watercolor", tags: ["sea", "boat", "nature"], date: "2024", desc: "Nautical watercolor study focusing on reflections.", img: "https://picsum.photos/seed/art19/800/600" },
+    { title: "Native American Study", featured: false, category: "Watercolor", tags: ["portrait", "culture", "unfinished"], date: "2024", desc: "Partly finished watercolor portrait study.", img: "https://picsum.photos/seed/art20/800/600" },
+    { title: "Lightswitch Cover", featured: false, category: "Craft", tags: ["3d-printing", "functional"], date: "2024", desc: "Custom 3D printed functional art for the home.", img: "https://picsum.photos/seed/art21/800/600" },
+    { title: "Creepy Series I", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Dark surrealist digital exploration.", img: "https://picsum.photos/seed/art22/800/600" },
+    { title: "Creepy Series II", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Second installment in the dark surrealist series.", img: "https://picsum.photos/seed/art23/800/600" },
+    { title: "Creepy Series III", featured: true, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Atmospheric horror-themed digital character.", img: "https://picsum.photos/seed/art24/800/600" },
+    { title: "Creepy Series IV", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Gothic-influenced digital illustration.", img: "https://picsum.photos/seed/art25/800/600" },
+    { title: "Creepy Series V", featured: false, category: "Digital", tags: ["horror", "surreal"], date: "2025", desc: "Culmination of the 2025 creepy series.", img: "https://picsum.photos/seed/art26/800/600" }
 ];
 
 // ── Synonym map ──
