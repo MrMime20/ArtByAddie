@@ -4,35 +4,19 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ── Art data ──
-// ── Art data ──
-// Updated with your 26 .webp images from the /images folder
 const artData = [
-    { title: "Iron Echoes", featured: true, category: "Digital", tags: ["machinery", "future"], date: "2024", desc: "A neon-soaked exploration of robotic aesthetics.", img: "https://picsum.photos/id/1/800/600" },
-    { title: "Velvet Morning", featured: false, category: "Digital", tags: ["atmosphere", "glow"], date: "2024", desc: "Digital study of light hitting a soft surface.", img: "https://picsum.photos/id/10/800/600" },
-    { title: "Mist on the Ridge", featured: true, category: "Watercolor", tags: ["outdoors", "peaks"], date: "2024", desc: "Loose pigment work capturing early morning fog.", img: "https://picsum.photos/id/15/800/600" },
-    { title: "Petal Rhythm I", featured: false, category: "Watercolor", tags: ["floral", "soft"], date: "2024", desc: "Focusing on the delicate curves of spring blooms.", img: "https://picsum.photos/id/20/800/600" },
-    { title: "Petal Rhythm II", featured: false, category: "Watercolor", tags: ["floral", "vibrant"], date: "2024", desc: "A deeper dive into botanical color saturation.", img: "https://picsum.photos/id/25/800/600" },
-    { title: "Static Dreams", featured: false, category: "Media", tags: ["chaos", "grunge"], date: "2024", desc: "Layered textures using found paper and ink.", img: "https://picsum.photos/id/30/800/600" },
-    { title: "Linear Logic", featured: false, category: "Media", tags: ["geometry", "sharp"], date: "2024", desc: "A study of intersecting lines and negative space.", img: "https://picsum.photos/id/35/800/600" },
-    { title: "Golden Hour Wash", featured: false, category: "Watercolor", tags: ["sunset", "warmth"], date: "2024", desc: "Expressive landscape utilizing wet-on-wet techniques.", img: "https://picsum.photos/id/40/800/600" },
-    { title: "The Jester’s Grin", featured: false, category: "Digital", tags: ["humor", "stylized"], date: "2024", desc: "A high-contrast character study with exaggerated features.", img: "https://picsum.photos/id/45/800/600" },
-    { title: "Old Oak Manor", featured: true, category: "Watercolor", tags: ["vintage", "home"], date: "2024", desc: "Detailed rendering of a 19th-century countryside estate.", img: "https://picsum.photos/id/50/800/600" },
-    { title: "Fragmented Icon", featured: false, category: "Media", tags: ["pop-art", "shattered"], date: "2024", desc: "Mixed media portrait exploring celebrity culture.", img: "https://picsum.photos/id/55/800/600" },
-    { title: "Cascading Blue", featured: true, category: "Media", tags: ["river", "energy"], date: "2024", desc: "Impasto palette knife work showing movement in water.", img: "https://picsum.photos/id/60/800/600" },
-    { title: "Neon Corridor", featured: false, category: "Digital", tags: ["cyberpunk", "perspective"], date: "2024", desc: "Isometric view of a rainy metropolitan alleyway.", img: "https://picsum.photos/id/65/800/600" },
-    { title: "Sunlit Porch", featured: false, category: "Watercolor", tags: ["shadows", "peace"], date: "2024", desc: "Study of dappled sunlight on a wooden deck.", img: "https://picsum.photos/id/70/800/600" },
-    { title: "Charcoal Silence", featured: false, category: "Media", tags: ["minimalism", "human"], date: "2024", desc: "Quick gestural drawing of a seated figure.", img: "https://picsum.photos/id/75/800/600" },
-    { title: "Midnight Confetti", featured: false, category: "Media", tags: ["party", "graphic"], date: "2024", desc: "Vibrant celebratory layout for a private event.", img: "https://picsum.photos/id/80/800/600" },
-    { title: "Rose Lattice", featured: false, category: "Media", tags: ["garden", "greeting"], date: "2024", desc: "Intricate floral borders for a custom invitation.", img: "https://picsum.photos/id/85/800/600" },
-    { title: "Rose Lattice (Alt)", featured: false, category: "Media", tags: ["garden", "variant"], date: "2024", desc: "A monochrome version of the previous invitation design.", img: "https://picsum.photos/id/90/800/600" },
-    { title: "The Drifter", featured: true, category: "Watercolor", tags: ["ocean", "solitude"], date: "2024", desc: "A lone vessel floating on a calm, glassy sea.", img: "https://picsum.photos/id/95/800/600" },
-    { title: "Heritage Lines", featured: false, category: "Watercolor", tags: ["history", "face"], date: "2024", desc: "A thoughtful depiction of tradition and age.", img: "https://picsum.photos/id/100/800/600" },
-    { title: "Tactile Gear", featured: false, category: "Craft", tags: ["plastic", "mechanical"], date: "2024", desc: "Experimental 3D model designed for tactile feedback.", img: "https://picsum.photos/id/105/800/600" },
-    { title: "Shadow Play I", featured: false, category: "Digital", tags: ["mystery", "void"], date: "2025", desc: "A minimalist approach to psychological horror.", img: "https://picsum.photos/id/110/800/600" },
-    { title: "Shadow Play II", featured: false, category: "Digital", tags: ["creature", "dark"], date: "2025", desc: "Focusing on the silhouette of something unknown.", img: "https://picsum.photos/id/115/800/600" },
-    { title: "The Abyss Gaze", featured: true, category: "Digital", tags: ["eyes", "unsettling"], date: "2025", desc: "Detailed digital painting of an otherworldly entity.", img: "https://picsum.photos/id/120/800/600" },
-    { title: "Shadow Play III", featured: false, category: "Digital", tags: ["fog", "scary"], date: "2025", desc: "An eerie environment study with heavy atmosphere.", img: "https://picsum.photos/id/125/800/600" },
-    { title: "Final Nightmare", featured: false, category: "Digital", tags: ["climax", "surreal"], date: "2025", desc: "The haunting conclusion to the 2025 digital series.", img: "https://picsum.photos/id/130/800/600" }
+    { title: "Neon Grin",         featured: true,  category: "Digital",    tags: ["cyberpunk","face"],         date: "2026", desc: "A study of artificial light hitting organic surfaces.",   img: "https://picsum.photos/600/800?random=1"  },
+    { title: "Paper Weight",      featured: false, category: "Watercolor", tags: ["minimal","paper"],          date: "2025", desc: "Minimalist watercolor on 300gsm paper.",                 img: "https://picsum.photos/800/600?random=2"  },
+    { title: "Ghost in the Wire", featured: true,  category: "Digital",    tags: ["sci-fi","character"],       date: "2026", desc: "Conceptual character design for a sci-fi narrative.",     img: "https://picsum.photos/600/600?random=3"  },
+    { title: "Rust & Bone",       featured: false, category: "Media",      tags: ["abstract","texture"],       date: "2025", desc: "Mixed media using charcoal and found metal pieces.",      img: "https://picsum.photos/500/700?random=4"  },
+    { title: "Blue Monday",       featured: false, category: "Watercolor", tags: ["blue","water","abstract"],  date: "2026", desc: "Heavy wash experiments.",                                 img: "https://picsum.photos/700/500?random=5"  },
+    { title: "The Weaver",        featured: true,  category: "Craft",      tags: ["textile","handmade"],       date: "2026", desc: "Hand-stitched textile work.",                             img: "https://picsum.photos/400/600?random=6"  },
+    { title: "Concrete Jungle",   featured: false, category: "Digital",    tags: ["city","landscape"],         date: "2025", desc: "Urban architecture study.",                               img: "https://picsum.photos/800/800?random=7"  },
+    { title: "Drip Point",        featured: false, category: "Media",      tags: ["ink","splatter"],           date: "2026", desc: "Ink splatter abstraction.",                               img: "https://picsum.photos/600/900?random=8"  },
+    { title: "Copper Heart",      featured: false, category: "Craft",      tags: ["sculpture","metal"],        date: "2025", desc: "Sculpted wire and copper mesh.",                          img: "https://picsum.photos/500/500?random=9"  },
+    { title: "Static",            featured: true,  category: "Digital",    tags: ["glitch","portrait"],        date: "2026", desc: "Pixel-glitch portraiture.",                               img: "https://picsum.photos/700/1000?random=10"},
+    { title: "Golden Hour",       featured: false, category: "Watercolor", tags: ["sunset","landscape"],       date: "2026", desc: "Sunset color theory.",                                    img: "https://picsum.photos/900/600?random=11" },
+    { title: "Ocean Fragments",   featured: false, category: "Media",      tags: ["sea","acrylic"],            date: "2025", desc: "Collage of digital prints and acrylic.",                  img: "https://picsum.photos/600/400?random=12" },
 ];
 
 // ── Synonym map ──
