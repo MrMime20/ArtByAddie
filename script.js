@@ -29,7 +29,7 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'https://picsum.photos/1500/1000';
+img.src = 'Fox.jpg';
 
 img.onload = () => {
     rebuild();
