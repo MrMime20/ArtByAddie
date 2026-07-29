@@ -29,7 +29,7 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'Fox.jpg';
+img.src = 'AddieFox.webp';
 
 img.onload = () => {
     rebuild();
