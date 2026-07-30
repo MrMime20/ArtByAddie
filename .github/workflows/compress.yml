@@ -1,0 +1,32 @@
+name: Auto Compress Images
+
+on:
+  push:
+    paths:
+      - '**.webp' # Triggers whenever any .webp file is pushed
+
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required permission for GitHub Actions to push commits
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Sharp
+        run: npm install sharp
+
+      - name: Run Compress Script
+        run: node compress-all.js
+
+      - name: Commit optimized images back to repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-compress webp images [skip ci]"
