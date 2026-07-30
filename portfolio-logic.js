@@ -183,7 +183,7 @@ const artData = [{
 		img: "./Welder.webp"
 	},
 	{
-		title: "Youth Art Submission",
+		title: "Christ Is My Roots",
 		featured: true,
 		category: "Craft",
 		tags: ["community", "exhibition", "mixed media"],
