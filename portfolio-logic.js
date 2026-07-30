@@ -325,6 +325,213 @@ const artData = [{
 		date: "2026",
 		desc: "High-contrast tropical bird study featuring vivid plumage.",
 		img: "./Parrot.webp"
+	},
+	{
+		title: "Tree Horizon",
+		featured: false,
+		category: "Watercolor",
+		tags: ["landscape", "nature", "silhouette"],
+		date: "2026",
+		desc: "Minimalist tree silhouette against a dramatic horizon.",
+		img: "./TreeHorizon.webp"
+	},
+	{
+		title: "Cherry Tree 2",
+		featured: true,
+		category: "Watercolor",
+		tags: ["landscape", "nature", "blossom"],
+		date: "2026",
+		desc: "A second exploration of blooming cherry branches.",
+		img: "./CherryTree2.webp"
+	},
+	{
+		title: "Milky Way",
+		featured: true,
+		category: "Digital",
+		tags: ["space", "night", "stars"],
+		date: "2026",
+		desc: "Cosmic study of the galactic core and starry skies.",
+		img: "./MilkyWay.webp"
+	},
+	{
+		title: "Niffler",
+		featured: false,
+		category: "Digital",
+		tags: ["fanart", "creature", "fantasy"],
+		date: "2025",
+		desc: "Playful character design inspired by magical creatures.",
+		img: "./Niffler.webp"
+	},
+	{
+		title: "Toujour Belle - Aimer Maman",
+		featured: false,
+		category: "Media",
+		tags: ["typography", "textile", "heart"],
+		date: "2026",
+		desc: "French typography and decorative art piece.",
+		img: "./ToujourBelle-AimerMaman.webp"
+	},
+	{
+		title: "Wolf Howl",
+		featured: false,
+		category: "Watercolor",
+		tags: ["animal", "wildlife", "night"],
+		date: "2026",
+		desc: "Dramatic wash study of a wolf howling under moonlight.",
+		img: "./WolfHowl.webp"
+	},
+	{
+		title: "Eiffel Tower",
+		featured: false,
+		category: "Digital",
+		tags: ["city", "architecture", "travel"],
+		date: "2025",
+		desc: "Stylized landmark vector and digital wash artwork.",
+		img: "./EifellTower.webp"
+	},
+	{
+		title: "SISU Spidey",
+		featured: true,
+		category: "Digital",
+		tags: ["fanart", "comic", "mashup"],
+		date: "2026",
+		desc: "Creative character crossover illustration.",
+		img: "./SISUSpidey.webp"
+	},
+	{
+		title: "Taylor Swift",
+		featured: false,
+		category: "Digital",
+		tags: ["portrait", "pop-culture", "music"],
+		date: "2025",
+		desc: "High-contrast digital portrait illustration.",
+		img: "./TaylorSwift.webp"
+	},
+	{
+		title: "Eyeball Nativity",
+		featured: false,
+		category: "Media",
+		tags: ["surreal", "abstract", "concepts"],
+		date: "2025",
+		desc: "Surrealist concept piece using mixed media.",
+		img: "./EyeballNativity.webp"
+	},
+	{
+		title: "Hand Eyeball",
+		featured: false,
+		category: "Media",
+		tags: ["surreal", "sketch", "ink"],
+		date: "2026",
+		desc: "Surreal ink and charcoal hand study.",
+		img: "./HandEyeball.webp"
+	},
+	{
+		title: "Batman",
+		featured: false,
+		category: "Digital",
+		tags: ["fanart", "comic", "hero"],
+		date: "2025",
+		desc: "Atmospheric dark knight graphic portrait.",
+		img: "./Batman.webp"
+	},
+	{
+		title: "Four Seasons",
+		featured: true,
+		category: "Watercolor",
+		tags: ["seasons", "landscape", "quadptych"],
+		date: "2026",
+		desc: "Color palette transition showing the cycle of seasons.",
+		img: "./FourSeasons.webp"
+	},
+	{
+		title: "Apple Mouth Man",
+		featured: false,
+		category: "Media",
+		tags: ["surreal", "abstract", "character"],
+		date: "2025",
+		desc: "Experimental abstract portrait with surreal motifs.",
+		img: "./AppleMouthMan.webp"
+	},
+	{
+		title: "Drums",
+		featured: false,
+		category: "Craft",
+		tags: ["music", "instrument", "still-life"],
+		date: "2026",
+		desc: "Textured mixed-media drum kit artwork.",
+		img: "./Drums.webp"
+	},
+	{
+		title: "Dinosaur 3",
+		featured: false,
+		category: "Digital",
+		tags: ["prehistoric", "creature", "illustration"],
+		date: "2025",
+		desc: "Dynamic prehistoric creature portrait.",
+		img: "./Dinosaur3.webp"
+	},
+	{
+		title: "Brick House",
+		featured: false,
+		category: "Watercolor",
+		tags: ["architecture", "building", "landscape"],
+		date: "2026",
+		desc: "Charming study of vintage brick masonry.",
+		img: "./BrickHouse.webp"
+	},
+	{
+		title: "Dinosaur 2",
+		featured: false,
+		category: "Digital",
+		tags: ["prehistoric", "creature", "study"],
+		date: "2025",
+		desc: "Detailed scale texture and color study.",
+		img: "./Dinosaur2.webp"
+	},
+	{
+		title: "Dinosaur 1",
+		featured: false,
+		category: "Digital",
+		tags: ["prehistoric", "creature", "concept"],
+		date: "2025",
+		desc: "Initial concept sketch and render for dino series.",
+		img: "./Dinosaur1.webp"
+	},
+	{
+		title: "Dinosaur 4",
+		featured: false,
+		category: "Digital",
+		tags: ["prehistoric", "creature", "action"],
+		date: "2025",
+		desc: "Action pose illustration completing the dino series.",
+		img: "./Dinosaur4.webp"
+	},
+	{
+		title: "Spiderman",
+		featured: true,
+		category: "Digital",
+		tags: ["fanart", "comic", "hero"],
+		date: "2026",
+		desc: "Vibrant web-slinger dynamic action shot.",
+		img: "./Spiderman.webp"
+	},
+	{
+		title: "Doc Ock",
+		featured: false,
+		category: "Digital",
+		tags: ["fanart", "comic", "villain"],
+		date: "2025",
+		desc: "Mechanical arm and lighting focus character design.",
+		img: "./DocOck.webp"
+	},
+	{
+		title: "Green Goblin",
+		featured: false,
+		category: "Digital",
+		tags: ["fanart", "comic", "villain"],
+		date: "2025",
+		desc: "High-contrast green and purple villain study.",
+		img: "./GreenGoblin.webp"
 	}
 ];
 
