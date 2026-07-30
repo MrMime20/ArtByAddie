@@ -5,18 +5,195 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ── Art data ──
 const artData = [
-    { title: "Neon Grin",         featured: true,  category: "Digital",    tags: ["cyberpunk","face"],         date: "2026", desc: "A study of artificial light hitting organic surfaces.",   img: "https://picsum.photos/600/800?random=1"  },
-    { title: "Paper Weight",      featured: false, category: "Watercolor", tags: ["minimal","paper"],          date: "2025", desc: "Minimalist watercolor on 300gsm paper.",                 img: "https://picsum.photos/800/600?random=2"  },
-    { title: "Ghost in the Wire", featured: true,  category: "Digital",    tags: ["sci-fi","character"],       date: "2026", desc: "Conceptual character design for a sci-fi narrative.",     img: "https://picsum.photos/600/600?random=3"  },
-    { title: "Rust & Bone",       featured: false, category: "Media",      tags: ["abstract","texture"],       date: "2025", desc: "Mixed media using charcoal and found metal pieces.",      img: "https://picsum.photos/500/700?random=4"  },
-    { title: "Blue Monday",       featured: false, category: "Watercolor", tags: ["blue","water","abstract"],  date: "2026", desc: "Heavy wash experiments.",                                 img: "https://picsum.photos/700/500?random=5"  },
-    { title: "The Weaver",        featured: true,  category: "Craft",      tags: ["textile","handmade"],       date: "2026", desc: "Hand-stitched textile work.",                             img: "https://picsum.photos/400/600?random=6"  },
-    { title: "Concrete Jungle",   featured: false, category: "Digital",    tags: ["city","landscape"],         date: "2025", desc: "Urban architecture study.",                               img: "https://picsum.photos/800/800?random=7"  },
-    { title: "Drip Point",        featured: false, category: "Media",      tags: ["ink","splatter"],           date: "2026", desc: "Ink splatter abstraction.",                               img: "https://picsum.photos/600/900?random=8"  },
-    { title: "Copper Heart",      featured: false, category: "Craft",      tags: ["sculpture","metal"],        date: "2025", desc: "Sculpted wire and copper mesh.",                          img: "https://picsum.photos/500/500?random=9"  },
-    { title: "Static",            featured: true,  category: "Digital",    tags: ["glitch","portrait"],        date: "2026", desc: "Pixel-glitch portraiture.",                               img: "https://picsum.photos/700/1000?random=10"},
-    { title: "Golden Hour",       featured: false, category: "Watercolor", tags: ["sunset","landscape"],       date: "2026", desc: "Sunset color theory.",                                    img: "https://picsum.photos/900/600?random=11" },
-    { title: "Ocean Fragments",   featured: false, category: "Media",      tags: ["sea","acrylic"],            date: "2025", desc: "Collage of digital prints and acrylic.",                  img: "https://picsum.photos/600/400?random=12" },
+  {
+    title: "Achebe",
+    featured: true,
+    category: "Digital",
+    tags: ["portrait", "character"],
+    date: "2026",
+    desc: "Portrait study inspired by classic literature.",
+    img: "./Achebe.webp"
+  },
+  {
+    title: "Addie Fox",
+    featured: true,
+    category: "Watercolor",
+    tags: ["animal", "nature", "fox"],
+    date: "2026",
+    desc: "A vibrant wildlife piece featuring Addie the Fox.",
+    img: "./AddieFox.webp"
+  },
+  {
+    title: "Batman",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "comic", "hero"],
+    date: "2025",
+    desc: "Dark Knight illustration study.",
+    img: "./Batman.webp"
+  },
+  {
+    title: "Bird Bath",
+    featured: false,
+    category: "Media",
+    tags: ["nature", "birds", "garden"],
+    date: "2026",
+    desc: "A peaceful outdoor scene near a garden fountain.",
+    img: "./BirdBath.webp"
+  },
+  {
+    title: "Cherry Tree",
+    featured: true,
+    category: "Watercolor",
+    tags: ["landscape", "nature", "blossom"],
+    date: "2026",
+    desc: "Springtime study of blooming cherry blossoms.",
+    img: "./CherryTree.webp"
+  },
+  {
+    title: "Farmhouse",
+    featured: false,
+    category: "Media",
+    tags: ["rustic", "architecture", "landscape"],
+    date: "2025",
+    desc: "Country farmhouse surrounded by open fields.",
+    img: "./Farmhouse.webp"
+  },
+  {
+    title: "Gethsemane",
+    featured: false,
+    category: "Digital",
+    tags: ["dramatic", "landscape", "night"],
+    date: "2026",
+    desc: "Atmospheric study of night shadows and foliage.",
+    img: "./Gethsemane.webp"
+  },
+  {
+    title: "Ghost on Swing",
+    featured: true,
+    category: "Digital",
+    tags: ["whimsical", "spooky", "character"],
+    date: "2026",
+    desc: "Playful illustration of a ghost swinging under moonlight.",
+    img: "./GhostOnSwing.webp"
+  },
+  {
+    title: "Girl Sketch",
+    featured: false,
+    category: "Media",
+    tags: ["sketch", "portrait", "pencil"],
+    date: "2025",
+    desc: "Quick structural portrait study.",
+    img: "./GirlSketch.webp"
+  },
+  {
+    title: "Horse",
+    featured: false,
+    category: "Watercolor",
+    tags: ["animal", "study", "motion"],
+    date: "2026",
+    desc: "Dynamic study of a horse in motion.",
+    img: "./Horse.webp"
+  },
+  {
+    title: "Joker",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "comic", "villain"],
+    date: "2025",
+    desc: "High-contrast villain portrait.",
+    img: "./Joker.webp"
+  },
+  {
+    title: "Riddler",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "comic", "mystery"],
+    date: "2025",
+    desc: "Green and emerald color palette study.",
+    img: "./Riddler.webp"
+  },
+  {
+    title: "Seashell",
+    featured: false,
+    category: "Watercolor",
+    tags: ["minimal", "ocean", "still life"],
+    date: "2026",
+    desc: "Detailed wash of coastal findings.",
+    img: "./Seashell.webp"
+  },
+  {
+    title: "Starry Night 1",
+    featured: true,
+    category: "Media",
+    tags: ["night", "sky", "abstract"],
+    date: "2026",
+    desc: "Heavy acrylic texture capturing night energy.",
+    img: "./StarryNight1.webp"
+  },
+  {
+    title: "Starry Night 2",
+    featured: false,
+    category: "Media",
+    tags: ["night", "sky", "expressionism"],
+    date: "2026",
+    desc: "Alternative color pass on cosmic landscapes.",
+    img: "./StarryNight2.webp"
+  },
+  {
+    title: "Toothbrush Girl",
+    featured: false,
+    category: "Digital",
+    tags: ["character", "pop art", "daily"],
+    date: "2025",
+    desc: "Candid slice-of-life digital illustration.",
+    img: "./ToothbrushGirl.webp"
+  },
+  {
+    title: "Turtle",
+    featured: false,
+    category: "Watercolor",
+    tags: ["ocean", "animal", "sea"],
+    date: "2026",
+    desc: "Subtle blue and green washes depicting sea life.",
+    img: "./Turtle.webp"
+  },
+  {
+    title: "Two Face",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "comic", "duality"],
+    date: "2025",
+    desc: "Split portrait exploring light and shadow.",
+    img: "./TwoFace.webp"
+  },
+  {
+    title: "Venom",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "comic", "creature"],
+    date: "2025",
+    desc: "Dark, expressive character artwork.",
+    img: "./Venom.webp"
+  },
+  {
+    title: "Welder",
+    featured: false,
+    category: "Craft",
+    tags: ["metal", "sparks", "industrial"],
+    date: "2026",
+    desc: "High-contrast capture of industrial work in action.",
+    img: "./Welder.webp"
+  },
+  {
+    title: "Youth Art Submission",
+    featured: true,
+    category: "Craft",
+    tags: ["community", "exhibition", "mixed media"],
+    date: "2026",
+    desc: "Featured piece from the annual youth art submission.",
+    img: "./YouthArtSubmission.webp"
+  }
 ];
 
 // ── Synonym map ──
