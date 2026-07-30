@@ -3,13 +3,14 @@ name: Auto Compress Images
 on:
   push:
     paths:
-      - '**.webp' # Triggers whenever any .webp file is pushed
+      - '**.webp' # Runs automatically when a .webp file is pushed
+  workflow_dispatch: # <--- THIS adds a manual trigger button in GitHub!
 
 jobs:
   compress:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Required permission for GitHub Actions to push commits
+      contents: write
 
     steps:
       - name: Checkout Code
