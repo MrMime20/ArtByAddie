@@ -1,476 +1,7 @@
 // ── Block right-click globally ──
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-// ── Art data ──
-const artData = [{
-		title: "Achebe",
-		featured: true,
-		category: "Digital",
-		tags: ["portrait", "character"],
-		date: "2026",
-		desc: "Portrait study inspired by classic literature.",
-		img: "./Achebe.webp"
-	},
-	{
-		title: "Addie Fox",
-		featured: true,
-		category: "Watercolor",
-		tags: ["animal", "nature", "fox"],
-		date: "2026",
-		desc: "A vibrant wildlife piece featuring Addie the Fox.",
-		img: "./AddieFox.webp"
-	},
-	{
-		title: "Batman",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "hero"],
-		date: "2025",
-		desc: "Dark Knight illustration study.",
-		img: "./Batman.webp"
-	},
-	{
-		title: "Bird Bath",
-		featured: false,
-		category: "Media",
-		tags: ["nature", "birds", "garden"],
-		date: "2026",
-		desc: "A peaceful outdoor scene near a garden fountain.",
-		img: "./BirdBath.webp"
-	},
-	{
-		title: "Cherry Tree",
-		featured: true,
-		category: "Watercolor",
-		tags: ["landscape", "nature", "blossom"],
-		date: "2026",
-		desc: "Springtime study of blooming cherry blossoms.",
-		img: "./CherryTree.webp"
-	},
-	{
-		title: "Farmhouse",
-		featured: false,
-		category: "Media",
-		tags: ["rustic", "architecture", "landscape"],
-		date: "2025",
-		desc: "Country farmhouse surrounded by open fields.",
-		img: "./Farmhouse.webp"
-	},
-	{
-		title: "Gethsemane",
-		featured: false,
-		category: "Digital",
-		tags: ["dramatic", "landscape", "night"],
-		date: "2026",
-		desc: "Atmospheric study of night shadows and foliage.",
-		img: "./Gethsemane.webp"
-	},
-	{
-		title: "Ghost on Swing",
-		featured: true,
-		category: "Digital",
-		tags: ["whimsical", "spooky", "character"],
-		date: "2026",
-		desc: "Playful illustration of a ghost swinging under moonlight.",
-		img: "./GhostOnSwing.webp"
-	},
-	{
-		title: "Girl Sketch",
-		featured: false,
-		category: "Media",
-		tags: ["sketch", "portrait", "pencil"],
-		date: "2025",
-		desc: "Quick structural portrait study.",
-		img: "./GirlSketch.webp"
-	},
-	{
-		title: "Horse",
-		featured: false,
-		category: "Watercolor",
-		tags: ["animal", "study", "motion"],
-		date: "2026",
-		desc: "Dynamic study of a horse in motion.",
-		img: "./Horse.webp"
-	},
-	{
-		title: "Joker",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "villain"],
-		date: "2025",
-		desc: "High-contrast villain portrait.",
-		img: "./Joker.webp"
-	},
-	{
-		title: "Riddler",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "mystery"],
-		date: "2025",
-		desc: "Green and emerald color palette study.",
-		img: "./Riddler.webp"
-	},
-	{
-		title: "Seashell",
-		featured: false,
-		category: "Watercolor",
-		tags: ["minimal", "ocean", "still life"],
-		date: "2026",
-		desc: "Detailed wash of coastal findings.",
-		img: "./Seashell.webp"
-	},
-	{
-		title: "Starry Night 1",
-		featured: true,
-		category: "Media",
-		tags: ["night", "sky", "abstract"],
-		date: "2026",
-		desc: "Heavy acrylic texture capturing night energy.",
-		img: "./StarryNight1.webp"
-	},
-	{
-		title: "Starry Night 2",
-		featured: false,
-		category: "Media",
-		tags: ["night", "sky", "expressionism"],
-		date: "2026",
-		desc: "Alternative color pass on cosmic landscapes.",
-		img: "./StarryNight2.webp"
-	},
-	{
-		title: "Toothbrush Girl",
-		featured: false,
-		category: "Digital",
-		tags: ["character", "pop art", "daily"],
-		date: "2025",
-		desc: "Candid slice-of-life digital illustration.",
-		img: "./ToothbrushGirl.webp"
-	},
-	{
-		title: "Turtle",
-		featured: false,
-		category: "Watercolor",
-		tags: ["ocean", "animal", "sea"],
-		date: "2026",
-		desc: "Subtle blue and green washes depicting sea life.",
-		img: "./Turtle.webp"
-	},
-	{
-		title: "Two Face",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "duality"],
-		date: "2025",
-		desc: "Split portrait exploring light and shadow.",
-		img: "./TwoFace.webp"
-	},
-	{
-		title: "Venom",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "creature"],
-		date: "2025",
-		desc: "Dark, expressive character artwork.",
-		img: "./Venom.webp"
-	},
-	{
-		title: "Welder",
-		featured: false,
-		category: "Craft",
-		tags: ["metal", "sparks", "industrial"],
-		date: "2026",
-		desc: "High-contrast capture of industrial work in action.",
-		img: "./Welder.webp"
-	},
-	{
-		title: "Christ Is My Roots",
-		featured: true,
-		category: "Craft",
-		tags: ["community", "exhibition", "mixed media"],
-		date: "2026",
-		desc: "Featured piece from the annual youth art submission.",
-		img: "./YouthArtSubmission.webp"
-	},
-	{
-		title: "Horse",
-		featured: false,
-		category: "Watercolor",
-		tags: ["animal", "study", "motion"],
-		date: "2026",
-		desc: "Dynamic study of a horse in motion.",
-		img: "./Horse.webp"
-	},
-	{
-		title: "Starry Night 3",
-		featured: true,
-		category: "Media",
-		tags: ["night", "sky", "abstract"],
-		date: "2026",
-		desc: "Experimental night sky composition with heavy texture.",
-		img: "./StarryNight3.webp"
-	},
-	{
-		title: "Waterfall",
-		featured: false,
-		category: "Watercolor",
-		tags: ["nature", "water", "landscape"],
-		date: "2026",
-		desc: "Cascading water study using fluid washes.",
-		img: "./Waterfall.webp"
-	},
-	{
-		title: "City Alley",
-		featured: false,
-		category: "Digital",
-		tags: ["urban", "city", "architecture"],
-		date: "2025",
-		desc: "Moody urban alleyway lit by atmospheric neon.",
-		img: "./CityAlley.webp"
-	},
-	{
-		title: "Boat",
-		featured: false,
-		category: "Watercolor",
-		tags: ["ocean", "nautical", "tranquil"],
-		date: "2026",
-		desc: "Solitary boat drifting on calm waters.",
-		img: "./Boat.webp"
-	},
-	{
-		title: "Mountain",
-		featured: true,
-		category: "Media",
-		tags: ["landscape", "mountains", "nature"],
-		date: "2025",
-		desc: "Rugged mountain peak rendered in textured layers.",
-		img: "./Moutain.webp"
-	},
-	{
-		title: "Moon Over Lake",
-		featured: true,
-		category: "Digital",
-		tags: ["night", "landscape", "water"],
-		date: "2026",
-		desc: "Serene scene showing full moon reflections over water.",
-		img: "./MoonOverLake.webp"
-	},
-	{
-		title: "Bearded Man",
-		featured: false,
-		category: "Media",
-		tags: ["portrait", "charcoal", "study"],
-		date: "2025",
-		desc: "Expressive portrait study focusing on facial hair textures.",
-		img: "./BeardedMan.webp"
-	},
-	{
-		title: "Sunset",
-		featured: false,
-		category: "Watercolor",
-		tags: ["sunset", "sky", "color-theory"],
-		date: "2026",
-		desc: "Warm gradient study of a dramatic evening sky.",
-		img: "./Sunset.webp"
-	},
-	{
-		title: "Witch",
-		featured: false,
-		category: "Digital",
-		tags: ["fantasy", "character", "spooky"],
-		date: "2025",
-		desc: "Fantasy character illustration with glowing elements.",
-		img: "./Witch.webp"
-	},
-	{
-		title: "Halloween Cat",
-		featured: true,
-		category: "Digital",
-		tags: ["spooky", "cat", "seasonal"],
-		date: "2025",
-		desc: "Playful holiday illustration featuring a black cat.",
-		img: "./HalloweenCat.webp"
-	},
-	{
-		title: "Yin Yang",
-		featured: false,
-		category: "Craft",
-		tags: ["abstract", "symbolism", "balance"],
-		date: "2026",
-		desc: "Modern textural take on classic balance iconography.",
-		img: "./YinYang.webp"
-	},
-	{
-		title: "Fox",
-		featured: false,
-		category: "Watercolor",
-		tags: ["animal", "wildlife", "nature"],
-		date: "2026",
-		desc: "Soft wash wildlife study of a forest fox.",
-		img: "./Fox.webp"
-	},
-	{
-		title: "Ewok",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "sci-fi", "creature"],
-		date: "2025",
-		desc: "Textured illustration of an Endor inhabitant.",
-		img: "./Ewok.webp"
-	},
-	{
-		title: "Parrot",
-		featured: false,
-		category: "Watercolor",
-		tags: ["birds", "tropical", "vibrant"],
-		date: "2026",
-		desc: "High-contrast tropical bird study featuring vivid plumage.",
-		img: "./Parrot.webp"
-	},
-	{
-		title: "Tree Horizon",
-		featured: false,
-		category: "Watercolor",
-		tags: ["landscape", "nature", "silhouette"],
-		date: "2026",
-		desc: "Minimalist tree silhouette against a dramatic horizon.",
-		img: "./TreeHorizon.webp"
-	},
-	{
-		title: "Cherry Tree 2",
-		featured: true,
-		category: "Watercolor",
-		tags: ["landscape", "nature", "blossom"],
-		date: "2026",
-		desc: "A second exploration of blooming cherry branches.",
-		img: "./CherryTree2.webp"
-	},
-	{
-		title: "Milky Way",
-		featured: true,
-		category: "Digital",
-		tags: ["space", "night", "stars"],
-		date: "2026",
-		desc: "Cosmic study of the galactic core and starry skies.",
-		img: "./MilkyWay.webp"
-	},
-	{
-		title: "Niffler",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "creature", "fantasy"],
-		date: "2025",
-		desc: "Playful character design inspired by magical creatures.",
-		img: "./Niffler.webp"
-	},
-	{
-		title: "Toujour Belle - Aimer Maman",
-		featured: false,
-		category: "Media",
-		tags: ["typography", "textile", "heart"],
-		date: "2026",
-		desc: "French typography and decorative art piece.",
-		img: "./ToujourBelle-AimerMaman.webp"
-	},
-	{
-		title: "Wolf Howl",
-		featured: false,
-		category: "Watercolor",
-		tags: ["animal", "wildlife", "night"],
-		date: "2026",
-		desc: "Dramatic wash study of a wolf howling under moonlight.",
-		img: "./WolfHowl.webp"
-	},
-	{
-		title: "Eiffel Tower",
-		featured: false,
-		category: "Digital",
-		tags: ["city", "architecture", "travel"],
-		date: "2025",
-		desc: "Stylized landmark vector and digital wash artwork.",
-		img: "./EifellTower.webp"
-	},
-	{
-		title: "SISU Spidey",
-		featured: true,
-		category: "Digital",
-		tags: ["fanart", "comic", "mashup"],
-		date: "2026",
-		desc: "Creative character crossover illustration.",
-		img: "./SISUSpidey.webp"
-	},
-	{
-		title: "Taylor Swift",
-		featured: false,
-		category: "Digital",
-		tags: ["portrait", "pop-culture", "music"],
-		date: "2025",
-		desc: "High-contrast digital portrait illustration.",
-		img: "./TaylorSwift.webp"
-	},
-	{
-		title: "Eyeball Nativity",
-		featured: false,
-		category: "Media",
-		tags: ["surreal", "abstract", "concepts"],
-		date: "2025",
-		desc: "Surrealist concept piece using mixed media.",
-		img: "./EyeballNativity.webp"
-	},
-	{
-		title: "Hand Eyeball",
-		featured: false,
-		category: "Media",
-		tags: ["surreal", "sketch", "ink"],
-		date: "2026",
-		desc: "Surreal ink and charcoal hand study.",
-		img: "./HandEyeball.webp"
-	},
-	{
-		title: "Batman",
-		featured: false,
-		category: "Digital",
-		tags: ["fanart", "comic", "hero"],
-		date: "2025",
-		desc: "Atmospheric dark knight graphic portrait.",
-		img: "./Batman.webp"
-	},
-	{
-		title: "Four Seasons",
-		featured: true,
-		category: "Watercolor",
-		tags: ["seasons", "landscape", "quadptych"],
-		date: "2026",
-		desc: "Color palette transition showing the cycle of seasons.",
-		img: "./FourSeasons.webp"
-	},
-	{
-		title: "Apple Mouth Man",
-		featured: false,
-		category: "Media",
-		tags: ["surreal", "abstract", "character"],
-		date: "2025",
-		desc: "Experimental abstract portrait with surreal motifs.",
-		img: "./AppleMouthMan.webp"
-	},
-	{
-		title: "Drums",
-		featured: false,
-		category: "Craft",
-		tags: ["music", "instrument", "still-life"],
-		date: "2026",
-		desc: "Textured mixed-media drum kit artwork.",
-		img: "./Drums.webp"
-	},
-	{
-		title: "Dinosaur 3",
-		featured: false,
-		category: "Digital",
-		tags: ["prehistoric", "creature", "illustration"],
-		date: "2025",
-		desc: "Dynamic prehistoric creature portrait.",
-		img: "./Dinosaur3.webp"
-	},
-	{
+
 		title: "Brick House",
 		featured: false,
 		category: "Watercolor",
@@ -671,14 +202,50 @@ function scoreItem(item, q) {
 	return s;
 }
 
-// ── Aspect ratio helper ──
+// ── Aspect ratio helper & background preloader ──
+const aspectCache = new Map();
+
 function getAspectRatio(item) {
 	if (item.aspectRatio) return item.aspectRatio;
 	if (item.width && item.height) return `${item.width} / ${item.height}`;
-	const match = item.img && item.img.match(/picsum\.photos\/(\d+)\/(\d+)/);
-	if (match) return `${match[1]} / ${match[2]}`;
+	if (aspectCache.has(item.img)) return aspectCache.get(item.img);
+
+	try {
+		const cached = localStorage.getItem('ar_' + item.img);
+		if (cached) {
+			aspectCache.set(item.img, cached);
+			return cached;
+		}
+	} catch (e) {}
+
 	return null;
 }
+
+function preloadAllAspectRatios() {
+	artData.forEach(item => {
+		if (getAspectRatio(item)) return;
+
+		const img = new Image();
+		img.src = item.img;
+		img.onload = () => {
+			if (img.naturalWidth && img.naturalHeight) {
+				const ar = `${img.naturalWidth} / ${img.naturalHeight}`;
+				aspectCache.set(item.img, ar);
+				try {
+					localStorage.setItem('ar_' + item.img, ar);
+				} catch (e) {}
+
+				const selector = `.gallery-item[data-img="${CSS.escape(item.img)}"] .img-wrapper`;
+				document.querySelectorAll(selector).forEach(wrapper => {
+					wrapper.style.aspectRatio = ar;
+				});
+				updateScrollProgress();
+			}
+		};
+	});
+}
+
+preloadAllAspectRatios();
 
 // ── Scroll reveal observer ──
 const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -738,9 +305,10 @@ function renderGallery(filter = 'all', query = '') {
 		currentItems.forEach((item, idx) => {
 			const div = document.createElement('div');
 			div.className = 'gallery-item reveal';
+			div.setAttribute('data-img', item.img);
 			div.style.setProperty('--reveal-delay', `${(idx % 4) * 65}ms`);
 			const aspect = getAspectRatio(item);
-			const wrapperStyle = aspect ? `aspect-ratio: ${aspect};` : 'aspect-ratio: auto; min-height: 180px;';
+			const wrapperStyle = aspect ? `aspect-ratio: ${aspect};` : 'min-height: 140px;';
 
 			div.innerHTML = `
                 <div class="img-wrapper" style="${wrapperStyle}">
@@ -767,8 +335,11 @@ function renderGallery(filter = 'all', query = '') {
 			const handleLoad = () => {
 				const shimmer = div.querySelector('.img-shimmer');
 				if (shimmer) shimmer.style.display = 'none';
-				if (!aspect && imgEl.naturalWidth && imgEl.naturalHeight) {
-					wrapperEl.style.aspectRatio = `${imgEl.naturalWidth} / ${imgEl.naturalHeight}`;
+				if (imgEl.naturalWidth && imgEl.naturalHeight) {
+					const ar = `${imgEl.naturalWidth} / ${imgEl.naturalHeight}`;
+					aspectCache.set(item.img, ar);
+					try { localStorage.setItem('ar_' + item.img, ar); } catch(e) {}
+					wrapperEl.style.aspectRatio = ar;
 					updateScrollProgress();
 				}
 				imgEl.style.opacity = '1';
