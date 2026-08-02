@@ -29,7 +29,8 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'Waterfall.webp';
+// Cover image for the interactive ripple background on the home page
+img.src = 'https://picsum.photos/1000/1000?random=100';
 
 img.onload = () => {
     rebuild();
