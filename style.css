@@ -9,6 +9,20 @@ body, html {
     overflow: hidden;
 }
 
+body {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.page-loaded {
+    opacity: 1;
+}
+body.page-leaving {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.99);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease, transform 0.45s ease;
+}
+
 /* ── Loading screen ── */
 .loader {
     position: fixed; inset: 0;
@@ -63,6 +77,20 @@ body, html {
     pointer-events: none;
     text-align: center;
     padding: 0 20px;
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+body.page-loaded .ui-layer {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+body.transition-active .ui-layer {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 h1 {
