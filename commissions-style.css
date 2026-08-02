@@ -6,6 +6,43 @@ body {
     color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.page-loaded {
+    opacity: 1;
+}
+body.page-leaving {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.995);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+}
+
+/* ── Page transition overlay ── */
+.page-transition-overlay {
+    position: fixed; inset: 0;
+    background: #050505;
+    z-index: 9999;
+    clip-path: circle(0% at 50% 50%);
+    pointer-events: none;
+    transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+}
+body.transition-active .page-transition-overlay {
+    clip-path: circle(150% at 50% 50%);
+    pointer-events: all;
+}
+
+/* ── Intersection Observer Scroll Reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
