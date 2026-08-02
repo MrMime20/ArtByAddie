@@ -692,9 +692,11 @@ function preloadAllAspectRatios() {
 					localStorage.setItem('ar_' + item.img, ar);
 				} catch (e) {}
 
-				const selector = `.gallery-item[data-img="${escapeCssSelector(item.img)}"] .img-wrapper`;
-				document.querySelectorAll(selector).forEach(wrapper => {
-					wrapper.style.aspectRatio = ar;
+				document.querySelectorAll('.gallery-item').forEach(div => {
+					if (div.getAttribute('data-img') === item.img) {
+						const wrapper = div.querySelector('.img-wrapper');
+						if (wrapper) wrapper.style.aspectRatio = ar;
+					}
 				});
 				updateScrollProgress();
 			}
