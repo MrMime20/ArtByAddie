@@ -1,0 +1,8 @@
+{
+  "name": "Addie Sagers Portfolio",
+  "description": "Artist portfolio and collection showcase for Addie Sagers featuring digital artwork, watercolors, and commissions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
