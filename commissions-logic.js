@@ -47,13 +47,26 @@ const commissions = [
     },
 ];
 
+// ── Scroll reveal observer ──
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+function initScrollReveal() {
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
 // ── Render cards ──
 const grid = document.getElementById('commissionsGrid');
 
 commissions.forEach((c, i) => {
     const card = document.createElement('div');
-    card.className = `commission-card${c.open ? '' : ' closed-card'}`;
-    card.style.animationDelay = `${i * 80}ms`;
+    card.className = `commission-card reveal${c.open ? '' : ' closed-card'}`;
 
     card.innerHTML = `
         <span class="status-badge ${c.open ? 'open' : 'closed'}">
@@ -75,6 +88,7 @@ commissions.forEach((c, i) => {
     `;
 
     grid.appendChild(card);
+    revealObserver.observe(card);
 });
 
 // ── Contact button ──
@@ -85,3 +99,34 @@ document.getElementById('contactBtn').addEventListener('click', function() {
         setTimeout(() => this.classList.remove('copied'), 2800);
     });
 });
+
+// ── Page transitions ──
+function setupPageExitTransitions() {
+    document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
+
+        link.addEventListener('click', e => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+            const currentPath = window.location.pathname.split('/').pop() || 'commissions.html';
+            if (href === currentPath) return;
+
+            e.preventDefault();
+            document.body.classList.add('page-leaving');
+            document.body.classList.add('transition-active');
+
+            setTimeout(() => {
+                window.location.href = href;
+            }, 500);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('page-loaded');
+    initScrollReveal();
+    setupPageExitTransitions();
+});
+document.body.classList.add('page-loaded');
+initScrollReveal();
+setupPageExitTransitions();
