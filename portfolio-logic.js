@@ -836,7 +836,10 @@ function renderGallery(filter = 'all', query = '', immediate = false) {
 
 			const imgEl = div.querySelector('img');
 			const wrapperEl = div.querySelector('.img-wrapper');
+			let loaded = false;
 			const handleLoad = () => {
+				if (loaded) return;
+				loaded = true;
 				const shimmer = div.querySelector('.img-shimmer');
 				if (shimmer) shimmer.style.display = 'none';
 				if (imgEl.naturalWidth && imgEl.naturalHeight) {
@@ -849,10 +852,13 @@ function renderGallery(filter = 'all', query = '', immediate = false) {
 				imgEl.style.opacity = '1';
 			};
 
+			imgEl.addEventListener('load', handleLoad, { once: true });
+			imgEl.addEventListener('error', handleLoad, { once: true });
+
 			if (imgEl.complete) {
 				handleLoad();
-			} else {
-				imgEl.onload = handleLoad;
+			} else if (imgEl.decode) {
+				imgEl.decode().then(handleLoad).catch(() => {});
 			}
 
 			div.addEventListener('click', () => {
@@ -1092,8 +1098,8 @@ async function initPortfolioPage() {
 	await Promise.all(domImages.map(img => {
 		if (img.complete) return Promise.resolve();
 		return new Promise(res => {
-			img.onload = res;
-			img.onerror = res;
+			img.addEventListener('load', res, { once: true });
+			img.addEventListener('error', res, { once: true });
 		});
 	}));
 
