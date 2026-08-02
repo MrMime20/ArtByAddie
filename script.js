@@ -29,13 +29,14 @@ const loader = document.getElementById('loader');
 
 const img = new Image();
 img.crossOrigin = 'Anonymous';
-img.src = 'AddieFox.webp';
+img.src = 'https://picsum.photos/1000/1000?random=100';
 
 img.onload = () => {
     rebuild();
     // Brief pause so the logo is visible, then fade out loader and start ripple
     setTimeout(() => {
         loader.classList.add('hidden');
+        document.body.classList.add('page-loaded');
         setTimeout(() => {
             loader.style.display = 'none';
             run();
@@ -46,6 +47,7 @@ img.onload = () => {
 img.onerror = () => {
     // Image missing — still dismiss loader gracefully
     loader.classList.add('hidden');
+    document.body.classList.add('page-loaded');
     setTimeout(() => { loader.style.display = 'none'; }, 800);
 };
 
@@ -158,6 +160,24 @@ function run() {
 document.getElementById('exploreBtn').addEventListener('click', () => {
     document.body.classList.add('transition-active');
     setTimeout(() => { window.location.href = 'portfolio.html'; }, 800);
+});
+
+document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
+    
+    link.addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        if (href === currentPath) return;
+
+        e.preventDefault();
+        document.body.classList.add('transition-active');
+        
+        setTimeout(() => {
+            window.location.href = href;
+        }, 600);
+    });
 });
 
 window.addEventListener('resize', () => { if (!isOff) rebuild(); });
