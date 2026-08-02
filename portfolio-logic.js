@@ -671,6 +671,29 @@ function scoreItem(item, q) {
 	return s;
 }
 
+// ── Aspect ratio helper ──
+function getAspectRatio(item) {
+	if (item.aspectRatio) return item.aspectRatio;
+	if (item.width && item.height) return `${item.width} / ${item.height}`;
+	const match = item.img && item.img.match(/picsum\.photos\/(\d+)\/(\d+)/);
+	if (match) return `${match[1]} / ${match[2]}`;
+	return '4 / 3';
+}
+
+// ── Scroll reveal observer ──
+const revealObserver = new IntersectionObserver((entries, observer) => {
+	entries.forEach(entry => {
+		if (entry.isIntersecting) {
+			entry.target.classList.add('revealed');
+			observer.unobserve(entry.target);
+		}
+	});
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+function initScrollReveal() {
+	document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
 // ── DOM refs ──
 const grid = document.getElementById('galleryGrid');
 const searchInput = document.getElementById('artSearch');
@@ -714,22 +737,42 @@ function renderGallery(filter = 'all', query = '') {
 
 		currentItems.forEach((item, idx) => {
 			const div = document.createElement('div');
-			div.className = 'gallery-item';
-			div.style.cssText = 'opacity:0;transform:translateY(16px);';
+			div.className = 'gallery-item reveal';
+			div.style.setProperty('--reveal-delay', `${(idx % 4) * 65}ms`);
+			const aspect = getAspectRatio(item);
 
 			div.innerHTML = `
-                <div class="img-shimmer"></div>
-                <img src="${item.img}" alt="${item.title}" loading="lazy" style="opacity:0;transition:opacity 0.4s;" draggable="false">
+                <div class="img-wrapper" style="aspect-ratio: ${aspect};">
+                    <div class="img-shimmer"></div>
+                    <img src="${item.img}" alt="${item.title}" loading="lazy" style="opacity:0; transition: opacity 0.4s ease;" draggable="false">
+                    <div class="item-overlay">
+                        <div class="item-info">
+                            <span class="item-category">${item.category}${item.date ? ` • ${item.date}` : ''}</span>
+                            <h3 class="item-title">${item.title}</h3>
+                            ${item.desc ? `<p class="item-desc">${item.desc}</p>` : ''}
+                            <div class="item-action">
+                                <span>View Artwork</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="img-guard"></div>
                 ${item.featured ? `<div class="featured-badge">✦<span class="tooltip">Artist's Choice</span></div>` : ''}
             `;
 
 			const imgEl = div.querySelector('img');
-			imgEl.onload = () => {
+			const handleLoad = () => {
 				const shimmer = div.querySelector('.img-shimmer');
 				if (shimmer) shimmer.style.display = 'none';
 				imgEl.style.opacity = '1';
 			};
+
+			if (imgEl.complete) {
+				handleLoad();
+			} else {
+				imgEl.onload = handleLoad;
+			}
 
 			div.addEventListener('click', () => {
 				currentModalIdx = idx;
@@ -737,17 +780,12 @@ function renderGallery(filter = 'all', query = '') {
 			});
 
 			grid.appendChild(div);
-
-			// Staggered fade-in
-			requestAnimationFrame(() => setTimeout(() => {
-				div.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
-				div.style.opacity = '1';
-				div.style.transform = 'translateY(0)';
-			}, idx * 50));
+			revealObserver.observe(div);
 		});
 
 		grid.classList.remove('fading-out');
-	}, 300);
+		updateScrollProgress();
+	}, 250);
 }
 
 // ── Tab indicator ──
@@ -828,15 +866,27 @@ document.addEventListener('keydown', e => {
 	if (e.key === 'Escape') closeModal();
 });
 
-// Swipe to close on mobile
+// Touch swipe navigation for mobile modal
+let touchStartX = 0;
 let touchStartY = 0;
 modalContent.addEventListener('touchstart', e => {
+	touchStartX = e.touches[0].clientX;
 	touchStartY = e.touches[0].clientY;
 }, {
 	passive: true
 });
 modalContent.addEventListener('touchend', e => {
-	if (e.changedTouches[0].clientY - touchStartY > 80) closeModal();
+	const diffX = e.changedTouches[0].clientX - touchStartX;
+	const diffY = e.changedTouches[0].clientY - touchStartY;
+
+	if (Math.abs(diffX) > Math.abs(diffY)) {
+		// Horizontal swipe
+		if (diffX < -50) navigateModal(1);
+		else if (diffX > 50) navigateModal(-1);
+	} else if (diffY > 80) {
+		// Vertical swipe down
+		closeModal();
+	}
 }, {
 	passive: true
 });
@@ -879,6 +929,52 @@ tabBtns.forEach(btn => {
 searchInput.addEventListener('input', e => renderGallery(currentFilter, e.target.value));
 window.addEventListener('resize', () => updateIndicator(document.querySelector('.tab-btn.active')));
 
+// ── Page transitions ──
+function setupPageExitTransitions() {
+	document.querySelectorAll('a[href]').forEach(link => {
+		const href = link.getAttribute('href');
+		if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
+
+		link.addEventListener('click', e => {
+			if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+			const currentPath = window.location.pathname.split('/').pop() || 'portfolio.html';
+			if (href === currentPath) return;
+
+			e.preventDefault();
+			document.body.classList.add('page-leaving');
+			document.body.classList.add('transition-active');
+
+			setTimeout(() => {
+				window.location.href = href;
+			}, 500);
+		});
+	});
+}
+
+// ── Collection Scroll Progress Bar ──
+const progressBar = document.getElementById('scrollProgressBar');
+function updateScrollProgress() {
+	if (!progressBar) return;
+	const scrollTop = window.scrollY || document.documentElement.scrollTop;
+	const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+	progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+}
+
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+
 // ── Init ──
+window.addEventListener('DOMContentLoaded', () => {
+	document.body.classList.add('page-loaded');
+	initScrollReveal();
+	setupPageExitTransitions();
+	updateScrollProgress();
+});
+document.body.classList.add('page-loaded');
+initScrollReveal();
+setupPageExitTransitions();
+updateScrollProgress();
+
 setTimeout(() => updateIndicator(document.querySelector('.tab-btn.active')), 100);
 renderGallery();
