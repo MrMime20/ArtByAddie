@@ -704,84 +704,64 @@ function prepareGalleryLayout() {
 	return new Promise((resolve) => {
 		const total = artData.length;
 		if (total === 0) {
+			if (loaderStatus) loaderStatus.innerText = 'Enjoy!';
+			if (loaderProgressFill) loaderProgressFill.style.width = '100%';
+			if (loaderPercent) loaderPercent.innerText = '100%';
 			resolve();
 			return;
 		}
 
 		let completed = 0;
-		const minLoadTime = 1800; // Guaranteed loader presence to prevent visual jarring
-		const maxLoadTime = 3200; // Safety cap
-		const startTime = Date.now();
-		let resolved = false;
+		if (loaderStatus) loaderStatus.innerText = 'Preparing your experience...';
+		if (loaderProgressFill) loaderProgressFill.style.width = '0%';
+		if (loaderPercent) loaderPercent.innerText = '0%';
 
 		function updateProgress() {
 			const percent = Math.min(100, Math.round((completed / total) * 100));
 			if (loaderProgressFill) loaderProgressFill.style.width = `${percent}%`;
 			if (loaderPercent) loaderPercent.innerText = `${percent}%`;
-			if (loaderStatus) {
-				if (percent < 35) {
-					loaderStatus.innerText = 'CALCULATING ARTWORK DIMENSIONS…';
-				} else if (percent < 80) {
-					loaderStatus.innerText = 'PREPARING GALLERY MASONRY LAYOUT…';
-				} else {
-					loaderStatus.innerText = 'FINALIZING COLLECTION…';
-				}
+		}
+
+		function checkAllDone() {
+			if (completed >= total) {
+				if (loaderProgressFill) loaderProgressFill.style.width = '100%';
+				if (loaderPercent) loaderPercent.innerText = '100%';
+				if (loaderStatus) loaderStatus.innerText = 'Enjoy!';
+				resolve();
 			}
 		}
-
-		function finish() {
-			if (resolved) return;
-			resolved = true;
-			if (loaderProgressFill) loaderProgressFill.style.width = '100%';
-			if (loaderPercent) loaderPercent.innerText = '100%';
-			if (loaderStatus) loaderStatus.innerText = 'COLLECTION READY';
-
-			const elapsedTime = Date.now() - startTime;
-			const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-
-			setTimeout(() => {
-				resolve();
-			}, remainingTime);
-		}
-
-		const timeoutId = setTimeout(finish, maxLoadTime);
 
 		artData.forEach(item => {
-			const existingAr = getAspectRatio(item);
-			if (existingAr) {
-				completed++;
-				updateProgress();
-				if (completed >= total) {
-					clearTimeout(timeoutId);
-					finish();
-				}
-				return;
-			}
-
-			const img = new Image();
-			img.src = item.img;
-
-			const onItemDone = () => {
-				if (img.naturalWidth && img.naturalHeight) {
-					const ar = `${img.naturalWidth} / ${img.naturalHeight}`;
+			let handled = false;
+			const markDone = (ar) => {
+				if (handled) return;
+				handled = true;
+				if (ar) {
 					aspectCache.set(item.img, ar);
 					try {
 						localStorage.setItem('ar_' + item.img, ar);
 					} catch (e) {}
+				} else if (!aspectCache.has(item.img)) {
+					aspectCache.set(item.img, '4 / 5');
 				}
 				completed++;
 				updateProgress();
-				if (completed >= total) {
-					clearTimeout(timeoutId);
-					finish();
-				}
+				checkAllDone();
 			};
 
-			if (img.complete) {
-				onItemDone();
-			} else {
-				img.onload = onItemDone;
-				img.onerror = onItemDone;
+			const img = new Image();
+			img.onload = () => {
+				if (img.naturalWidth && img.naturalHeight) {
+					markDone(`${img.naturalWidth} / ${img.naturalHeight}`);
+				} else {
+					markDone(null);
+				}
+			};
+			img.onerror = () => markDone(null);
+			img.src = item.img;
+
+			if (img.complete && img.naturalWidth && img.naturalHeight) {
+				markDone(`${img.naturalWidth} / ${img.naturalHeight}`);
 			}
 		});
 	});
@@ -837,7 +817,7 @@ function renderGallery(filter = 'all', query = '', immediate = false) {
 			div.innerHTML = `
                 <div class="img-wrapper" style="${wrapperStyle}">
                     <div class="img-shimmer"></div>
-                    <img src="${item.img}" alt="${item.title}" loading="lazy" style="opacity:0; transition: opacity 0.4s ease;" draggable="false">
+                    <img src="${item.img}" alt="${item.title}" style="opacity:0; transition: opacity 0.4s ease;" draggable="false">
                     <div class="item-overlay">
                         <div class="item-info">
                             <span class="item-category">${item.category}${item.date ? ` • ${item.date}` : ''}</span>
@@ -1101,20 +1081,36 @@ async function initPortfolioPage() {
 	setupPageExitTransitions();
 	updateScrollProgress();
 
-	// Preload all aspect ratios while displaying full loading overlay
+	// 1. Wait until EVERY image in artData has loaded and calculated its exact aspect ratio
 	await prepareGalleryLayout();
 
-	// Render gallery with pre-applied aspect ratios
+	// 2. Render gallery with pre-calculated aspect ratios applied to wrappers
 	renderGallery('all', '', true);
-	setTimeout(() => updateIndicator(document.querySelector('.tab-btn.active')), 100);
 
-	// Hide loading screen smoothly
+	// 3. Wait for DOM images to finish decoding/loading
+	const domImages = Array.from(document.querySelectorAll('#galleryGrid img'));
+	await Promise.all(domImages.map(img => {
+		if (img.complete) return Promise.resolve();
+		return new Promise(res => {
+			img.onload = res;
+			img.onerror = res;
+		});
+	}));
+
+	// 4. Force browser layout & paint calculation frames so gallery positions are locked
+	await new Promise(res => requestAnimationFrame(() => requestAnimationFrame(res)));
+
+	// 5. Keep 'Enjoy!' visible briefly (~600ms) so the user sees completion
+	await new Promise(res => setTimeout(res, 600));
+
+	// 6. Smoothly hide loading screen
 	if (galleryLoader) {
 		galleryLoader.classList.add('hidden');
 	}
 
 	initScrollReveal();
 	updateScrollProgress();
+	setTimeout(() => updateIndicator(document.querySelector('.tab-btn.active')), 100);
 }
 
 if (document.readyState === 'loading') {
