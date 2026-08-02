@@ -677,7 +677,7 @@ function getAspectRatio(item) {
 	if (item.width && item.height) return `${item.width} / ${item.height}`;
 	const match = item.img && item.img.match(/picsum\.photos\/(\d+)\/(\d+)/);
 	if (match) return `${match[1]} / ${match[2]}`;
-	return '4 / 3';
+	return null;
 }
 
 // ── Scroll reveal observer ──
@@ -740,9 +740,10 @@ function renderGallery(filter = 'all', query = '') {
 			div.className = 'gallery-item reveal';
 			div.style.setProperty('--reveal-delay', `${(idx % 4) * 65}ms`);
 			const aspect = getAspectRatio(item);
+			const wrapperStyle = aspect ? `aspect-ratio: ${aspect};` : 'aspect-ratio: auto; min-height: 180px;';
 
 			div.innerHTML = `
-                <div class="img-wrapper" style="aspect-ratio: ${aspect};">
+                <div class="img-wrapper" style="${wrapperStyle}">
                     <div class="img-shimmer"></div>
                     <img src="${item.img}" alt="${item.title}" loading="lazy" style="opacity:0; transition: opacity 0.4s ease;" draggable="false">
                     <div class="item-overlay">
@@ -762,9 +763,14 @@ function renderGallery(filter = 'all', query = '') {
             `;
 
 			const imgEl = div.querySelector('img');
+			const wrapperEl = div.querySelector('.img-wrapper');
 			const handleLoad = () => {
 				const shimmer = div.querySelector('.img-shimmer');
 				if (shimmer) shimmer.style.display = 'none';
+				if (!aspect && imgEl.naturalWidth && imgEl.naturalHeight) {
+					wrapperEl.style.aspectRatio = `${imgEl.naturalWidth} / ${imgEl.naturalHeight}`;
+					updateScrollProgress();
+				}
 				imgEl.style.opacity = '1';
 			};
 
