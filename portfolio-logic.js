@@ -653,6 +653,7 @@ function scoreItem(item, q) {
 }
 
 // ── Aspect ratio helper & background preloader ──
+// ── Aspect ratio helper & loader preloader ──
 const aspectCache = new Map();
 
 function getAspectRatio(item) {
@@ -678,48 +679,6 @@ function escapeCssSelector(str) {
 	return (str || '').replace(/([\\"'#.:;?%&,*+~='^$\[\]()={}|<>\/])/g, '\\$1');
 }
 
-function preloadAllAspectRatios() {
-	artData.forEach(item => {
-		if (getAspectRatio(item)) return;
-
-		const img = new Image();
-		img.src = item.img;
-		img.onload = () => {
-			if (img.naturalWidth && img.naturalHeight) {
-				const ar = `${img.naturalWidth} / ${img.naturalHeight}`;
-				aspectCache.set(item.img, ar);
-				try {
-					localStorage.setItem('ar_' + item.img, ar);
-				} catch (e) {}
-
-				document.querySelectorAll('.gallery-item').forEach(div => {
-					if (div.getAttribute('data-img') === item.img) {
-						const wrapper = div.querySelector('.img-wrapper');
-						if (wrapper) wrapper.style.aspectRatio = ar;
-					}
-				});
-				updateScrollProgress();
-			}
-		};
-	});
-}
-
-preloadAllAspectRatios();
-
-// ── Scroll reveal observer ──
-const revealObserver = new IntersectionObserver((entries, observer) => {
-	entries.forEach(entry => {
-		if (entry.isIntersecting) {
-			entry.target.classList.add('revealed');
-			observer.unobserve(entry.target);
-		}
-	});
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-
-function initScrollReveal() {
-	document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-}
-
 // ── DOM refs ──
 const grid = document.getElementById('galleryGrid');
 const searchInput = document.getElementById('artSearch');
@@ -735,19 +694,124 @@ const aboutOverlay = document.getElementById('aboutOverlay');
 const modalPrev = document.getElementById('modalPrev');
 const modalNext = document.getElementById('modalNext');
 
+const galleryLoader = document.getElementById('galleryLoader');
+const loaderStatus = document.getElementById('loaderStatus');
+const loaderProgressFill = document.getElementById('loaderProgressFill');
+const loaderPercent = document.getElementById('loaderPercent');
+
+// ── Preload all aspect ratios with loader overlay ──
+function prepareGalleryLayout() {
+	return new Promise((resolve) => {
+		const total = artData.length;
+		if (total === 0) {
+			resolve();
+			return;
+		}
+
+		let completed = 0;
+		const minLoadTime = 1800; // Guaranteed loader presence to prevent visual jarring
+		const maxLoadTime = 3200; // Safety cap
+		const startTime = Date.now();
+		let resolved = false;
+
+		function updateProgress() {
+			const percent = Math.min(100, Math.round((completed / total) * 100));
+			if (loaderProgressFill) loaderProgressFill.style.width = `${percent}%`;
+			if (loaderPercent) loaderPercent.innerText = `${percent}%`;
+			if (loaderStatus) {
+				if (percent < 35) {
+					loaderStatus.innerText = 'CALCULATING ARTWORK DIMENSIONS…';
+				} else if (percent < 80) {
+					loaderStatus.innerText = 'PREPARING GALLERY MASONRY LAYOUT…';
+				} else {
+					loaderStatus.innerText = 'FINALIZING COLLECTION…';
+				}
+			}
+		}
+
+		function finish() {
+			if (resolved) return;
+			resolved = true;
+			if (loaderProgressFill) loaderProgressFill.style.width = '100%';
+			if (loaderPercent) loaderPercent.innerText = '100%';
+			if (loaderStatus) loaderStatus.innerText = 'COLLECTION READY';
+
+			const elapsedTime = Date.now() - startTime;
+			const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+			setTimeout(() => {
+				resolve();
+			}, remainingTime);
+		}
+
+		const timeoutId = setTimeout(finish, maxLoadTime);
+
+		artData.forEach(item => {
+			const existingAr = getAspectRatio(item);
+			if (existingAr) {
+				completed++;
+				updateProgress();
+				if (completed >= total) {
+					clearTimeout(timeoutId);
+					finish();
+				}
+				return;
+			}
+
+			const img = new Image();
+			img.src = item.img;
+
+			const onItemDone = () => {
+				if (img.naturalWidth && img.naturalHeight) {
+					const ar = `${img.naturalWidth} / ${img.naturalHeight}`;
+					aspectCache.set(item.img, ar);
+					try {
+						localStorage.setItem('ar_' + item.img, ar);
+					} catch (e) {}
+				}
+				completed++;
+				updateProgress();
+				if (completed >= total) {
+					clearTimeout(timeoutId);
+					finish();
+				}
+			};
+
+			if (img.complete) {
+				onItemDone();
+			} else {
+				img.onload = onItemDone;
+				img.onerror = onItemDone;
+			}
+		});
+	});
+}
+
+// ── Scroll reveal observer ──
+const revealObserver = new IntersectionObserver((entries, observer) => {
+	entries.forEach(entry => {
+		if (entry.isIntersecting) {
+			entry.target.classList.add('revealed');
+			observer.unobserve(entry.target);
+		}
+	});
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+function initScrollReveal() {
+	document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
 let currentFilter = 'all';
 let filterTimeout;
 let currentItems = []; // filtered+sorted list shown in gallery
 let currentModalIdx = 0;
 
 // ── Gallery render ──
-function renderGallery(filter = 'all', query = '') {
+function renderGallery(filter = 'all', query = '', immediate = false) {
 	currentFilter = filter;
 	if (!grid) return;
-	grid.classList.add('fading-out');
-	clearTimeout(filterTimeout);
 
-	filterTimeout = setTimeout(() => {
+	const doRender = () => {
 		grid.innerHTML = '';
 
 		currentItems = artData
@@ -822,7 +886,16 @@ function renderGallery(filter = 'all', query = '') {
 
 		grid.classList.remove('fading-out');
 		updateScrollProgress();
-	}, 250);
+	};
+
+	if (immediate || grid.children.length === 0) {
+		grid.classList.remove('fading-out');
+		doRender();
+	} else {
+		grid.classList.add('fading-out');
+		clearTimeout(filterTimeout);
+		filterTimeout = setTimeout(doRender, 250);
+	}
 }
 
 // ── Tab indicator ──
@@ -1023,16 +1096,29 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 
 // ── Init ──
-window.addEventListener('DOMContentLoaded', () => {
+async function initPortfolioPage() {
 	document.body.classList.add('page-loaded');
-	initScrollReveal();
 	setupPageExitTransitions();
 	updateScrollProgress();
-});
-document.body.classList.add('page-loaded');
-initScrollReveal();
-setupPageExitTransitions();
-updateScrollProgress();
 
-setTimeout(() => updateIndicator(document.querySelector('.tab-btn.active')), 100);
-renderGallery();
+	// Preload all aspect ratios while displaying full loading overlay
+	await prepareGalleryLayout();
+
+	// Render gallery with pre-applied aspect ratios
+	renderGallery('all', '', true);
+	setTimeout(() => updateIndicator(document.querySelector('.tab-btn.active')), 100);
+
+	// Hide loading screen smoothly
+	if (galleryLoader) {
+		galleryLoader.classList.add('hidden');
+	}
+
+	initScrollReveal();
+	updateScrollProgress();
+}
+
+if (document.readyState === 'loading') {
+	window.addEventListener('DOMContentLoaded', initPortfolioPage);
+} else {
+	initPortfolioPage();
+}
