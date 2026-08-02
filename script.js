@@ -58,8 +58,8 @@ function rebuild() {
     const ratio   = window.innerWidth / window.innerHeight;
     const clamped = Math.max(0.2, Math.min(1.0, resScale));
 
-    width  = Math.floor(base * clamped);
-    height = Math.floor(width / ratio);
+    width  = Math.max(1, Math.floor(base * clamped));
+    height = Math.max(1, Math.floor(width / ratio));
     size   = width * height;
 
     canvas.width  = canvasB.width  = width;
@@ -71,7 +71,7 @@ function rebuild() {
     const tmp = document.createElement('canvas');
     tmp.width = width; tmp.height = height;
     const tc  = tmp.getContext('2d');
-    const ir  = img.width / img.height;
+    const ir  = (img.width && img.height) ? (img.width / img.height) : 1;
     let dw, dh, ox, oy;
     if (ir > ratio) { dh=height; dw=height*ir; ox=(width-dw)/2; oy=0; }
     else            { dw=width;  dh=width/ir;  ox=0; oy=(height-dh)/2; }
@@ -145,7 +145,8 @@ function run() {
         buf2[i] *= DAMP_BASE;
     }
 
-    const frame=ctx.getImageData(0,0,width,height), px=frame.data, tlen=texture.length-4;
+    if (!width || !height || width < 1 || height < 1 || !texture) return;
+    const frame=ctx.getImageData(0, 0, Math.floor(width), Math.floor(height)), px=frame.data, tlen=texture.length-4;
     for (let i=0; i<size; i++) {
         const xo=~~((buf2[i-1]-buf2[i+1])*1.5), yo=~~((buf2[i-width]-buf2[i+width])*1.5);
         let ti=((i+xo+yo*width)*4);
