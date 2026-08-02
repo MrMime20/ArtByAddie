@@ -55,11 +55,14 @@ img.onerror = () => {
 function rebuild() {
     const mob     = window.innerWidth < 600;
     const base    = mob ? 500 : RES_BASE;
-    const ratio   = window.innerWidth / window.innerHeight;
+    const winH    = (window.innerHeight && window.innerHeight > 0) ? window.innerHeight : 1;
+    const winW    = (window.innerWidth && window.innerWidth > 0) ? window.innerWidth : 1;
+    const ratio   = winW / winH;
     const clamped = Math.max(0.2, Math.min(1.0, resScale));
 
     width  = Math.max(1, Math.floor(base * clamped));
-    height = Math.max(1, Math.floor(width / ratio));
+    height = Math.max(1, Math.floor(width / (ratio || 1)));
+    if (!Number.isFinite(height) || height < 1) height = 1;
     size   = width * height;
 
     canvas.width  = canvasB.width  = width;
@@ -75,9 +78,13 @@ function rebuild() {
     let dw, dh, ox, oy;
     if (ir > ratio) { dh=height; dw=height*ir; ox=(width-dw)/2; oy=0; }
     else            { dw=width;  dh=width/ir;  ox=0; oy=(height-dh)/2; }
-    tc.fillStyle = '#000'; tc.fillRect(0,0,width,height);
+    tc.fillStyle = '#000'; tc.fillRect(0, 0, width, height);
     tc.drawImage(img, ox, oy, dw, dh);
-    texture = tc.getImageData(0,0,width,height).data;
+    try {
+        texture = tc.getImageData(0, 0, Math.floor(width), Math.floor(height)).data;
+    } catch(e) {
+        texture = new Uint8ClampedArray(size * 4);
+    }
 }
 
 function adaptFPS(fps) {
@@ -146,7 +153,15 @@ function run() {
     }
 
     if (!width || !height || width < 1 || height < 1 || !texture) return;
-    const frame=ctx.getImageData(0, 0, Math.floor(width), Math.floor(height)), px=frame.data, tlen=texture.length-4;
+    const w = Math.floor(width);
+    const h = Math.floor(height);
+    let frame;
+    try {
+        frame = ctx.getImageData(0, 0, w, h);
+    } catch(e) {
+        return;
+    }
+    const px = frame.data, tlen = texture.length - 4;
     for (let i=0; i<size; i++) {
         const xo=~~((buf2[i-1]-buf2[i+1])*1.5), yo=~~((buf2[i-width]-buf2[i+width])*1.5);
         let ti=((i+xo+yo*width)*4);
