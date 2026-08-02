@@ -532,6 +532,69 @@ const artData = [{
 		date: "2025",
 		desc: "High-contrast green and purple villain study.",
 		img: "./GreenGoblin.webp"
+	},
+	{
+		title: "Baseball Shoe - Angle 1",
+		featured: true,
+		category: "Craft",
+		tags: ["custom", "cleats", "baseball"],
+		date: "2026",
+		desc: "Custom hand-painted baseball cleat perspective study.",
+		img: "./BaseballShoeAngle1.webp"
+	},
+	{
+		title: "Baseball Shoe - Angle 2",
+		featured: false,
+		category: "Craft",
+		tags: ["custom", "cleats", "detail"],
+		date: "2026",
+		desc: "Alternate angle highlighting side detail work.",
+		img: "./BaseballShoeAngle2.webp"
+	},
+	{
+		title: "Seashells",
+		featured: false,
+		category: "Watercolor",
+		tags: ["ocean", "coastal", "still-life"],
+		date: "2026",
+		desc: "Detailed watercolor study of collected beach shells.",
+		img: "./Seashells.webp"
+	},
+	{
+		title: "Landscape Cloud",
+		featured: false,
+		category: "Watercolor",
+		tags: ["landscape", "sky", "clouds"],
+		date: "2026",
+		desc: "Atmospheric cloud study over open field scenery.",
+		img: "./LandscapeCloud.webp"
+	},
+	{
+		title: "Flower Shoe",
+		featured: true,
+		category: "Craft",
+		tags: ["custom", "floral", "wearable-art"],
+		date: "2026",
+		desc: "Hand-painted custom footwear with vibrant floral patterns.",
+		img: "./FlowerShoe.webp"
+	},
+	{
+		title: "Dragon Shoe",
+		featured: true,
+		category: "Craft",
+		tags: ["custom", "dragon", "fantasy"],
+		date: "2026",
+		desc: "Custom shoe artwork featuring intricate dragon scales.",
+		img: "./DragonShoe.webp"
+	},
+	{
+		title: "34 Baseball Shoe",
+		featured: false,
+		category: "Craft",
+		tags: ["custom", "sports", "number"],
+		date: "2026",
+		desc: "Personalized player-edition custom footwear design.",
+		img: "./34BaseballShoe.webp"
 	}
 ];
 
