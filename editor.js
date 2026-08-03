@@ -677,42 +677,48 @@ const DEFAULT_STATE = {
             open: true,
             price: "$120–$180",
             turnaround: "2–3 weeks",
-            desc: "Hand-painted Air Force 1s using high-quality acrylic leather paint. Sealed for durability and wearability. You supply the shoes (or I source them for an additional fee). Any design — bring a reference or let me run with it."
+            desc: "Hand-painted Air Force 1s using high-quality acrylic leather paint. Sealed for durability and wearability. You supply the shoes (or I source them for an additional fee). Any design — bring a reference or let me run with it.",
+            images: ["./FlowerShoe.webp", "./DragonShoe.webp", "./BaseballShoeAngle1.webp"]
         },
         {
             title: "8×10 Watercolor Portrait",
             open: true,
             price: "$85",
             turnaround: "1–2 weeks",
-            desc: "A traditional watercolor portrait on 300gsm cold-press paper. People, pets, characters — all welcome. Comes with a digital scan at full resolution and the original shipped to you."
+            desc: "A traditional watercolor portrait on 300gsm cold-press paper. People, pets, characters — all welcome. Comes with a digital scan at full resolution and the original shipped to you.",
+            images: ["./AddieFox.webp", "./Achebe.webp"]
         },
         {
             title: "Digital Illustration",
             open: false,
             price: "$60–$200",
             turnaround: "1–3 weeks",
-            desc: "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity — bust, half-body, or full scene. Multiple revisions included."
+            desc: "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity — bust, half-body, or full scene. Multiple revisions included.",
+            images: ["./Spiderman.webp", "./GhostOnSwing.webp"]
         },
         {
             title: "Textile / Embroidery Piece",
             open: true,
             price: "$50–$150",
             turnaround: "3–5 weeks",
-            desc: "Hand-stitched embroidery on fabric of your choice. Great for patches, framed art, or wearables. Design complexity and size determine pricing. Each piece is one of a kind."
+            desc: "Hand-stitched embroidery on fabric of your choice. Great for patches, framed art, or wearables. Design complexity and size determine pricing. Each piece is one of a kind.",
+            images: ["./ToujourBelle-AimerMaman.webp"]
         },
         {
             title: "Mixed Media Canvas",
             open: false,
             price: "$200+",
             turnaround: "4–6 weeks",
-            desc: "Large-format mixed media work combining acrylic, ink, collage, and found materials. Prices vary heavily by size and complexity. Contact me with your vision and I'll give a quote."
+            desc: "Large-format mixed media work combining acrylic, ink, collage, and found materials. Prices vary heavily by size and complexity. Contact me with your vision and I'll give a quote.",
+            images: []
         },
         {
             title: "Mini Watercolor (4×6)",
             open: true,
             price: "$35",
             turnaround: "3–5 days",
-            desc: "A small, loose watercolor study — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet."
+            desc: "A small, loose watercolor study — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet.",
+            images: ["./Waterfall.webp", "./Seashell.webp"]
         }
     ]
 };
@@ -1442,7 +1448,8 @@ function setupCommissionsTabControls() {
                 open: true,
                 price: '$50+',
                 turnaround: '1–2 weeks',
-                desc: 'Details for this commission type.'
+                desc: 'Details for this commission type.',
+                images: ['./Waterfall.webp']
             });
             saveState();
             renderAll();
@@ -1460,6 +1467,14 @@ function renderCommissionsList() {
     state.commissions.forEach((c, idx) => {
         const card = document.createElement('div');
         card.className = 'commission-card-item';
+
+        const imagesVal = (Array.isArray(c.images) ? c.images : []).join(', ');
+
+        const thumbStripHtml = (Array.isArray(c.images) && c.images.length > 0) ? `
+            <div style="display:flex; gap:8px; margin-top:8px; overflow-x:auto; padding-bottom:4px;">
+                ${c.images.map(img => `<img src="${img}" style="width:40px; height:40px; object-fit:cover; border-radius:6px; border:1px solid var(--border-color);" onerror="this.onerror=null;this.src='https://picsum.photos/50/50?grayscale';">`).join('')}
+            </div>
+        ` : '<div style="font-size:11px; color:var(--text-muted); margin-top:4px;">No sample images assigned (card will display without image stack).</div>';
 
         card.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1491,8 +1506,14 @@ function renderCommissionsList() {
                 <textarea class="comm-input" data-index="${idx}" data-field="desc">${escapeHtml(c.desc)}</textarea>
             </div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); pt:10px;">
-                <div style="display:flex; gap:6px; margin-top:8px;">
+            <div class="form-group">
+                <label>Sample Images (comma-separated image paths)</label>
+                <input type="text" class="comm-input" data-index="${idx}" data-field="images" value="${escapeHtml(imagesVal)}" placeholder="e.g. ./Waterfall.webp, ./AddieFox.webp">
+                ${thumbStripHtml}
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:10px; margin-top:10px;">
+                <div style="display:flex; gap:6px;">
                     <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="-1" ${idx === 0 ? 'disabled' : ''}><i data-lucide="arrow-up"></i> Up</button>
                     <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="1" ${idx === state.commissions.length - 1 ? 'disabled' : ''}><i data-lucide="arrow-down"></i> Down</button>
                 </div>
@@ -1508,8 +1529,17 @@ function renderCommissionsList() {
         input.addEventListener('change', (e) => {
             const idx = parseInt(e.target.getAttribute('data-index'), 10);
             const field = e.target.getAttribute('data-field');
-            state.commissions[idx][field] = e.target.value;
-            saveState();
+            if (field === 'images') {
+                state.commissions[idx].images = e.target.value
+                    .split(',')
+                    .map(s => s.trim())
+                    .filter(Boolean);
+                saveState();
+                renderCommissionsList();
+            } else {
+                state.commissions[idx][field] = e.target.value;
+                saveState();
+            }
         });
     });
 
