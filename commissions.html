@@ -52,6 +52,33 @@
         </span>
     </button>
 
+    <!-- Commission Sample Image Viewing Modal -->
+    <div class="comm-modal" id="commModal" aria-hidden="true">
+        <div class="comm-modal-backdrop" id="commModalBackdrop"></div>
+        <div class="comm-modal-card" id="commModalCard">
+            <button class="comm-modal-close" id="commModalClose" aria-label="Close modal">✕</button>
+            <div class="comm-modal-header">
+                <div class="comm-modal-title-group">
+                    <span class="comm-modal-eyebrow">Sample Artwork</span>
+                    <h3 id="commModalTitle">Commission Samples</h3>
+                </div>
+                <span class="comm-modal-counter" id="commModalCounter">1 of 1</span>
+            </div>
+            <div class="comm-modal-stage">
+                <button class="comm-modal-nav comm-nav-prev" id="commModalPrev" aria-label="Previous sample">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <div class="comm-modal-img-wrap">
+                    <img id="commModalImg" src="" alt="Commission sample preview">
+                </div>
+                <button class="comm-modal-nav comm-nav-next" id="commModalNext" aria-label="Next sample">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+            <div class="comm-modal-thumbs" id="commModalThumbs"></div>
+        </div>
+    </div>
+
     <div class="page-transition-overlay"></div>
     <script type="module" src="commissions-logic.js"></script>
 </body>
