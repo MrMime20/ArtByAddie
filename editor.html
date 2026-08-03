@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Studio Editor | Addie Sagers</title>
     <link rel="stylesheet" href="editor.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -20,30 +21,30 @@
 
         <nav class="editor-nav">
             <button class="nav-tab active" data-tab="art">
-                <span class="tab-icon">🖼️</span> Art Gallery (<span id="artCountBadge">0</span>)
+                <span class="tab-icon"><i data-lucide="image"></i></span> Art Gallery (<span id="artCountBadge">0</span>)
             </button>
             <button class="nav-tab" data-tab="categories">
-                <span class="tab-icon">🏷️</span> Categories
+                <span class="tab-icon"><i data-lucide="tags"></i></span> Categories
             </button>
             <button class="nav-tab" data-tab="cover">
-                <span class="tab-icon">🏠</span> Cover Page
+                <span class="tab-icon"><i data-lucide="home"></i></span> Cover Page
             </button>
             <button class="nav-tab" data-tab="about">
-                <span class="tab-icon">👤</span> About Page
+                <span class="tab-icon"><i data-lucide="user"></i></span> About Page
             </button>
             <button class="nav-tab" data-tab="commissions">
-                <span class="tab-icon">💼</span> Commissions
+                <span class="tab-icon"><i data-lucide="briefcase"></i></span> Commissions
             </button>
             <button class="nav-tab highlight" data-tab="code">
-                <span class="tab-icon">📋</span> Code Chunks
+                <span class="tab-icon"><i data-lucide="code-2"></i></span> Code Chunks
             </button>
         </nav>
 
         <div class="header-actions">
-            <span class="save-status" id="saveStatus">✓ Auto-saved locally</span>
-            <button class="btn btn-secondary btn-sm" id="btnExportJson" title="Export state as JSON file">📥 Backup</button>
-            <button class="btn btn-secondary btn-sm" id="btnImportJson" title="Import JSON file">📤 Restore</button>
-            <button class="btn btn-danger btn-sm" id="btnResetData" title="Reset all changes back to website defaults">🔄 Reset</button>
+            <span class="save-status" id="saveStatus"><i data-lucide="check-circle-2"></i> Auto-saved locally</span>
+            <button class="btn btn-secondary btn-sm" id="btnExportJson" title="Export state as JSON file"><i data-lucide="download"></i> Backup</button>
+            <button class="btn btn-secondary btn-sm" id="btnImportJson" title="Import JSON file"><i data-lucide="upload"></i> Restore</button>
+            <button class="btn btn-danger btn-sm" id="btnResetData" title="Reset all changes back to website defaults"><i data-lucide="rotate-ccw"></i> Reset</button>
         </div>
     </header>
 
@@ -54,7 +55,7 @@
             <div class="toolbar">
                 <div class="toolbar-left">
                     <div class="search-box">
-                        <span class="search-icon">🔍</span>
+                        <span class="search-icon"><i data-lucide="search"></i></span>
                         <input type="text" id="artSearchInput" placeholder="Search artwork title, tag, date...">
                     </div>
                     <select id="artCategoryFilter" class="select-input">
@@ -66,7 +67,7 @@
                 </div>
                 <div class="toolbar-right">
                     <button class="btn btn-primary" id="btnAddArtwork">
-                        <span class="btn-icon">➕</span> Add New Artwork
+                        <span class="btn-icon"><i data-lucide="plus"></i></span> Add New Artwork
                     </button>
                 </div>
             </div>
@@ -98,7 +99,7 @@
                         <label for="newCatName">Category Name</label>
                         <input type="text" id="newCatName" placeholder="e.g. Handmade, Sculptures, Prints">
                     </div>
-                    <button class="btn btn-primary" id="btnAddCategory">➕ Add Category</button>
+                    <button class="btn btn-primary" id="btnAddCategory"><i data-lucide="plus"></i> Add Category</button>
                 </div>
 
                 <div class="card categories-list-card">
@@ -173,7 +174,7 @@
                     <div class="form-group">
                         <div class="label-with-btn">
                             <label>Bio Paragraphs</label>
-                            <button class="btn btn-sm btn-secondary" id="btnAddBioPara">➕ Add Paragraph</button>
+                            <button class="btn btn-sm btn-secondary" id="btnAddBioPara"><i data-lucide="plus"></i> Add Paragraph</button>
                         </div>
                         <div class="bio-paragraphs-list" id="bioParasContainer">
                             <!-- Dynamic bio paragraph textareas -->
@@ -215,7 +216,7 @@
                     <p>Manage commission options, pricing, turnaround times, descriptions, and open/closed status.</p>
                 </div>
                 <button class="btn btn-primary" id="btnAddCommission">
-                    <span class="btn-icon">➕</span> Add New Commission
+                    <span class="btn-icon"><i data-lucide="plus"></i></span> Add New Commission
                 </button>
             </div>
 
@@ -225,7 +226,7 @@
         </section>
 
 
-        <!-- TAB 6: CODE CHUNKS OUTPUT (FOR DEVELOPER BROTHER) -->
+        <!-- TAB 6: CODE CHUNKS OUTPUT -->
         <section class="tab-content" id="tab-code">
             <div class="section-intro">
                 <h2>Generated Code Chunks</h2>
@@ -242,7 +243,7 @@
                             <p class="code-target-path">Target File: <strong><code>/portfolio-logic.js</code></strong> (Replace lines 5–644)</p>
                         </div>
                         <button class="btn btn-primary btn-copy" data-copy-target="codeArtData">
-                            📋 Copy <code>artData</code> Code
+                            <i data-lucide="copy"></i> Copy <code>artData</code> Code
                         </button>
                     </div>
                     <pre class="code-block"><code id="codeArtData"></code></pre>
@@ -256,7 +257,7 @@
                             <p class="code-target-path">Target File: <strong><code>/commissions-logic.js</code></strong> (Replace lines 5–48)</p>
                         </div>
                         <button class="btn btn-primary btn-copy" data-copy-target="codeCommissions">
-                            📋 Copy <code>commissions</code> Code
+                            <i data-lucide="copy"></i> Copy <code>commissions</code> Code
                         </button>
                     </div>
                     <pre class="code-block"><code id="codeCommissions"></code></pre>
@@ -270,7 +271,7 @@
                             <p class="code-target-path">Target File: <strong><code>/script.js</code></strong> (around line 33) &amp; <strong><code>/index.html</code></strong></p>
                         </div>
                         <button class="btn btn-primary btn-copy" data-copy-target="codeCover">
-                            📋 Copy Cover Code
+                            <i data-lucide="copy"></i> Copy Cover Code
                         </button>
                     </div>
                     <pre class="code-block"><code id="codeCover"></code></pre>
@@ -284,7 +285,7 @@
                             <p class="code-target-path">Target File: <strong><code>/portfolio.html</code></strong> (Replace inside <code>&lt;div class="about-content"&gt;</code>)</p>
                         </div>
                         <button class="btn btn-primary btn-copy" data-copy-target="codeAbout">
-                            📋 Copy About HTML
+                            <i data-lucide="copy"></i> Copy About HTML
                         </button>
                     </div>
                     <pre class="code-block"><code id="codeAbout"></code></pre>
@@ -298,7 +299,7 @@
                             <p class="code-target-path">Target File: <strong><code>/portfolio.html</code></strong> (Replace inside <code>&lt;div class="tabs reveal"&gt;</code>)</p>
                         </div>
                         <button class="btn btn-primary btn-copy" data-copy-target="codeCategoryTabs">
-                            📋 Copy Category Tabs HTML
+                            <i data-lucide="copy"></i> Copy Category Tabs HTML
                         </button>
                     </div>
                     <pre class="code-block"><code id="codeCategoryTabs"></code></pre>
@@ -314,6 +315,43 @@
 
     <!-- Toast Notification -->
     <div class="toast" id="editorToast">Notification</div>
+
+    <!-- Custom Confirm Modal -->
+    <div class="modal-backdrop" id="confirmModalBackdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="confirmModalTitle"><i data-lucide="alert-triangle"></i> Confirm Action</h3>
+                <button class="modal-close-btn" id="confirmModalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="confirmModalBody">
+                Are you sure you want to perform this action?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="confirmModalCancelBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmModalActionButton"><i data-lucide="trash-2"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Prompt Modal -->
+    <div class="modal-backdrop" id="promptModalBackdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="promptModalTitle"><i data-lucide="edit-3"></i> Rename Category</h3>
+                <button class="modal-close-btn" id="promptModalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label id="promptModalLabel">Category Name</label>
+                    <input type="text" id="promptModalInput" style="width:100%; padding:8px 12px; background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-sm); color:var(--text-primary);" placeholder="Enter name...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="promptModalCancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="promptModalSaveButton"><i data-lucide="check"></i> Save</button>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="editor.js"></script>
 </body>
