@@ -737,6 +737,99 @@ document.addEventListener('DOMContentLoaded', () => {
     renderAll();
 });
 
+function refreshLucideIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+    }
+}
+
+// ── Custom Modal Dialog Helpers ──
+function showConfirmModal(title, message, onConfirm, actionBtnLabel = 'Delete') {
+    const backdrop = document.getElementById('confirmModalBackdrop');
+    const titleEl = document.getElementById('confirmModalTitle');
+    const bodyEl = document.getElementById('confirmModalBody');
+    const actionBtn = document.getElementById('confirmModalActionButton');
+    const cancelBtn = document.getElementById('confirmModalCancelBtn');
+    const closeBtn = document.getElementById('confirmModalCloseBtn');
+
+    if (!backdrop) {
+        if (confirm(message)) onConfirm();
+        return;
+    }
+
+    titleEl.innerHTML = `<i data-lucide="alert-triangle"></i> ${escapeHtml(title)}`;
+    bodyEl.textContent = message;
+    actionBtn.innerHTML = `<i data-lucide="trash-2"></i> ${escapeHtml(actionBtnLabel)}`;
+
+    const hide = () => {
+        backdrop.classList.remove('show');
+        cleanup();
+    };
+
+    const handleConfirm = () => {
+        hide();
+        onConfirm();
+    };
+
+    const cleanup = () => {
+        actionBtn.removeEventListener('click', handleConfirm);
+        cancelBtn.removeEventListener('click', hide);
+        closeBtn.removeEventListener('click', hide);
+    };
+
+    actionBtn.addEventListener('click', handleConfirm);
+    cancelBtn.addEventListener('click', hide);
+    closeBtn.addEventListener('click', hide);
+
+    backdrop.classList.add('show');
+    refreshLucideIcons();
+}
+
+function showPromptModal(title, labelText, defaultValue, onSave) {
+    const backdrop = document.getElementById('promptModalBackdrop');
+    const titleEl = document.getElementById('promptModalTitle');
+    const labelEl = document.getElementById('promptModalLabel');
+    const inputEl = document.getElementById('promptModalInput');
+    const saveBtn = document.getElementById('promptModalSaveButton');
+    const cancelBtn = document.getElementById('promptModalCancelBtn');
+    const closeBtn = document.getElementById('promptModalCloseBtn');
+
+    if (!backdrop) {
+        const val = prompt(labelText, defaultValue);
+        if (val) onSave(val);
+        return;
+    }
+
+    titleEl.innerHTML = `<i data-lucide="edit-3"></i> ${escapeHtml(title)}`;
+    labelEl.textContent = labelText;
+    inputEl.value = defaultValue || '';
+
+    const hide = () => {
+        backdrop.classList.remove('show');
+        cleanup();
+    };
+
+    const handleSave = () => {
+        const val = inputEl.value.trim();
+        hide();
+        if (val) onSave(val);
+    };
+
+    const cleanup = () => {
+        saveBtn.removeEventListener('click', handleSave);
+        cancelBtn.removeEventListener('click', hide);
+        closeBtn.removeEventListener('click', hide);
+    };
+
+    saveBtn.addEventListener('click', handleSave);
+    cancelBtn.addEventListener('click', hide);
+    closeBtn.addEventListener('click', hide);
+
+    backdrop.classList.add('show');
+    inputEl.focus();
+    refreshLucideIcons();
+}
+
 // ── State Storage ──
 function loadSavedState() {
     try {
@@ -756,7 +849,8 @@ function saveState() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         const statusEl = document.getElementById('saveStatus');
         if (statusEl) {
-            statusEl.textContent = '✓ Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            statusEl.innerHTML = '<i data-lucide="check-circle-2"></i> Auto-saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            refreshLucideIcons();
         }
         renderCodeChunks(); // Keep code chunks updated in background
     } catch (e) {
@@ -795,6 +889,7 @@ function renderAll() {
     renderAboutPreview();
     renderCommissionsList();
     renderCodeChunks();
+    refreshLucideIcons();
 }
 
 
@@ -932,11 +1027,11 @@ function renderArtGrid() {
                 <div class="art-title-block">
                     <input type="text" class="art-title-input" value="${escapeHtml(item.title)}" data-index="${realIndex}" data-field="title" placeholder="Artwork Title">
                     <div class="art-header-badges">
-                        ${item.featured ? '<span class="badge badge-featured">⭐ Featured</span>' : ''}
+                        ${item.featured ? '<span class="badge badge-featured"><i data-lucide="star"></i> Featured</span>' : ''}
                         <span class="badge badge-category">${escapeHtml(item.category || 'General')}</span>
                     </div>
                 </div>
-                <button class="btn btn-danger btn-sm btn-delete-art" data-index="${realIndex}" title="Remove artwork">🗑️</button>
+                <button class="btn btn-danger btn-sm btn-delete-art" data-index="${realIndex}" title="Remove artwork"><i data-lucide="trash-2"></i></button>
             </div>
 
             <div class="art-card-body">
@@ -979,8 +1074,8 @@ function renderArtGrid() {
 
             <div class="art-card-actions">
                 <div style="display:flex; gap:6px;">
-                    <button class="btn btn-secondary btn-sm btn-move-art" data-index="${realIndex}" data-dir="-1" ${realIndex === 0 ? 'disabled' : ''}>⬆️ Up</button>
-                    <button class="btn btn-secondary btn-sm btn-move-art" data-index="${realIndex}" data-dir="1" ${realIndex === state.artData.length - 1 ? 'disabled' : ''}>⬇️ Down</button>
+                    <button class="btn btn-secondary btn-sm btn-move-art" data-index="${realIndex}" data-dir="-1" ${realIndex === 0 ? 'disabled' : ''}><i data-lucide="arrow-up"></i> Up</button>
+                    <button class="btn btn-secondary btn-sm btn-move-art" data-index="${realIndex}" data-dir="1" ${realIndex === state.artData.length - 1 ? 'disabled' : ''}><i data-lucide="arrow-down"></i> Down</button>
                 </div>
                 <span style="font-size:11px; color:var(--text-muted);">#${realIndex + 1}</span>
             </div>
@@ -1028,13 +1123,15 @@ function attachArtCardEvents() {
     document.querySelectorAll('.btn-delete-art').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
-            const title = state.artData[idx].title;
-            if (confirm(`Are you sure you want to remove "${title}"?`)) {
+            const item = state.artData[idx];
+            if (!item) return;
+            const title = item.title || 'Untitled Artwork';
+            showConfirmModal('Delete Artwork', `Are you sure you want to remove "${title}"?`, () => {
                 state.artData.splice(idx, 1);
                 saveState();
                 renderAll();
                 showToast(`Removed "${title}"`, 'info');
-            }
+            });
         });
     });
 
@@ -1099,12 +1196,12 @@ function renderCategoriesList() {
 
         card.innerHTML = `
             <div class="category-name-group">
-                <span class="category-badge-chip">🏷️ ${escapeHtml(cat)}</span>
+                <span class="category-badge-chip"><i data-lucide="tag"></i> ${escapeHtml(cat)}</span>
                 <span class="category-art-count">(${artCount} artwork ${artCount === 1 ? 'piece' : 'pieces'})</span>
             </div>
             <div style="display:flex; gap:8px;">
-                <button class="btn btn-secondary btn-sm btn-rename-cat" data-cat="${escapeHtml(cat)}">Rename</button>
-                <button class="btn btn-danger btn-sm btn-delete-cat" data-cat="${escapeHtml(cat)}">Delete</button>
+                <button class="btn btn-secondary btn-sm btn-rename-cat" data-cat="${escapeHtml(cat)}"><i data-lucide="edit-3"></i> Rename</button>
+                <button class="btn btn-danger btn-sm btn-delete-cat" data-cat="${escapeHtml(cat)}"><i data-lucide="trash-2"></i> Delete</button>
             </div>
         `;
 
@@ -1115,22 +1212,23 @@ function renderCategoriesList() {
     document.querySelectorAll('.btn-rename-cat').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const oldCat = e.currentTarget.getAttribute('data-cat');
-            const newCat = prompt(`Rename category "${oldCat}" to:`, oldCat);
-            if (newCat && newCat.trim() && newCat.trim() !== oldCat) {
-                const trimmed = newCat.trim();
-                // Update categories array
-                const idx = state.categories.indexOf(oldCat);
-                if (idx !== -1) state.categories[idx] = trimmed;
+            showPromptModal('Rename Category', `Rename category "${oldCat}" to:`, oldCat, (newCat) => {
+                if (newCat && newCat.trim() && newCat.trim() !== oldCat) {
+                    const trimmed = newCat.trim();
+                    // Update categories array
+                    const idx = state.categories.indexOf(oldCat);
+                    if (idx !== -1) state.categories[idx] = trimmed;
 
-                // Update artwork assigned to old category
-                state.artData.forEach(item => {
-                    if (item.category === oldCat) item.category = trimmed;
-                });
+                    // Update artwork assigned to old category
+                    state.artData.forEach(item => {
+                        if (item.category === oldCat) item.category = trimmed;
+                    });
 
-                saveState();
-                renderAll();
-                showToast(`Renamed category to "${trimmed}"`, 'success');
-            }
+                    saveState();
+                    renderAll();
+                    showToast(`Renamed category to "${trimmed}"`, 'success');
+                }
+            });
         });
     });
 
@@ -1138,11 +1236,11 @@ function renderCategoriesList() {
         btn.addEventListener('click', (e) => {
             const cat = e.currentTarget.getAttribute('data-cat');
             if (state.categories.length <= 1) {
-                alert('You must keep at least one category!');
+                showToast('You must keep at least one category!', 'info');
                 return;
             }
 
-            if (confirm(`Delete category "${cat}"? Artwork in this category will be reassigned to "${state.categories[0]}".`)) {
+            showConfirmModal('Delete Category', `Delete category "${cat}"? Artwork in this category will be reassigned to "${state.categories[0]}".`, () => {
                 state.categories = state.categories.filter(c => c !== cat);
                 state.artData.forEach(item => {
                     if (item.category === cat) item.category = state.categories[0];
@@ -1151,7 +1249,7 @@ function renderCategoriesList() {
                 saveState();
                 renderAll();
                 showToast(`Deleted category "${cat}"`, 'info');
-            }
+            });
         });
     });
 }
@@ -1282,7 +1380,7 @@ function renderAboutPreview() {
             item.className = 'bio-para-item';
             item.innerHTML = `
                 <textarea data-index="${idx}">${escapeHtml(para)}</textarea>
-                <button class="btn btn-danger btn-sm btn-delete-para" data-index="${idx}" title="Remove paragraph">✕</button>
+                <button class="btn btn-danger btn-sm btn-delete-para" data-index="${idx}" title="Remove paragraph"><i data-lucide="x"></i></button>
             `;
             parasContainer.appendChild(item);
         });
@@ -1314,7 +1412,7 @@ function renderAboutPreview() {
             chip.className = 'tag-chip';
             chip.innerHTML = `
                 ${escapeHtml(tag)}
-                <span class="tag-chip-remove" data-index="${idx}">✕</span>
+                <span class="tag-chip-remove" data-index="${idx}"><i data-lucide="x"></i></span>
             `;
             tagsChipsContainer.appendChild(chip);
         });
@@ -1369,7 +1467,7 @@ function renderCommissionsList() {
                     <span class="status-dot-icon"></span>
                     ${c.open ? 'Status: OPEN' : 'Status: CLOSED'}
                 </button>
-                <button class="btn btn-danger btn-sm btn-delete-comm" data-index="${idx}">🗑️ Remove</button>
+                <button class="btn btn-danger btn-sm btn-delete-comm" data-index="${idx}"><i data-lucide="trash-2"></i> Remove</button>
             </div>
 
             <div class="form-group">
@@ -1395,8 +1493,8 @@ function renderCommissionsList() {
 
             <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); pt:10px;">
                 <div style="display:flex; gap:6px; margin-top:8px;">
-                    <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="-1" ${idx === 0 ? 'disabled' : ''}>⬆️ Up</button>
-                    <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="1" ${idx === state.commissions.length - 1 ? 'disabled' : ''}>⬇️ Down</button>
+                    <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="-1" ${idx === 0 ? 'disabled' : ''}><i data-lucide="arrow-up"></i> Up</button>
+                    <button class="btn btn-secondary btn-sm btn-move-comm" data-index="${idx}" data-dir="1" ${idx === state.commissions.length - 1 ? 'disabled' : ''}><i data-lucide="arrow-down"></i> Down</button>
                 </div>
                 <span style="font-size:11px; color:var(--text-muted);">Item #${idx + 1}</span>
             </div>
@@ -1430,12 +1528,12 @@ function renderCommissionsList() {
         btn.addEventListener('click', (e) => {
             const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
             const title = state.commissions[idx].title;
-            if (confirm(`Delete commission option "${title}"?`)) {
+            showConfirmModal('Delete Commission', `Delete commission option "${title}"?`, () => {
                 state.commissions.splice(idx, 1);
                 saveState();
                 renderAll();
                 showToast(`Deleted "${title}"`, 'info');
-            }
+            });
         });
     });
 
@@ -1580,12 +1678,12 @@ function setupGlobalActions() {
 
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-            if (confirm('Are you sure you want to reset all edits back to the website defaults? Any unsaved edits will be cleared.')) {
+            showConfirmModal('Reset All Data', 'Are you sure you want to reset all edits back to the website defaults? Any unsaved edits will be cleared.', () => {
                 localStorage.removeItem(STORAGE_KEY);
                 state = JSON.parse(JSON.stringify(DEFAULT_STATE));
                 renderAll();
                 showToast('Reset back to original website defaults', 'info');
-            }
+            }, 'Reset All');
         });
     }
 }
