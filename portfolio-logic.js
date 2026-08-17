@@ -9,19 +9,26 @@ const artData = [
         "category": "Mixed Media",
         "tags": [
             "new",
-            "art"
+            "art",
+            "water",
+            "glass",
+            "ocean",
+            "boat"
         ],
         "date": "2026",
-        "desc": "",
+        "desc": "A piece of art using reverse glass painting to depict a boat on a stormy sea.",
         "img": "./StormyWaters.webp"
     },
     {
-        "title": "New Artwork",
+        "title": "Mountain Home",
         "featured": true,
         "category": "Watercolor",
         "tags": [
             "new",
-            "art"
+            "art",
+            "house",
+            "mountain",
+            "landscape"
         ],
         "date": "2026",
         "desc": "",
@@ -30,7 +37,7 @@ const artData = [
     {
         "title": "Fox",
         "featured": true,
-        "category": "Watercolor",
+        "category": "Acrylic",
         "tags": [
             "animal",
             "nature",
