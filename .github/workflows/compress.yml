@@ -27,10 +27,10 @@ jobs:
       - name: Run Compress Script
         run: node compress-all.js
 
-      - name: Pull Latest Changes
-        run: git pull --rebase origin main
-
-      - name: Commit optimized images back to repo
+      - name: Commit compressed images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: auto-compress webp images [skip ci]"
+          commit_message: "chore: auto-compress webp images"
+      
+      - name: Pull Latest Changes
+        run: git pull --rebase origin main
