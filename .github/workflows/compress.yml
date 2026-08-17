@@ -27,6 +27,9 @@ jobs:
       - name: Run Compress Script
         run: node compress-all.js
 
+      - name: Pull Latest Changes
+        run: git pull --rebase origin main
+
       - name: Commit optimized images back to repo
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
