@@ -1,52 +1,66 @@
 // ── Commission data ──
-const defaultCommissions = [
+const commissions = [
     {
-        title: "Custom AF1 Painting",
-        open: true,
-        price: "$120–$180",
-        turnaround: "2–3 weeks",
-        desc: "Hand-painted Air Force 1s using high-quality acrylic leather paint. Sealed for durability and wearability. You supply the shoes (or I source them for an additional fee). Any design — bring a reference or let me run with it.",
-        images: ["./FlowerShoe.webp", "./DragonShoe.webp", "./BaseballShoeAngle1.webp"]
+        "title": "Custom AF1 Painting",
+        "open": true,
+        "price": "$75-$80",
+        "turnaround": "2–3 weeks",
+        "desc": "Hand-painted Air Force 1s using high-quality acrylic leather paint. Sealed for durability and wearability. You supply the shoes (or I source them for an additional fee). Any design — bring a reference or let me run with it.",
+        "images": [
+            "./FlowerShoe.webp",
+            "./DragonShoe.webp",
+            "./BaseballShoeAngle1.webp",
+            "./34BaseballShoe.webp"
+        ]
     },
     {
-        title: "8×10 Watercolor Portrait",
-        open: true,
-        price: "$85",
-        turnaround: "1–2 weeks",
-        desc: "A traditional watercolor portrait on 300gsm cold-press paper. People, pets, characters — all welcome. Comes with a digital scan at full resolution and the original shipped to you.",
-        images: ["./AddieFox.webp", "./Achebe.webp"]
+        "title": "8×10 Watercolor Portrait",
+        "open": true,
+        "price": "$50",
+        "turnaround": "1–2 weeks",
+        "desc": "A traditional watercolor portrait on 300gsm cold-press paper. People, pets, characters — all welcome. Comes with a digital scan at full resolution and the original shipped to you.",
+        "images": [
+            "./KoiFishPond.webp",
+            "./BrickHouse.webp",
+            "./Horse.webp",
+            "./Seashell.webp"
+        ]
     },
     {
-        title: "Digital Illustration",
-        open: false,
-        price: "$60–$200",
-        turnaround: "1–3 weeks",
-        desc: "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity — bust, half-body, or full scene. Multiple revisions included.",
-        images: ["./Spiderman.webp", "./GhostOnSwing.webp"]
+        "title": "Digital Illustration",
+        "open": false,
+        "price": "$60–$100",
+        "turnaround": "1–3 weeks",
+        "desc": "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity — bust, half-body, or full scene. Multiple revisions included.",
+        "images": [
+            "./ShallanNoir.webp",
+            "./Knight.webp",
+            "./ChasmFiend.webp",
+            "./Chani.webp"
+        ]
     },
     {
-        title: "Textile / Embroidery Piece",
-        open: true,
-        price: "$50–$150",
-        turnaround: "3–5 weeks",
-        desc: "Hand-stitched embroidery on fabric of your choice. Great for patches, framed art, or wearables. Design complexity and size determine pricing. Each piece is one of a kind.",
-        images: ["./ToujourBelle-AimerMaman.webp"]
+        "title": "Mixed Media Canvas",
+        "open": false,
+        "price": "$200+",
+        "turnaround": "4–6 weeks",
+        "desc": "Large-format artwork that can be done on any abnormal canvas- glass, clothing, leather, ect.",
+        "images": [
+            "./TaylorSwift.webp",
+            "./StormyWaters.webp"
+        ]
     },
     {
-        title: "Mixed Media Canvas",
-        open: false,
-        price: "$200+",
-        turnaround: "4–6 weeks",
-        desc: "Large-format mixed media work combining acrylic, ink, collage, and found materials. Prices vary heavily by size and complexity. Contact me with your vision and I'll give a quote.",
-        images: []
-    },
-    {
-        title: "Mini Watercolor (4×6)",
-        open: true,
-        price: "$35",
-        turnaround: "3–5 days",
-        desc: "A small, loose watercolor study — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet.",
-        images: ["./Waterfall.webp", "./Seashell.webp"]
+        "title": "Mini Watercolor (4×6)",
+        "open": true,
+        "price": "$25",
+        "turnaround": "3–5 days",
+        "desc": "A small, loose watercolor study — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet.",
+        "images": [
+            "./Turtle.webp",
+            "./Boat.webp",
+            "./Farmhouse.webp"
+        ]
     }
 ];
 
