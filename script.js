@@ -30,7 +30,7 @@ const loader = document.getElementById('loader');
 const img = new Image();
 img.crossOrigin = 'Anonymous';
 // Cover image for the interactive ripple background on the home page
-img.src = './Icarus.webp';
+img.src = './KoiFishCover.webp';
 
 img.onload = () => {
     rebuild();
