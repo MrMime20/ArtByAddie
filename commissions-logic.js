@@ -1,5 +1,5 @@
 // ── Commission data ──
-const commissions = [
+const defaultCommissions = [
     {
         "title": "Custom AF1 Painting",
         "open": true,
