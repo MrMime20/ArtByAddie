@@ -5,7 +5,7 @@ const defaultCommissions = [
         "open": true,
         "price": "$75-$80",
         "turnaround": "2–3 weeks",
-        "desc": "Hand-painted Air Force 1s using high-quality acrylic leather paint. Sealed for durability and wearability. You supply the shoes (or I source them for an additional fee). Any design — bring a reference or let me run with it.",
+        "desc": "Hand-painted custom Air Force 1s created with high-quality, acrylic paint and fully sealed for daily wear (heavy outdoor use may cause paint to wear). You can provide your own shoes or I can source them for you at retail cost. Bring your own design reference, or we can collaborate on a unique concept together before painting begins!",
         "images": [
             "./FlowerShoe.webp",
             "./DragonShoe.webp",
@@ -14,11 +14,11 @@ const defaultCommissions = [
         ]
     },
     {
-        "title": "8×10 Watercolor Portrait",
+        "title": "Medium-Sized Watercolor",
         "open": true,
         "price": "$50",
         "turnaround": "1–2 weeks",
-        "desc": "A traditional watercolor portrait on 300gsm cold-press paper. People, pets, characters — all welcome. Comes with a digital scan at full resolution and the original shipped to you.",
+        "desc": "A watercolor painting that can be of people, pets, characters, landscapes — all welcome. Comes with a digital scan at full resolution and the original shipped to you.",
         "images": [
             "./KoiFishPond.webp",
             "./BrickHouse.webp",
@@ -31,7 +31,7 @@ const defaultCommissions = [
         "open": false,
         "price": "$60–$100",
         "turnaround": "1–3 weeks",
-        "desc": "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity — bust, half-body, or full scene. Multiple revisions included.",
+        "desc": "Fully rendered digital artwork delivered at print resolution (300dpi). Pricing scales with complexity of art — bust, half-body, or full scene. Multiple revisions included.",
         "images": [
             "./ShallanNoir.webp",
             "./Knight.webp",
@@ -44,18 +44,18 @@ const defaultCommissions = [
         "open": false,
         "price": "$200+",
         "turnaround": "4–6 weeks",
-        "desc": "Large-format artwork that can be done on any abnormal canvas- glass, clothing, leather, ect.",
+        "desc": "Large-format artwork that can be done on any abnormal canvas - glass, clothing, leather, ect. Price varies based on material, size, and complexity.",
         "images": [
             "./TaylorSwift.webp",
             "./StormyWaters.webp"
         ]
     },
     {
-        "title": "Mini Watercolor (4×6)",
+        "title": "Small-Sized Watercolor",
         "open": true,
         "price": "$25",
         "turnaround": "3–5 days",
-        "desc": "A small, loose watercolor study — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet.",
+        "desc": "A smaller watercolor painting — perfect for gifts or something affordable to hang. Quick turnaround. Subject can be almost anything: object, landscape, character, pet.",
         "images": [
             "./Turtle.webp",
             "./Boat.webp",
