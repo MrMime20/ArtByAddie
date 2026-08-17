@@ -1333,7 +1333,7 @@ if (aboutOverlay) aboutOverlay.addEventListener('click', closeAbout);
 if (contactBtn) {
     contactBtn.addEventListener('click', function() {
         if (this.classList.contains('copied')) return;
-        navigator.clipboard.writeText('sample@email.com').then(() => {
+        navigator.clipboard.writeText('addisonsagers@email.com').then(() => {
             this.classList.add('copied');
             setTimeout(() => this.classList.remove('copied'), 2800);
         });
