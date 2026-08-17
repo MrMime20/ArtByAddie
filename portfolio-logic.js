@@ -4,6 +4,30 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 const artData = [
     {
+        "title": "Stormy Waters",
+        "featured": true,
+        "category": "Mixed Media",
+        "tags": [
+            "new",
+            "art"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./StormyWaters.webp"
+    },
+    {
+        "title": "New Artwork",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "new",
+            "art"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./MountainHome.webp"
+    },
+    {
         "title": "Fox",
         "featured": true,
         "category": "Watercolor",
@@ -13,12 +37,12 @@ const artData = [
             "fox"
         ],
         "date": "2025",
-        "desc": "A vibrant wildlife piece featuring Addie the Fox.",
+        "desc": "11 hour realism piece. ",
         "img": "./AddieFox.webp"
     },
     {
         "title": "Bird Bath",
-        "featured": false,
+        "featured": true,
         "category": "Watercolor",
         "tags": [
             "nature",
@@ -26,7 +50,7 @@ const artData = [
             "garden"
         ],
         "date": "2025",
-        "desc": "A peaceful outdoor scene near a garden fountain.",
+        "desc": "",
         "img": "./BirdBath.webp"
     },
     {
@@ -39,12 +63,12 @@ const artData = [
             "landscape"
         ],
         "date": "2024",
-        "desc": "Country farmhouse surrounded by open fields.",
+        "desc": "",
         "img": "./Farmhouse.webp"
     },
     {
         "title": "Gethsemane",
-        "featured": false,
+        "featured": true,
         "category": "Acrylic",
         "tags": [
             "dramatic",
@@ -52,12 +76,12 @@ const artData = [
             "night"
         ],
         "date": "2025",
-        "desc": "Atmospheric study of night shadows and foliage.",
+        "desc": "",
         "img": "./Gethsemane.webp"
     },
     {
         "title": "Ghost on Swing",
-        "featured": true,
+        "featured": false,
         "category": "Acrylic",
         "tags": [
             "whimsical",
@@ -65,7 +89,7 @@ const artData = [
             "character"
         ],
         "date": "2024",
-        "desc": "Playful illustration of a ghost swinging under moonlight on homemade canvas.",
+        "desc": "Done on a homemade canvas... hopefully that explains the quality a little.",
         "img": "./GhostOnSwing.webp"
     },
     {
@@ -78,7 +102,7 @@ const artData = [
             "pencil"
         ],
         "date": "2023",
-        "desc": "Quick structural portrait study.",
+        "desc": "A brief study on proportion and focus.",
         "img": "./GirlSketch.webp"
     },
     {
@@ -91,7 +115,7 @@ const artData = [
             "motion"
         ],
         "date": "2023",
-        "desc": "Dynamic study of a horse in motion.",
+        "desc": "",
         "img": "./Horse.webp"
     },
     {
@@ -104,7 +128,7 @@ const artData = [
             "villain"
         ],
         "date": "2023",
-        "desc": "High-contrast villain portrait.",
+        "desc": "Part 2 of a custom commision.",
         "img": "./Joker.webp"
     },
     {
@@ -117,7 +141,7 @@ const artData = [
             "mystery"
         ],
         "date": "2023",
-        "desc": "Green and emerald color palette study.",
+        "desc": "Part 2 of a custom commision.",
         "img": "./Riddler.webp"
     },
     {
@@ -130,12 +154,12 @@ const artData = [
             "still life"
         ],
         "date": "2024",
-        "desc": "Detailed wash of coastal findings.",
+        "desc": "",
         "img": "./Seashell.webp"
     },
     {
         "title": "Starry Night 1",
-        "featured": true,
+        "featured": false,
         "category": "Watercolor",
         "tags": [
             "night",
@@ -143,7 +167,7 @@ const artData = [
             "abstract"
         ],
         "date": "2022",
-        "desc": "Heavy acrylic texture capturing night energy.",
+        "desc": "Part 1 of a custom commision.",
         "img": "./StarryNight1.webp"
     },
     {
@@ -156,11 +180,11 @@ const artData = [
             "expressionism"
         ],
         "date": "2022",
-        "desc": "Alternative color pass on cosmic landscapes.",
+        "desc": "Part 2 of a custom commision.",
         "img": "./StarryNight2.webp"
     },
     {
-        "title": "Toothbrush Girl",
+        "title": "Morning Routine",
         "featured": false,
         "category": "Digital",
         "tags": [
@@ -169,7 +193,7 @@ const artData = [
             "daily"
         ],
         "date": "2023",
-        "desc": "Candid slice-of-life digital illustration.",
+        "desc": "",
         "img": "./ToothbrushGirl.webp"
     },
     {
@@ -182,7 +206,7 @@ const artData = [
             "sea"
         ],
         "date": "2022",
-        "desc": "Subtle blue and green washes depicting sea life.",
+        "desc": "",
         "img": "./Turtle.webp"
     },
     {
@@ -195,7 +219,7 @@ const artData = [
             "duality"
         ],
         "date": "2023",
-        "desc": "Split portrait exploring light and shadow.",
+        "desc": "Part of my Batman series.",
         "img": "./TwoFace.webp"
     },
     {
@@ -208,7 +232,7 @@ const artData = [
             "creature"
         ],
         "date": "2023",
-        "desc": "Dark, expressive character artwork.",
+        "desc": "Part of my Spiderman series.",
         "img": "./Venom.webp"
     },
     {
@@ -221,12 +245,12 @@ const artData = [
             "industrial"
         ],
         "date": "2024",
-        "desc": "High-contrast capture of industrial work in action.",
+        "desc": "",
         "img": "./Welder.webp"
     },
     {
         "title": "Christ Is My Roots",
-        "featured": true,
+        "featured": false,
         "category": "Digital",
         "tags": [
             "community",
@@ -247,7 +271,7 @@ const artData = [
             "landscape"
         ],
         "date": "2022",
-        "desc": "Cascading water study using fluid washes.",
+        "desc": "",
         "img": "./Waterfall.webp"
     },
     {
@@ -260,7 +284,7 @@ const artData = [
             "architecture"
         ],
         "date": "2021",
-        "desc": "Moody urban alleyway lit by atmospheric neon.",
+        "desc": "Inspiration taken from the game \"Stray.\"",
         "img": "./CityAlley.webp"
     },
     {
@@ -273,12 +297,12 @@ const artData = [
             "tranquil"
         ],
         "date": "2022",
-        "desc": "Solitary boat drifting on calm waters.",
+        "desc": "",
         "img": "./Boat.webp"
     },
     {
         "title": "Mountain",
-        "featured": true,
+        "featured": false,
         "category": "Acrylic",
         "tags": [
             "landscape",
@@ -286,12 +310,12 @@ const artData = [
             "nature"
         ],
         "date": "2024",
-        "desc": "Rugged mountain peak rendered in textured layers.",
+        "desc": "",
         "img": "./Moutain.webp"
     },
     {
         "title": "Moon Over Lake",
-        "featured": true,
+        "featured": false,
         "category": "Acrylic",
         "tags": [
             "night",
@@ -299,7 +323,7 @@ const artData = [
             "water"
         ],
         "date": "2024",
-        "desc": "Serene scene showing full moon reflections over water.",
+        "desc": "",
         "img": "./MoonOverLake.webp"
     },
     {
@@ -312,7 +336,7 @@ const artData = [
             "spooky"
         ],
         "date": "2023",
-        "desc": "Fantasy character illustration with glowing elements.",
+        "desc": "",
         "img": "./Witch.webp"
     },
     {
@@ -325,7 +349,7 @@ const artData = [
             "seasonal"
         ],
         "date": "2023",
-        "desc": "Playful holiday illustration featuring a black cat.",
+        "desc": "",
         "img": "./HalloweenCat.webp"
     },
     {
@@ -338,7 +362,7 @@ const artData = [
             "nature"
         ],
         "date": "2021",
-        "desc": "Soft wash wildlife study of a forest fox.",
+        "desc": "",
         "img": "./Fox.webp"
     },
     {
@@ -351,21 +375,8 @@ const artData = [
             "creature"
         ],
         "date": "2021",
-        "desc": "Textured illustration of an Endor inhabitant.",
+        "desc": "Ewoks are my favorite Star Wars creature by far.",
         "img": "./Ewok.webp"
-    },
-    {
-        "title": "Parrot",
-        "featured": false,
-        "category": "Watercolor",
-        "tags": [
-            "birds",
-            "tropical",
-            "vibrant"
-        ],
-        "date": "2021",
-        "desc": "High-contrast tropical bird study featuring vivid plumage.",
-        "img": "./Parrot.webp"
     },
     {
         "title": "Forever Beautiful",
@@ -377,7 +388,7 @@ const artData = [
             "heart"
         ],
         "date": "2024",
-        "desc": "French typography and decorative art piece.",
+        "desc": "",
         "img": "./ToujourBelle-AimerMaman.webp"
     },
     {
@@ -403,7 +414,7 @@ const artData = [
             "concepts"
         ],
         "date": "2024",
-        "desc": "Surrealist concept piece using mixed media.",
+        "desc": "",
         "img": "./EyeballNativity.webp"
     },
     {
@@ -416,7 +427,7 @@ const artData = [
             "ink"
         ],
         "date": "2024",
-        "desc": "Surreal ink and charcoal hand study.",
+        "desc": "",
         "img": "./HandEyeball.webp"
     },
     {
@@ -429,7 +440,7 @@ const artData = [
             "character"
         ],
         "date": "2024",
-        "desc": "Experimental abstract portrait with surreal motifs.",
+        "desc": "Surrealism study.",
         "img": "./AppleMouthMan.webp"
     },
     {
@@ -442,7 +453,7 @@ const artData = [
             "illustration"
         ],
         "date": "2023",
-        "desc": "Dynamic prehistoric creature portrait.",
+        "desc": "",
         "img": "./Dinosaur3.webp"
     },
     {
@@ -455,7 +466,7 @@ const artData = [
             "landscape"
         ],
         "date": "2022",
-        "desc": "Charming study of vintage brick masonry.",
+        "desc": "",
         "img": "./BrickHouse.webp"
     },
     {
@@ -468,7 +479,7 @@ const artData = [
             "study"
         ],
         "date": "2023",
-        "desc": "Detailed scale texture and color study.",
+        "desc": "",
         "img": "./Dinosaur2.webp"
     },
     {
@@ -481,7 +492,7 @@ const artData = [
             "concept"
         ],
         "date": "2023",
-        "desc": "Initial concept sketch and render for dino series.",
+        "desc": "",
         "img": "./Dinosaur1.webp"
     },
     {
@@ -494,7 +505,7 @@ const artData = [
             "action"
         ],
         "date": "2023",
-        "desc": "Action pose illustration completing the dino series.",
+        "desc": "",
         "img": "./Dinosaur4.webp"
     },
     {
@@ -507,7 +518,7 @@ const artData = [
             "hero"
         ],
         "date": "2023",
-        "desc": "Vibrant web-slinger dynamic action shot.",
+        "desc": "Part of my Spiderman series.",
         "img": "./Spiderman.webp"
     },
     {
@@ -520,7 +531,7 @@ const artData = [
             "villain"
         ],
         "date": "2023",
-        "desc": "Mechanical arm and lighting focus character design.",
+        "desc": "Part of my Batman series.",
         "img": "./DocOck.webp"
     },
     {
@@ -533,11 +544,11 @@ const artData = [
             "villain"
         ],
         "date": "2023",
-        "desc": "High-contrast green and purple villain study.",
+        "desc": "Part of my Batman series.",
         "img": "./GreenGoblin.webp"
     },
     {
-        "title": "Baseball Shoe - Angle 1",
+        "title": "Baseball Shoe",
         "featured": true,
         "category": "Shoes",
         "tags": [
@@ -546,11 +557,11 @@ const artData = [
             "baseball"
         ],
         "date": "2024",
-        "desc": "Custom hand-painted baseball cleat perspective study.",
+        "desc": "",
         "img": "./BaseballShoeAngle1.webp"
     },
     {
-        "title": "Baseball Shoe - Angle 2",
+        "title": "Baseball Shoe",
         "featured": false,
         "category": "Shoes",
         "tags": [
@@ -559,7 +570,7 @@ const artData = [
             "detail"
         ],
         "date": "2024",
-        "desc": "Alternate angle highlighting side detail work.",
+        "desc": "Custom baseball footwear.",
         "img": "./BaseballShoeAngle2.webp"
     },
     {
@@ -572,7 +583,7 @@ const artData = [
             "still-life"
         ],
         "date": "2023",
-        "desc": "Detailed watercolor study of collected beach shells.",
+        "desc": "",
         "img": "./Seashells.webp"
     },
     {
@@ -585,7 +596,7 @@ const artData = [
             "clouds"
         ],
         "date": "2025",
-        "desc": "Atmospheric cloud study over open field scenery.",
+        "desc": "",
         "img": "./LandscapeCloud.webp"
     },
     {
@@ -598,12 +609,12 @@ const artData = [
             "wearable-art"
         ],
         "date": "2026",
-        "desc": "Hand-painted custom footwear with vibrant floral patterns.",
+        "desc": "Custom shoe featuring a red dragon and blossoms on the flip side.",
         "img": "./FlowerShoe.webp"
     },
     {
         "title": "Dragon Shoe",
-        "featured": false,
+        "featured": true,
         "category": "Shoes",
         "tags": [
             "custom",
@@ -611,12 +622,12 @@ const artData = [
             "fantasy"
         ],
         "date": "2026",
-        "desc": "Custom shoe artwork featuring intricate dragon scales.",
+        "desc": "Custom shoe featuring a red dragon and blossoms on the flip side.",
         "img": "./DragonShoe.webp"
     },
     {
-        "title": "34 Baseball Shoe",
-        "featured": false,
+        "title": "Rangers Baseball Shoe",
+        "featured": true,
         "category": "Shoes",
         "tags": [
             "custom",
@@ -624,7 +635,7 @@ const artData = [
             "number"
         ],
         "date": "2026",
-        "desc": "Personalized player-edition custom footwear design.",
+        "desc": "Rangers, Nolan Ryan (34) custom baseball shoes.",
         "img": "./34BaseballShoe.webp"
     },
     {
@@ -637,7 +648,7 @@ const artData = [
             "desert"
         ],
         "date": "2023",
-        "desc": "Layered wash study of desert canyon rock formations.",
+        "desc": "",
         "img": "./Canyon.webp"
     },
     {
@@ -650,7 +661,7 @@ const artData = [
             "clouds"
         ],
         "date": "2023",
-        "desc": "Atmospheric rural farmhouse scene under overcast skies.",
+        "desc": "",
         "img": "./FarmhouseCloudy.webp"
     },
     {
@@ -663,7 +674,7 @@ const artData = [
             "countryside"
         ],
         "date": "2023",
-        "desc": "Wide-open plains surrounding a distant farmhouse.",
+        "desc": "",
         "img": "./FarmhousePlains.webp"
     },
     {
@@ -676,7 +687,7 @@ const artData = [
             "nature"
         ],
         "date": "2022",
-        "desc": "Delicate botanical study of a flowering stalk.",
+        "desc": "",
         "img": "./FlowerStalk.webp"
     },
     {
@@ -689,7 +700,7 @@ const artData = [
             "landscape"
         ],
         "date": "2026",
-        "desc": "Moody mountain peaks emerging through morning mist.",
+        "desc": "Study on the absence of a subject.",
         "img": "./MistyMountain.webp"
     },
     {
@@ -702,7 +713,7 @@ const artData = [
             "concept"
         ],
         "date": "2026",
-        "desc": "Minimalist illustration of a folded paper boat floating.",
+        "desc": "",
         "img": "./OrigamiBoat.webp"
     },
     {
@@ -715,108 +726,153 @@ const artData = [
             "dramatic"
         ],
         "date": "2026",
-        "desc": "Textured acrylic study of stormy sea swells.",
+        "desc": "",
         "img": "./RoughOcean.webp"
     },
     {
-    title: "Guy With Glasses",
-    featured: false,
-    category: "Digital",
-    tags: ["portrait", "character", "modern"],
-    date: "2026",
-    desc: "Candid portrait study focusing on lighting and lens reflection.",
-    img: "./GuyWithGlasses.webp"
-  },
-  {
-    title: "Koi Fish Pond",
-    featured: true,
-    category: "Watercolor",
-    tags: ["japan", "fish", "water", "tranquil"],
-    date: "2026",
-    desc: "Vibrant wet-on-wet watercolor study of koi gliding through pond waters.",
-    img: "./KoiFishPond.webp"
-  },
-  {
-    title: "Red Dragon",
-    featured: true,
-    category: "Digital",
-    tags: ["fantasy", "dragon", "creature"],
-    date: "2026",
-    desc: "High-concept fantasy illustration of a crimson dragon.",
-    img: "./RedDragon.webp"
-  },
-  {
-    title: "Rockie Balboa",
-    featured: false,
-    category: "Media",
-    tags: ["portrait", "movie", "charcoal"],
-    date: "2025",
-    desc: "Expressive charcoal sketch paying homage to the classic cinematic icon.",
-    img: "./RockieBalboa.webp"
-  },
-  {
-    title: "Kelpie",
-    featured: false,
-    category: "Digital",
-    tags: ["mythology", "folklore", "water"],
-    date: "2026",
-    desc: "Atmospheric illustration based on traditional Scottish aquatic folklore.",
-    img: "./Kelpie.webp"
-  },
-  {
-    title: "Icarus",
-    featured: true,
-    category: "Digital",
-    tags: ["mythology", "sun", "dramatic"],
-    date: "2026",
-    desc: "Dramatic composition depicting the flight and fall of Icarus.",
-    img: "./Icarus.webp"
-  },
-  {
-    title: "Lumberjack",
-    featured: false,
-    category: "Media",
-    tags: ["character", "rustic", "illustration"],
-    date: "2025",
-    desc: "Textured ink and watercolor study of a rugged woodsman.",
-    img: "./Lumberjack.webp"
-  },
-  {
-    title: "Knight",
-    featured: false,
-    category: "Digital",
-    tags: ["medieval", "armor", "fantasy"],
-    date: "2025",
-    desc: "Metallic armor highlight and shadow study.",
-    img: "./Knight.webp"
-  },
-  {
-    title: "Shallan Noir",
-    featured: false,
-    category: "Digital",
-    tags: ["fanart", "noir", "cosmere"],
-    date: "2026",
-    desc: "Noir-style portrait reinterpretation of Shallan Davar.",
-    img: "./ShallanNoir.webp"
-  },
-  {
-    title: "Chasm Fiend",
-    featured: true,
-    category: "Digital",
-    tags: ["fantasy", "creature", "cosmere"],
-    date: "2026",
-    desc: "Monolithic creature illustration depicting a great chasm fiend.",
-    img: "./ChasmFiend.webp"
-  },
-  {
-    title: "Chani",
-    featured: false,
-    category: "Digital",
-    tags: ["sci-fi", "portrait", "dune"],
-    date: "2025",
-    desc: "Cinematic digital portrait study with desert lighting.",
-    img: "./Chani.webp"
-  }
+        "title": "Guy With Glasses",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "portrait",
+            "character",
+            "modern"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./GuyWithGlasses.webp"
+    },
+    {
+        "title": "Koi Fish Pond",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "japan",
+            "fish",
+            "water",
+            "tranquil"
+        ],
+        "date": "2026",
+        "desc": "Birthday card for a friend of mine.",
+        "img": "./KoiFishPond.webp"
+    },
+    {
+        "title": "Red Dragon",
+        "featured": false,
+        "category": "Oil",
+        "tags": [
+            "fantasy",
+            "dragon",
+            "creature"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./RedDragon.webp"
+    },
+    {
+        "title": "Rockie Balboa",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "portrait",
+            "movie",
+            "charcoal"
+        ],
+        "date": "2025",
+        "desc": "",
+        "img": "./RockieBalboa.webp"
+    },
+    {
+        "title": "Kelpie",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "mythology",
+            "folklore",
+            "water"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./Kelpie.webp"
+    },
+    {
+        "title": "Icarus",
+        "featured": true,
+        "category": "Sketch",
+        "tags": [
+            "mythology",
+            "sun",
+            "dramatic"
+        ],
+        "date": "2026",
+        "desc": "Dramatic composition depicting the flight and fall of Icarus.",
+        "img": "./Icarus.webp"
+    },
+    {
+        "title": "Lumberjack",
+        "featured": false,
+        "category": "Oil",
+        "tags": [
+            "character",
+            "rustic",
+            "illustration"
+        ],
+        "date": "2025",
+        "desc": "Oil study on composition and color theory.",
+        "img": "./Lumberjack.webp"
+    },
+    {
+        "title": "Knight",
+        "featured": false,
+        "category": "Digital",
+        "tags": [
+            "medieval",
+            "armor",
+            "fantasy"
+        ],
+        "date": "2025",
+        "desc": "",
+        "img": "./Knight.webp"
+    },
+    {
+        "title": "Shallan Noir",
+        "featured": false,
+        "category": "Digital",
+        "tags": [
+            "fanart",
+            "noir",
+            "cosmere"
+        ],
+        "date": "2026",
+        "desc": "Noir-style portrait reinterpretation of Shallan Davar from the Stormlight Archive.",
+        "img": "./ShallanNoir.webp"
+    },
+    {
+        "title": "Chasm Fiend",
+        "featured": true,
+        "category": "Digital",
+        "tags": [
+            "fantasy",
+            "creature",
+            "cosmere"
+        ],
+        "date": "2026",
+        "desc": "Monolithic creature illustration depicting a great chasm fiend from the stormlight archive.",
+        "img": "./ChasmFiend.webp"
+    },
+    {
+        "title": "Chani",
+        "featured": false,
+        "category": "Digital",
+        "tags": [
+            "sci-fi",
+            "portrait",
+            "dune"
+        ],
+        "date": "2025",
+        "desc": "",
+        "img": "./Chani.webp"
+    }
 ];
 
 // ── Search & Synonyms ──
