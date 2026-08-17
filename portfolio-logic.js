@@ -2,644 +2,721 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 // ── Art data ──
-const artData = [{
-        title: "Achebe",
-        featured: true,
-        category: "Digital",
-        tags: ["portrait", "character"],
-        date: "2026",
-        desc: "Portrait study inspired by classic literature.",
-        img: "./Achebe.webp"
-    },
-    {
-        title: "Addie Fox",
-        featured: true,
-        category: "Watercolor",
-        tags: ["animal", "nature", "fox"],
-        date: "2026",
-        desc: "A vibrant wildlife piece featuring Addie the Fox.",
-        img: "./AddieFox.webp"
-    },
-    {
-        title: "Batman",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "hero"],
-        date: "2025",
-        desc: "Dark Knight illustration study.",
-        img: "./Batman.webp"
-    },
-    {
-        title: "Bird Bath",
-        featured: false,
-        category: "Media",
-        tags: ["nature", "birds", "garden"],
-        date: "2026",
-        desc: "A peaceful outdoor scene near a garden fountain.",
-        img: "./BirdBath.webp"
-    },
-    {
-        title: "Cherry Tree",
-        featured: true,
-        category: "Watercolor",
-        tags: ["landscape", "nature", "blossom"],
-        date: "2026",
-        desc: "Springtime study of blooming cherry blossoms.",
-        img: "./CherryTree.webp"
-    },
-    {
-        title: "Farmhouse",
-        featured: false,
-        category: "Media",
-        tags: ["rustic", "architecture", "landscape"],
-        date: "2025",
-        desc: "Country farmhouse surrounded by open fields.",
-        img: "./Farmhouse.webp"
-    },
-    {
-        title: "Gethsemane",
-        featured: false,
-        category: "Digital",
-        tags: ["dramatic", "landscape", "night"],
-        date: "2026",
-        desc: "Atmospheric study of night shadows and foliage.",
-        img: "./Gethsemane.webp"
-    },
-    {
-        title: "Ghost on Swing",
-        featured: true,
-        category: "Digital",
-        tags: ["whimsical", "spooky", "character"],
-        date: "2026",
-        desc: "Playful illustration of a ghost swinging under moonlight.",
-        img: "./GhostOnSwing.webp"
-    },
-    {
-        title: "Girl Sketch",
-        featured: false,
-        category: "Media",
-        tags: ["sketch", "portrait", "pencil"],
-        date: "2025",
-        desc: "Quick structural portrait study.",
-        img: "./GirlSketch.webp"
-    },
-    {
-        title: "Horse",
-        featured: false,
-        category: "Watercolor",
-        tags: ["animal", "study", "motion"],
-        date: "2026",
-        desc: "Dynamic study of a horse in motion.",
-        img: "./Horse.webp"
-    },
-    {
-        title: "Joker",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "villain"],
-        date: "2025",
-        desc: "High-contrast villain portrait.",
-        img: "./Joker.webp"
-    },
-    {
-        title: "Riddler",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "mystery"],
-        date: "2025",
-        desc: "Green and emerald color palette study.",
-        img: "./Riddler.webp"
-    },
-    {
-        title: "Seashell",
-        featured: false,
-        category: "Watercolor",
-        tags: ["minimal", "ocean", "still life"],
-        date: "2026",
-        desc: "Detailed wash of coastal findings.",
-        img: "./Seashell.webp"
-    },
-    {
-        title: "Starry Night 1",
-        featured: true,
-        category: "Media",
-        tags: ["night", "sky", "abstract"],
-        date: "2026",
-        desc: "Heavy acrylic texture capturing night energy.",
-        img: "./StarryNight1.webp"
-    },
-    {
-        title: "Starry Night 2",
-        featured: false,
-        category: "Media",
-        tags: ["night", "sky", "expressionism"],
-        date: "2026",
-        desc: "Alternative color pass on cosmic landscapes.",
-        img: "./StarryNight2.webp"
-    },
-    {
-        title: "Toothbrush Girl",
-        featured: false,
-        category: "Digital",
-        tags: ["character", "pop art", "daily"],
-        date: "2025",
-        desc: "Candid slice-of-life digital illustration.",
-        img: "./ToothbrushGirl.webp"
-    },
-    {
-        title: "Turtle",
-        featured: false,
-        category: "Watercolor",
-        tags: ["ocean", "animal", "sea"],
-        date: "2026",
-        desc: "Subtle blue and green washes depicting sea life.",
-        img: "./Turtle.webp"
-    },
-    {
-        title: "Two Face",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "duality"],
-        date: "2025",
-        desc: "Split portrait exploring light and shadow.",
-        img: "./TwoFace.webp"
-    },
-    {
-        title: "Venom",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "creature"],
-        date: "2025",
-        desc: "Dark, expressive character artwork.",
-        img: "./Venom.webp"
-    },
-    {
-        title: "Welder",
-        featured: false,
-        category: "Craft",
-        tags: ["metal", "sparks", "industrial"],
-        date: "2026",
-        desc: "High-contrast capture of industrial work in action.",
-        img: "./Welder.webp"
-    },
-    {
-        title: "Christ Is My Roots",
-        featured: true,
-        category: "Craft",
-        tags: ["community", "exhibition", "mixed media"],
-        date: "2026",
-        desc: "Featured piece from the annual youth art submission.",
-        img: "./YouthArtSubmission.webp"
-    },
-    {
-        title: "Starry Night 3",
-        featured: true,
-        category: "Media",
-        tags: ["night", "sky", "abstract"],
-        date: "2026",
-        desc: "Experimental night sky composition with heavy texture.",
-        img: "./StarryNight3.webp"
-    },
-    {
-        title: "Waterfall",
-        featured: false,
-        category: "Watercolor",
-        tags: ["nature", "water", "landscape"],
-        date: "2026",
-        desc: "Cascading water study using fluid washes.",
-        img: "./Waterfall.webp"
-    },
-    {
-        title: "City Alley",
-        featured: false,
-        category: "Digital",
-        tags: ["urban", "city", "architecture"],
-        date: "2025",
-        desc: "Moody urban alleyway lit by atmospheric neon.",
-        img: "./CityAlley.webp"
-    },
-    {
-        title: "Boat",
-        featured: false,
-        category: "Watercolor",
-        tags: ["ocean", "nautical", "tranquil"],
-        date: "2026",
-        desc: "Solitary boat drifting on calm waters.",
-        img: "./Boat.webp"
-    },
-    {
-        title: "Mountain",
-        featured: true,
-        category: "Media",
-        tags: ["landscape", "mountains", "nature"],
-        date: "2025",
-        desc: "Rugged mountain peak rendered in textured layers.",
-        img: "./Moutain.webp"
-    },
-    {
-        title: "Moon Over Lake",
-        featured: true,
-        category: "Digital",
-        tags: ["night", "landscape", "water"],
-        date: "2026",
-        desc: "Serene scene showing full moon reflections over water.",
-        img: "./MoonOverLake.webp"
-    },
-    {
-        title: "Bearded Man",
-        featured: false,
-        category: "Media",
-        tags: ["portrait", "charcoal", "study"],
-        date: "2025",
-        desc: "Expressive portrait study focusing on facial hair textures.",
-        img: "./BeardedMan.webp"
-    },
-    {
-        title: "Sunset",
-        featured: false,
-        category: "Watercolor",
-        tags: ["sunset", "sky", "color-theory"],
-        date: "2026",
-        desc: "Warm gradient study of a dramatic evening sky.",
-        img: "./Sunset.webp"
-    },
-    {
-        title: "Witch",
-        featured: false,
-        category: "Digital",
-        tags: ["fantasy", "character", "spooky"],
-        date: "2025",
-        desc: "Fantasy character illustration with glowing elements.",
-        img: "./Witch.webp"
-    },
-    {
-        title: "Halloween Cat",
-        featured: true,
-        category: "Digital",
-        tags: ["spooky", "cat", "seasonal"],
-        date: "2025",
-        desc: "Playful holiday illustration featuring a black cat.",
-        img: "./HalloweenCat.webp"
-    },
-    {
-        title: "Yin Yang",
-        featured: false,
-        category: "Craft",
-        tags: ["abstract", "symbolism", "balance"],
-        date: "2026",
-        desc: "Modern textural take on classic balance iconography.",
-        img: "./YinYang.webp"
-    },
-    {
-        title: "Fox",
-        featured: false,
-        category: "Watercolor",
-        tags: ["animal", "wildlife", "nature"],
-        date: "2026",
-        desc: "Soft wash wildlife study of a forest fox.",
-        img: "./Fox.webp"
-    },
-    {
-        title: "Ewok",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "sci-fi", "creature"],
-        date: "2025",
-        desc: "Textured illustration of an Endor inhabitant.",
-        img: "./Ewok.webp"
-    },
-    {
-        title: "Parrot",
-        featured: false,
-        category: "Watercolor",
-        tags: ["birds", "tropical", "vibrant"],
-        date: "2026",
-        desc: "High-contrast tropical bird study featuring vivid plumage.",
-        img: "./Parrot.webp"
-    },
-    {
-        title: "Tree Horizon",
-        featured: false,
-        category: "Watercolor",
-        tags: ["landscape", "nature", "silhouette"],
-        date: "2026",
-        desc: "Minimalist tree silhouette against a dramatic horizon.",
-        img: "./TreeHorizon.webp"
-    },
-    {
-        title: "Cherry Tree 2",
-        featured: true,
-        category: "Watercolor",
-        tags: ["landscape", "nature", "blossom"],
-        date: "2026",
-        desc: "A second exploration of blooming cherry branches.",
-        img: "./CherryTree2.webp"
-    },
-    {
-        title: "Milky Way",
-        featured: true,
-        category: "Digital",
-        tags: ["space", "night", "stars"],
-        date: "2026",
-        desc: "Cosmic study of the galactic core and starry skies.",
-        img: "./MilkyWay.webp"
-    },
-    {
-        title: "Niffler",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "creature", "fantasy"],
-        date: "2025",
-        desc: "Playful character design inspired by magical creatures.",
-        img: "./Niffler.webp"
-    },
-    {
-        title: "Toujour Belle - Aimer Maman",
-        featured: false,
-        category: "Media",
-        tags: ["typography", "textile", "heart"],
-        date: "2026",
-        desc: "French typography and decorative art piece.",
-        img: "./ToujourBelle-AimerMaman.webp"
-    },
-    {
-        title: "Wolf Howl",
-        featured: false,
-        category: "Watercolor",
-        tags: ["animal", "wildlife", "night"],
-        date: "2026",
-        desc: "Dramatic wash study of a wolf howling under moonlight.",
-        img: "./WolfHowl.webp"
-    },
-    {
-        title: "Eiffel Tower",
-        featured: false,
-        category: "Digital",
-        tags: ["city", "architecture", "travel"],
-        date: "2025",
-        desc: "Stylized landmark vector and digital wash artwork.",
-        img: "./EifellTower.webp"
-    },
-    {
-        title: "SISU Spidey",
-        featured: true,
-        category: "Digital",
-        tags: ["fanart", "comic", "mashup"],
-        date: "2026",
-        desc: "Creative character crossover illustration.",
-        img: "./SISUSpidey.webp"
-    },
-    {
-        title: "Taylor Swift",
-        featured: false,
-        category: "Digital",
-        tags: ["portrait", "pop-culture", "music"],
-        date: "2025",
-        desc: "High-contrast digital portrait illustration.",
-        img: "./TaylorSwift.webp"
-    },
-    {
-        title: "Eyeball Nativity",
-        featured: false,
-        category: "Media",
-        tags: ["surreal", "abstract", "concepts"],
-        date: "2025",
-        desc: "Surrealist concept piece using mixed media.",
-        img: "./EyeballNativity.webp"
-    },
-    {
-        title: "Hand Eyeball",
-        featured: false,
-        category: "Media",
-        tags: ["surreal", "sketch", "ink"],
-        date: "2026",
-        desc: "Surreal ink and charcoal hand study.",
-        img: "./HandEyeball.webp"
-    },
-    {
-        title: "Four Seasons",
-        featured: true,
-        category: "Watercolor",
-        tags: ["seasons", "landscape", "quadptych"],
-        date: "2026",
-        desc: "Color palette transition showing the cycle of seasons.",
-        img: "./FourSeasons.webp"
-    },
-    {
-        title: "Apple Mouth Man",
-        featured: false,
-        category: "Media",
-        tags: ["surreal", "abstract", "character"],
-        date: "2025",
-        desc: "Experimental abstract portrait with surreal motifs.",
-        img: "./AppleMouthMan.webp"
-    },
-    {
-        title: "Drums",
-        featured: false,
-        category: "Craft",
-        tags: ["music", "instrument", "still-life"],
-        date: "2026",
-        desc: "Textured mixed-media drum kit artwork.",
-        img: "./Drums.webp"
-    },
-    {
-        title: "Dinosaur 3",
-        featured: false,
-        category: "Digital",
-        tags: ["prehistoric", "creature", "illustration"],
-        date: "2025",
-        desc: "Dynamic prehistoric creature portrait.",
-        img: "./Dinosaur3.webp"
-    },
-    {
-        title: "Brick House",
-        featured: false,
-        category: "Watercolor",
-        tags: ["architecture", "building", "landscape"],
-        date: "2026",
-        desc: "Charming study of vintage brick masonry.",
-        img: "./BrickHouse.webp"
-    },
-    {
-        title: "Dinosaur 2",
-        featured: false,
-        category: "Digital",
-        tags: ["prehistoric", "creature", "study"],
-        date: "2025",
-        desc: "Detailed scale texture and color study.",
-        img: "./Dinosaur2.webp"
-    },
-    {
-        title: "Dinosaur 1",
-        featured: false,
-        category: "Digital",
-        tags: ["prehistoric", "creature", "concept"],
-        date: "2025",
-        desc: "Initial concept sketch and render for dino series.",
-        img: "./Dinosaur1.webp"
-    },
-    {
-        title: "Dinosaur 4",
-        featured: false,
-        category: "Digital",
-        tags: ["prehistoric", "creature", "action"],
-        date: "2025",
-        desc: "Action pose illustration completing the dino series.",
-        img: "./Dinosaur4.webp"
-    },
-    {
-        title: "Spiderman",
-        featured: true,
-        category: "Digital",
-        tags: ["fanart", "comic", "hero"],
-        date: "2026",
-        desc: "Vibrant web-slinger dynamic action shot.",
-        img: "./Spiderman.webp"
-    },
-    {
-        title: "Doc Ock",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "villain"],
-        date: "2025",
-        desc: "Mechanical arm and lighting focus character design.",
-        img: "./DocOck.webp"
-    },
-    {
-        title: "Green Goblin",
-        featured: false,
-        category: "Digital",
-        tags: ["fanart", "comic", "villain"],
-        date: "2025",
-        desc: "High-contrast green and purple villain study.",
-        img: "./GreenGoblin.webp"
-    },
-    {
-        title: "Baseball Shoe - Angle 1",
-        featured: true,
-        category: "Craft",
-        tags: ["custom", "cleats", "baseball"],
-        date: "2026",
-        desc: "Custom hand-painted baseball cleat perspective study.",
-        img: "./BaseballShoeAngle1.webp"
-    },
-    {
-        title: "Baseball Shoe - Angle 2",
-        featured: false,
-        category: "Craft",
-        tags: ["custom", "cleats", "detail"],
-        date: "2026",
-        desc: "Alternate angle highlighting side detail work.",
-        img: "./BaseballShoeAngle2.webp"
-    },
-    {
-        title: "Seashells",
-        featured: false,
-        category: "Watercolor",
-        tags: ["ocean", "coastal", "still-life"],
-        date: "2026",
-        desc: "Detailed watercolor study of collected beach shells.",
-        img: "./Seashells.webp"
-    },
-    {
-        title: "Landscape Cloud",
-        featured: false,
-        category: "Watercolor",
-        tags: ["landscape", "sky", "clouds"],
-        date: "2026",
-        desc: "Atmospheric cloud study over open field scenery.",
-        img: "./LandscapeCloud.webp"
-    },
-    {
-        title: "Flower Shoe",
-        featured: false,
-        category: "Craft",
-        tags: ["custom", "floral", "wearable-art"],
-        date: "2026",
-        desc: "Hand-painted custom footwear with vibrant floral patterns.",
-        img: "./FlowerShoe.webp"
-    },
-    {
-        title: "Dragon Shoe",
-        featured: false,
-        category: "Craft",
-        tags: ["custom", "dragon", "fantasy"],
-        date: "2026",
-        desc: "Custom shoe artwork featuring intricate dragon scales.",
-        img: "./DragonShoe.webp"
-    },
-    {
-        title: "34 Baseball Shoe",
-        featured: false,
-        category: "Craft",
-        tags: ["custom", "sports", "number"],
-        date: "2026",
-        desc: "Personalized player-edition custom footwear design.",
-        img: "./34BaseballShoe.webp"
-    },
-    {
-        title: "Canyon",
-        featured: false,
-        category: "Watercolor",
-        tags: ["landscape", "canyon", "desert"],
-        date: "2026",
-        desc: "Layered wash study of desert canyon rock formations.",
-        img: "./Canyon.webp"
-    },
-    {
-        title: "Farmhouse Cloudy",
-        featured: false,
-        category: "Media",
-        tags: ["rustic", "architecture", "clouds"],
-        date: "2025",
-        desc: "Atmospheric rural farmhouse scene under overcast skies.",
-        img: "./FarmhouseCloudy.webp"
-    },
-    {
-        title: "Farmhouse Plains",
-        featured: false,
-        category: "Watercolor",
-        tags: ["landscape", "plains", "countryside"],
-        date: "2026",
-        desc: "Wide-open plains surrounding a distant farmhouse.",
-        img: "./FarmhousePlains.webp"
-    },
-    {
-        title: "Flower Stalk",
-        featured: false,
-        category: "Watercolor",
-        tags: ["botanical", "floral", "nature"],
-        date: "2026",
-        desc: "Delicate botanical study of a flowering stalk.",
-        img: "./FlowerStalk.webp"
-    },
-    {
-        title: "Misty Mountain",
-        featured: true,
-        category: "Watercolor",
-        tags: ["mountains", "fog", "landscape"],
-        date: "2026",
-        desc: "Moody mountain peaks emerging through morning mist.",
-        img: "./MistyMountain.webp"
-    },
-    {
-        title: "Origami Boat",
-        featured: false,
-        category: "Digital",
-        tags: ["minimal", "origami", "concept"],
-        date: "2025",
-        desc: "Minimalist illustration of a folded paper boat floating.",
-        img: "./OrigamiBoat.webp"
-    },
-    {
-        title: "Rough Ocean",
-        featured: true,
-        category: "Media",
-        tags: ["ocean", "waves", "dramatic"],
-        date: "2026",
-        desc: "Textured acrylic study of stormy sea swells.",
-        img: "./RoughOcean.webp"
+const artData = [
+    {
+        "title": "Fox",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "animal",
+            "nature",
+            "fox"
+        ],
+        "date": "2025",
+        "desc": "A vibrant wildlife piece featuring Addie the Fox.",
+        "img": "./AddieFox.webp"
+    },
+    {
+        "title": "Bird Bath",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "nature",
+            "birds",
+            "garden"
+        ],
+        "date": "2025",
+        "desc": "A peaceful outdoor scene near a garden fountain.",
+        "img": "./BirdBath.webp"
+    },
+    {
+        "title": "Farmhouse",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "rustic",
+            "architecture",
+            "landscape"
+        ],
+        "date": "2024",
+        "desc": "Country farmhouse surrounded by open fields.",
+        "img": "./Farmhouse.webp"
+    },
+    {
+        "title": "Gethsemane",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "dramatic",
+            "landscape",
+            "night"
+        ],
+        "date": "2025",
+        "desc": "Atmospheric study of night shadows and foliage.",
+        "img": "./Gethsemane.webp"
+    },
+    {
+        "title": "Ghost on Swing",
+        "featured": true,
+        "category": "Acrylic",
+        "tags": [
+            "whimsical",
+            "spooky",
+            "character"
+        ],
+        "date": "2024",
+        "desc": "Playful illustration of a ghost swinging under moonlight on homemade canvas.",
+        "img": "./GhostOnSwing.webp"
+    },
+    {
+        "title": "Girl Sketch",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "sketch",
+            "portrait",
+            "pencil"
+        ],
+        "date": "2023",
+        "desc": "Quick structural portrait study.",
+        "img": "./GirlSketch.webp"
+    },
+    {
+        "title": "Horse",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "animal",
+            "study",
+            "motion"
+        ],
+        "date": "2023",
+        "desc": "Dynamic study of a horse in motion.",
+        "img": "./Horse.webp"
+    },
+    {
+        "title": "Joker",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "villain"
+        ],
+        "date": "2023",
+        "desc": "High-contrast villain portrait.",
+        "img": "./Joker.webp"
+    },
+    {
+        "title": "Riddler",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "mystery"
+        ],
+        "date": "2023",
+        "desc": "Green and emerald color palette study.",
+        "img": "./Riddler.webp"
+    },
+    {
+        "title": "Seashell",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "minimal",
+            "ocean",
+            "still life"
+        ],
+        "date": "2024",
+        "desc": "Detailed wash of coastal findings.",
+        "img": "./Seashell.webp"
+    },
+    {
+        "title": "Starry Night 1",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "night",
+            "sky",
+            "abstract"
+        ],
+        "date": "2022",
+        "desc": "Heavy acrylic texture capturing night energy.",
+        "img": "./StarryNight1.webp"
+    },
+    {
+        "title": "Starry Night 2",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "night",
+            "sky",
+            "expressionism"
+        ],
+        "date": "2022",
+        "desc": "Alternative color pass on cosmic landscapes.",
+        "img": "./StarryNight2.webp"
+    },
+    {
+        "title": "Toothbrush Girl",
+        "featured": false,
+        "category": "Digital",
+        "tags": [
+            "character",
+            "pop art",
+            "daily"
+        ],
+        "date": "2023",
+        "desc": "Candid slice-of-life digital illustration.",
+        "img": "./ToothbrushGirl.webp"
+    },
+    {
+        "title": "Turtle",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "ocean",
+            "animal",
+            "sea"
+        ],
+        "date": "2022",
+        "desc": "Subtle blue and green washes depicting sea life.",
+        "img": "./Turtle.webp"
+    },
+    {
+        "title": "Two Face",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "duality"
+        ],
+        "date": "2023",
+        "desc": "Split portrait exploring light and shadow.",
+        "img": "./TwoFace.webp"
+    },
+    {
+        "title": "Venom",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "creature"
+        ],
+        "date": "2023",
+        "desc": "Dark, expressive character artwork.",
+        "img": "./Venom.webp"
+    },
+    {
+        "title": "Welder",
+        "featured": false,
+        "category": "Digital",
+        "tags": [
+            "metal",
+            "sparks",
+            "industrial"
+        ],
+        "date": "2024",
+        "desc": "High-contrast capture of industrial work in action.",
+        "img": "./Welder.webp"
+    },
+    {
+        "title": "Christ Is My Roots",
+        "featured": true,
+        "category": "Digital",
+        "tags": [
+            "community",
+            "exhibition",
+            "mixed media"
+        ],
+        "date": "2022",
+        "desc": "Featured piece from the annual youth art submission.",
+        "img": "./YouthArtSubmission.webp"
+    },
+    {
+        "title": "Waterfall",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "nature",
+            "water",
+            "landscape"
+        ],
+        "date": "2022",
+        "desc": "Cascading water study using fluid washes.",
+        "img": "./Waterfall.webp"
+    },
+    {
+        "title": "City Alley",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "urban",
+            "city",
+            "architecture"
+        ],
+        "date": "2021",
+        "desc": "Moody urban alleyway lit by atmospheric neon.",
+        "img": "./CityAlley.webp"
+    },
+    {
+        "title": "Boat",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "ocean",
+            "nautical",
+            "tranquil"
+        ],
+        "date": "2022",
+        "desc": "Solitary boat drifting on calm waters.",
+        "img": "./Boat.webp"
+    },
+    {
+        "title": "Mountain",
+        "featured": true,
+        "category": "Acrylic",
+        "tags": [
+            "landscape",
+            "mountains",
+            "nature"
+        ],
+        "date": "2024",
+        "desc": "Rugged mountain peak rendered in textured layers.",
+        "img": "./Moutain.webp"
+    },
+    {
+        "title": "Moon Over Lake",
+        "featured": true,
+        "category": "Acrylic",
+        "tags": [
+            "night",
+            "landscape",
+            "water"
+        ],
+        "date": "2024",
+        "desc": "Serene scene showing full moon reflections over water.",
+        "img": "./MoonOverLake.webp"
+    },
+    {
+        "title": "Witch",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "fantasy",
+            "character",
+            "spooky"
+        ],
+        "date": "2023",
+        "desc": "Fantasy character illustration with glowing elements.",
+        "img": "./Witch.webp"
+    },
+    {
+        "title": "Halloween Cat",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "spooky",
+            "cat",
+            "seasonal"
+        ],
+        "date": "2023",
+        "desc": "Playful holiday illustration featuring a black cat.",
+        "img": "./HalloweenCat.webp"
+    },
+    {
+        "title": "Fox",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "animal",
+            "wildlife",
+            "nature"
+        ],
+        "date": "2021",
+        "desc": "Soft wash wildlife study of a forest fox.",
+        "img": "./Fox.webp"
+    },
+    {
+        "title": "Ewok",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "fanart",
+            "sci-fi",
+            "creature"
+        ],
+        "date": "2021",
+        "desc": "Textured illustration of an Endor inhabitant.",
+        "img": "./Ewok.webp"
+    },
+    {
+        "title": "Parrot",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "birds",
+            "tropical",
+            "vibrant"
+        ],
+        "date": "2021",
+        "desc": "High-contrast tropical bird study featuring vivid plumage.",
+        "img": "./Parrot.webp"
+    },
+    {
+        "title": "Forever Beautiful",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "typography",
+            "textile",
+            "heart"
+        ],
+        "date": "2024",
+        "desc": "French typography and decorative art piece.",
+        "img": "./ToujourBelle-AimerMaman.webp"
+    },
+    {
+        "title": "Taylor Swift",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "portrait",
+            "pop-culture",
+            "music"
+        ],
+        "date": "2024",
+        "desc": "Taylor Swift acrylic painting on glass using the reverse-painting technique.",
+        "img": "./TaylorSwift.webp"
+    },
+    {
+        "title": "Eyeball Nativity",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "surreal",
+            "abstract",
+            "concepts"
+        ],
+        "date": "2024",
+        "desc": "Surrealist concept piece using mixed media.",
+        "img": "./EyeballNativity.webp"
+    },
+    {
+        "title": "Hand Eyeball",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "surreal",
+            "sketch",
+            "ink"
+        ],
+        "date": "2024",
+        "desc": "Surreal ink and charcoal hand study.",
+        "img": "./HandEyeball.webp"
+    },
+    {
+        "title": "Apple Mouth Man",
+        "featured": false,
+        "category": "Sketch",
+        "tags": [
+            "surreal",
+            "abstract",
+            "character"
+        ],
+        "date": "2024",
+        "desc": "Experimental abstract portrait with surreal motifs.",
+        "img": "./AppleMouthMan.webp"
+    },
+    {
+        "title": "Dinosaur 3",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "prehistoric",
+            "creature",
+            "illustration"
+        ],
+        "date": "2023",
+        "desc": "Dynamic prehistoric creature portrait.",
+        "img": "./Dinosaur3.webp"
+    },
+    {
+        "title": "Brick House",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "architecture",
+            "building",
+            "landscape"
+        ],
+        "date": "2022",
+        "desc": "Charming study of vintage brick masonry.",
+        "img": "./BrickHouse.webp"
+    },
+    {
+        "title": "Dinosaur 2",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "prehistoric",
+            "creature",
+            "study"
+        ],
+        "date": "2023",
+        "desc": "Detailed scale texture and color study.",
+        "img": "./Dinosaur2.webp"
+    },
+    {
+        "title": "Dinosaur 1",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "prehistoric",
+            "creature",
+            "concept"
+        ],
+        "date": "2023",
+        "desc": "Initial concept sketch and render for dino series.",
+        "img": "./Dinosaur1.webp"
+    },
+    {
+        "title": "Dinosaur 4",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "prehistoric",
+            "creature",
+            "action"
+        ],
+        "date": "2023",
+        "desc": "Action pose illustration completing the dino series.",
+        "img": "./Dinosaur4.webp"
+    },
+    {
+        "title": "Spiderman",
+        "featured": true,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "hero"
+        ],
+        "date": "2023",
+        "desc": "Vibrant web-slinger dynamic action shot.",
+        "img": "./Spiderman.webp"
+    },
+    {
+        "title": "Doc Ock",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "villain"
+        ],
+        "date": "2023",
+        "desc": "Mechanical arm and lighting focus character design.",
+        "img": "./DocOck.webp"
+    },
+    {
+        "title": "Green Goblin",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "fanart",
+            "comic",
+            "villain"
+        ],
+        "date": "2023",
+        "desc": "High-contrast green and purple villain study.",
+        "img": "./GreenGoblin.webp"
+    },
+    {
+        "title": "Baseball Shoe - Angle 1",
+        "featured": true,
+        "category": "Shoes",
+        "tags": [
+            "custom",
+            "cleats",
+            "baseball"
+        ],
+        "date": "2024",
+        "desc": "Custom hand-painted baseball cleat perspective study.",
+        "img": "./BaseballShoeAngle1.webp"
+    },
+    {
+        "title": "Baseball Shoe - Angle 2",
+        "featured": false,
+        "category": "Shoes",
+        "tags": [
+            "custom",
+            "cleats",
+            "detail"
+        ],
+        "date": "2024",
+        "desc": "Alternate angle highlighting side detail work.",
+        "img": "./BaseballShoeAngle2.webp"
+    },
+    {
+        "title": "Seashells",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "ocean",
+            "coastal",
+            "still-life"
+        ],
+        "date": "2023",
+        "desc": "Detailed watercolor study of collected beach shells.",
+        "img": "./Seashells.webp"
+    },
+    {
+        "title": "Landscape Cloud",
+        "featured": false,
+        "category": "Acrylic",
+        "tags": [
+            "landscape",
+            "sky",
+            "clouds"
+        ],
+        "date": "2025",
+        "desc": "Atmospheric cloud study over open field scenery.",
+        "img": "./LandscapeCloud.webp"
+    },
+    {
+        "title": "Flower Shoe",
+        "featured": false,
+        "category": "Shoes",
+        "tags": [
+            "custom",
+            "floral",
+            "wearable-art"
+        ],
+        "date": "2026",
+        "desc": "Hand-painted custom footwear with vibrant floral patterns.",
+        "img": "./FlowerShoe.webp"
+    },
+    {
+        "title": "Dragon Shoe",
+        "featured": false,
+        "category": "Shoes",
+        "tags": [
+            "custom",
+            "dragon",
+            "fantasy"
+        ],
+        "date": "2026",
+        "desc": "Custom shoe artwork featuring intricate dragon scales.",
+        "img": "./DragonShoe.webp"
+    },
+    {
+        "title": "34 Baseball Shoe",
+        "featured": false,
+        "category": "Shoes",
+        "tags": [
+            "custom",
+            "sports",
+            "number"
+        ],
+        "date": "2026",
+        "desc": "Personalized player-edition custom footwear design.",
+        "img": "./34BaseballShoe.webp"
+    },
+    {
+        "title": "Canyon",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "landscape",
+            "canyon",
+            "desert"
+        ],
+        "date": "2023",
+        "desc": "Layered wash study of desert canyon rock formations.",
+        "img": "./Canyon.webp"
+    },
+    {
+        "title": "Farmhouse Cloudy",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "rustic",
+            "architecture",
+            "clouds"
+        ],
+        "date": "2023",
+        "desc": "Atmospheric rural farmhouse scene under overcast skies.",
+        "img": "./FarmhouseCloudy.webp"
+    },
+    {
+        "title": "Farmhouse Plains",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "landscape",
+            "plains",
+            "countryside"
+        ],
+        "date": "2023",
+        "desc": "Wide-open plains surrounding a distant farmhouse.",
+        "img": "./FarmhousePlains.webp"
+    },
+    {
+        "title": "Flower Stalk",
+        "featured": false,
+        "category": "Watercolor",
+        "tags": [
+            "botanical",
+            "floral",
+            "nature"
+        ],
+        "date": "2022",
+        "desc": "Delicate botanical study of a flowering stalk.",
+        "img": "./FlowerStalk.webp"
+    },
+    {
+        "title": "Misty Mountain",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "mountains",
+            "fog",
+            "landscape"
+        ],
+        "date": "2026",
+        "desc": "Moody mountain peaks emerging through morning mist.",
+        "img": "./MistyMountain.webp"
+    },
+    {
+        "title": "Origami Boat",
+        "featured": false,
+        "category": "Mixed Media",
+        "tags": [
+            "minimal",
+            "origami",
+            "concept"
+        ],
+        "date": "2026",
+        "desc": "Minimalist illustration of a folded paper boat floating.",
+        "img": "./OrigamiBoat.webp"
+    },
+    {
+        "title": "Rough Ocean",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "ocean",
+            "waves",
+            "dramatic"
+        ],
+        "date": "2026",
+        "desc": "Textured acrylic study of stormy sea swells.",
+        "img": "./RoughOcean.webp"
     }
 ];
 
