@@ -30,7 +30,7 @@ const loader = document.getElementById('loader');
 const img = new Image();
 img.crossOrigin = 'Anonymous';
 // Cover image for the interactive ripple background on the home page
-img.src = './Waterfall.webp';
+img.src = './Icarus.webp';
 
 img.onload = () => {
     rebuild();
