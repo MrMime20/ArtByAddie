@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
 
 // Target directory (root folder of your project)
 const dir = './';
@@ -38,5 +38,3 @@ async function compressWebpImages() {
 }
 
 compressWebpImages();
-
-// This comment is to push the next repo change to optimize imaging.
