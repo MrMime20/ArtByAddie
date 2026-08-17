@@ -717,7 +717,106 @@ const artData = [
         "date": "2026",
         "desc": "Textured acrylic study of stormy sea swells.",
         "img": "./RoughOcean.webp"
-    }
+    },
+    {
+    title: "Guy With Glasses",
+    featured: false,
+    category: "Digital",
+    tags: ["portrait", "character", "modern"],
+    date: "2026",
+    desc: "Candid portrait study focusing on lighting and lens reflection.",
+    img: "./GuyWithGlasses.webp"
+  },
+  {
+    title: "Koi Fish Pond",
+    featured: true,
+    category: "Watercolor",
+    tags: ["japan", "fish", "water", "tranquil"],
+    date: "2026",
+    desc: "Vibrant wet-on-wet watercolor study of koi gliding through pond waters.",
+    img: "./KoiFishPond.webp"
+  },
+  {
+    title: "Red Dragon",
+    featured: true,
+    category: "Digital",
+    tags: ["fantasy", "dragon", "creature"],
+    date: "2026",
+    desc: "High-concept fantasy illustration of a crimson dragon.",
+    img: "./RedDragon.webp"
+  },
+  {
+    title: "Rockie Balboa",
+    featured: false,
+    category: "Media",
+    tags: ["portrait", "movie", "charcoal"],
+    date: "2025",
+    desc: "Expressive charcoal sketch paying homage to the classic cinematic icon.",
+    img: "./RockieBalboa.webp"
+  },
+  {
+    title: "Kelpie",
+    featured: false,
+    category: "Digital",
+    tags: ["mythology", "folklore", "water"],
+    date: "2026",
+    desc: "Atmospheric illustration based on traditional Scottish aquatic folklore.",
+    img: "./Kelpie.webp"
+  },
+  {
+    title: "Icarus",
+    featured: true,
+    category: "Digital",
+    tags: ["mythology", "sun", "dramatic"],
+    date: "2026",
+    desc: "Dramatic composition depicting the flight and fall of Icarus.",
+    img: "./Icarus.webp"
+  },
+  {
+    title: "Lumberjack",
+    featured: false,
+    category: "Media",
+    tags: ["character", "rustic", "illustration"],
+    date: "2025",
+    desc: "Textured ink and watercolor study of a rugged woodsman.",
+    img: "./Lumberjack.webp"
+  },
+  {
+    title: "Knight",
+    featured: false,
+    category: "Digital",
+    tags: ["medieval", "armor", "fantasy"],
+    date: "2025",
+    desc: "Metallic armor highlight and shadow study.",
+    img: "./Knight.webp"
+  },
+  {
+    title: "Shallan Noir",
+    featured: false,
+    category: "Digital",
+    tags: ["fanart", "noir", "cosmere"],
+    date: "2026",
+    desc: "Noir-style portrait reinterpretation of Shallan Davar.",
+    img: "./ShallanNoir.webp"
+  },
+  {
+    title: "Chasm Fiend",
+    featured: true,
+    category: "Digital",
+    tags: ["fantasy", "creature", "cosmere"],
+    date: "2026",
+    desc: "Monolithic creature illustration depicting a great chasm fiend.",
+    img: "./ChasmFiend.webp"
+  },
+  {
+    title: "Chani",
+    featured: false,
+    category: "Digital",
+    tags: ["sci-fi", "portrait", "dune"],
+    date: "2025",
+    desc: "Cinematic digital portrait study with desert lighting.",
+    img: "./Chani.webp"
+  }
 ];
 
 // ── Search & Synonyms ──
