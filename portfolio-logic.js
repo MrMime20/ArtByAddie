@@ -4,6 +4,22 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 const artData = [
     {
+        "title": "Batman Acrylic",
+        "featured": true,
+        "category": "Acrylic",
+        "tags": [
+            "new",
+            "art",
+            "hero",
+            "batman",
+            "dark",
+            "DC"
+        ],
+        "date": "2026",
+        "desc": "Acrylic painting of batman.",
+        "img": "./BatmanAcrylic.webp"
+    },
+    {
         "title": "Stormy Waters",
         "featured": true,
         "category": "Mixed Media",
@@ -85,19 +101,6 @@ const artData = [
         "date": "2025",
         "desc": "",
         "img": "./Gethsemane.webp"
-    },
-    {
-        "title": "Ghost on Swing",
-        "featured": false,
-        "category": "Acrylic",
-        "tags": [
-            "whimsical",
-            "spooky",
-            "character"
-        ],
-        "date": "2024",
-        "desc": "Done on a homemade canvas... hopefully that explains the quality a little.",
-        "img": "./GhostOnSwing.webp"
     },
     {
         "title": "Girl Sketch",
@@ -347,32 +350,6 @@ const artData = [
         "img": "./Witch.webp"
     },
     {
-        "title": "Halloween Cat",
-        "featured": true,
-        "category": "Watercolor",
-        "tags": [
-            "spooky",
-            "cat",
-            "seasonal"
-        ],
-        "date": "2023",
-        "desc": "",
-        "img": "./HalloweenCat.webp"
-    },
-    {
-        "title": "Fox",
-        "featured": false,
-        "category": "Watercolor",
-        "tags": [
-            "animal",
-            "wildlife",
-            "nature"
-        ],
-        "date": "2021",
-        "desc": "",
-        "img": "./Fox.webp"
-    },
-    {
         "title": "Ewok",
         "featured": false,
         "category": "Watercolor",
@@ -436,19 +413,6 @@ const artData = [
         "date": "2024",
         "desc": "",
         "img": "./HandEyeball.webp"
-    },
-    {
-        "title": "Apple Mouth Man",
-        "featured": false,
-        "category": "Sketch",
-        "tags": [
-            "surreal",
-            "abstract",
-            "character"
-        ],
-        "date": "2024",
-        "desc": "Surrealism study.",
-        "img": "./AppleMouthMan.webp"
     },
     {
         "title": "Dinosaur 3",
@@ -646,19 +610,6 @@ const artData = [
         "img": "./34BaseballShoe.webp"
     },
     {
-        "title": "Canyon",
-        "featured": false,
-        "category": "Watercolor",
-        "tags": [
-            "landscape",
-            "canyon",
-            "desert"
-        ],
-        "date": "2023",
-        "desc": "",
-        "img": "./Canyon.webp"
-    },
-    {
         "title": "Farmhouse Cloudy",
         "featured": false,
         "category": "Watercolor",
@@ -777,7 +728,7 @@ const artData = [
         "img": "./RedDragon.webp"
     },
     {
-        "title": "Rockie Balboa",
+        "title": "Rocky Balboa",
         "featured": false,
         "category": "Sketch",
         "tags": [
