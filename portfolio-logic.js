@@ -4,6 +4,22 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 const artData = [
     {
+        "title": "Boat Watercolor",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "new",
+            "art",
+            "boat",
+            "water",
+            "city",
+            "float"
+        ],
+        "date": "2026",
+        "desc": "A watercolor card I made for someone.",
+        "img": "./BoatOnDock.webp"
+    },
+    {
         "title": "Batman Acrylic",
         "featured": true,
         "category": "Acrylic",
