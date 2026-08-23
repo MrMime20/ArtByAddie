@@ -23,7 +23,8 @@ const defaultCommissions = [
             "./KoiFishPond.webp",
             "./BrickHouse.webp",
             "./Horse.webp",
-            "./Seashell.webp"
+            "./Seashell.webp",
+            "./BoatOnDock.webp"
         ]
     },
     {
