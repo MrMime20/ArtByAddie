@@ -24,7 +24,8 @@ const defaultCommissions = [
             "./BrickHouse.webp",
             "./Horse.webp",
             "./Seashell.webp",
-            "./BoatOnDock.webp"
+            "./BoatOnDock.webp",
+            "./TrainWatercolor.webp"
         ]
     },
     {
