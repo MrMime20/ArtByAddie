@@ -4,6 +4,38 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // ── Art data ──
 const artData = [
     {
+        "title": "Train Station",
+        "featured": true,
+        "category": "Watercolor",
+        "tags": [
+            "new",
+            "art",
+            "train",
+            "journey",
+            "depart",
+            "pretty"
+        ],
+        "date": "2026",
+        "desc": "A watercolor card I made for someone.",
+        "img": "./TrainWatercolor.webp"
+    },
+    {
+        "title": "Half-Portrait",
+        "featured": true,
+        "category": "Oil",
+        "tags": [
+            "new",
+            "art",
+            "woman",
+            "pretty",
+            "close-up",
+            "person"
+        ],
+        "date": "2026",
+        "desc": "",
+        "img": "./WomanFaceOil.webp"
+    },
+    {
         "title": "Boat Watercolor",
         "featured": true,
         "category": "Watercolor",
